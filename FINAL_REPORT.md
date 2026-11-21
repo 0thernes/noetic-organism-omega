@@ -16,7 +16,7 @@ Milestones **M5 through M10** have been executed, formally verified, empirically
 | 1 | `autophage` | Tier 1: Bare-Metal x86-64 Polymorphic DNA Soup | `v1.2.0` | **38 / 38** | `18/18` gates · `6/6` mutants | `:8787` |
 | 2 | `cellulogonic-mecha` | Tier 2: 3D Chemotons, 4 Solvents, GRN Embryogenesis, Axons, CPG | `v1.3.0` | **58 / 58** | `24/24` gates · `8/8` mutants | `:8788` |
 | 3 | `cellular-engine-omega` | Tier 2+: Frontier 16-Testbed Biophysical VM (`syn3A`, Bio-Frostbite INet, Levin) | `v5.0.0` | **66 / 66** | `54/54` gates · `16/16` mutants | `:8791` |
-| 4 | **`noetic-organism-omega`** | **Tier 3/4: Whole-Organism Cognitive, Consciousness-Indicator & M5–M10 Engine** | **`v1.0.0`** | **24 / 24** | `10/10` unit+mut (`5/5` Anti-LARP) · `18/18` E1 · `49/49` E2 | **`:8792`** |
+| 4 | **`noetic-organism-omega`** | **Tier 3/4: Whole-Organism Cognitive, Consciousness-Indicator & M5–M10 Engine** | **`v1.0.0`** | **24 / 24** | `10/10` unit+mut (`5/5` Anti-LARP) · `18/18` E1 · `49/49` E2 | **`:8795`** |
 | 5 | `omega-triscale-observatory` | Unified 7-Endpoint Observatory Hub + Reverse Proxy + Read-Only Macro Relay | `v6.4.0` | Orchestrates **186** | Loopback CSRF/CSWSH hardened + DNA-128B→T2+T3 live stream | `:8790` |
 | 6 | `alife-singularity-omega-package` | Master Omniscient Spec (`825`-check registry), Archive & `OVBS-52` Suite | `v3.2–3.3` | Audits Ecosystem | `15+` Forensic Gates · Live `OVBS-52` | `/zeta-omega/` |
 
@@ -35,7 +35,7 @@ Milestones **M5 through M10** have been executed, formally verified, empirically
 - Wired live **128-byte AUTOPHAGE DNA** and **112-trait Cellulogonic** ingestion directly into `noetic-organism-omega` (`noetic_world_ingest_autophage_128b` / `noetic_world_ingest_cellulogonic_112`) and live streaming from `omega-triscale-observatory v6.4.0`.
 
 ### M6 — Performance, Cache Profiling & Live 7-Endpoint Web Observatory
-- Built `noetic-organism-omega/web/server.mjs` + `index.html` + `app.js` on **port `:8792`** (hardened loopback Host/Origin/Sec-Fetch-Site/CSP/`POST /api/cmd` mutation barrier) and integrated it into `omega-triscale-observatory v6.4.0` (`/proxy/noetic/` + live top-bar `#pillNoetic`).
+- Built `noetic-organism-omega/web/server.mjs` + `index.html` + `app.js` on **port `:8795`** (dedicated collision-free port leaving external `:8792` untouched; hardened loopback Host/Origin/Sec-Fetch-Site/CSP/`POST /api/cmd` mutation barrier) and integrated it into `omega-triscale-observatory v6.4.0` (`/proxy/noetic/` + live top-bar `#pillNoetic`).
 - **E3 Scaling & Cache Table** (`sizeof(NoeticWorld) = 6,776 B`, Win64 Clang `-O3` / Linux GCC `-O3`, `0 uq` drift at all scales):
   - `N = 1` (`6.6 KB`, `L1D_FIT`): **294,356 org-ticks/s** (`3.40 µs/org-tick`)
   - `N = 16` (`105.9 KB`, `L2_FIT`): **284,369 org-ticks/s** (`3.52 µs/org-tick`)

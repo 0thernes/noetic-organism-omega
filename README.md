@@ -4,7 +4,7 @@
 Part of the unified 6-repository `0thernes` Artificial Life stack on `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\`.
 
 - **Author:** Alexander Stephen Donahue (`0thernes LLC`, ORCID [0009-0006-8168-9648](https://orcid.org/0009-0006-8168-9648))
-- **Ecosystem Role:** Connects Tier 1 DNA (`autophage` v1.2) and Tier 2 3D Cells (`cellulogonic-mecha` v1.3) via direct 128-byte DNA and 112-trait ingestion into ONE unified, exact-conservation embodied organism implementing 18 real structural neural/physiological circuits, zero-fanout M8 E1/E2/E3 evaluation, 5 compiled Anti-LARP mutants, 24 Pure Lean 4 formal proofs (`186` ecosystem total), and a live hardened Web Observatory (`http://127.0.0.1:8792/`).
+- **Ecosystem Role:** Connects Tier 1 DNA (`autophage` v1.2) and Tier 2 3D Cells (`cellulogonic-mecha` v1.3) via direct 128-byte DNA and 112-trait ingestion into ONE unified, exact-conservation embodied organism implementing 18 real structural neural/physiological circuits, zero-fanout M8 E1/E2/E3 evaluation, 5 compiled Anti-LARP mutants, 24 Pure Lean 4 formal proofs (`186` ecosystem total), and a live hardened Web Observatory (`http://127.0.0.1:8795/`).
 
 ## Verified Receipts (`v1.0.0`)
 - **Compiler Cleanliness:** `0` warnings under Win64 Clang `-Wall -Wextra -Werror` and Linux GCC 13.3 `-Wall -Wextra -Werror`.
@@ -26,5 +26,5 @@ Passing `14/14` Butlin, `10/10` Theories, and `25/25` CQM establishes load-beari
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 node scripts\audit_zero_theater.mjs
-node web\server.mjs   # http://127.0.0.1:8792/
+node web\server.mjs   # http://127.0.0.1:8795/
 ```

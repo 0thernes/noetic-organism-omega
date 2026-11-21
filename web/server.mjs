@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const PORT = Number(process.env.PORT || 8792);
+const PORT = Number(process.env.PORT || 8795);
 const BIN = process.platform === "win32"
   ? path.join(ROOT, "bin", "noetic_engine.exe")
   : path.join(ROOT, "bin", "noetic_engine_linux");

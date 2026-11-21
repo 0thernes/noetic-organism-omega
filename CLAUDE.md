@@ -8,4 +8,4 @@ All 6 connected Artificial Life repositories live in `Z:\[Vibe Coded (AI)]\ANTIG
 - Linux GCC `-Werror` parity check: `wsl -e bash -lc "cd '/mnt/z/[Vibe Coded (AI)]/ANTIGRAVITY/noetic-organism-omega' && ./build_linux.sh"`
 - Zero-Theater audit & M8 825-Row Trace Matrix: `node scripts/audit_zero_theater.mjs && node scripts/build_m8_e2_825_trace.mjs`
 - M9 G1 6-Repo Foundation Gate: `node scripts/run_g1_6repo_gate.mjs`
-- Standalone Observatory (`:8792`): `node web/server.mjs`
+- Standalone Observatory (`:8795`): `node web/server.mjs`

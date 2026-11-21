@@ -101,7 +101,7 @@ let totalMutants = 0;
   const r1 = run(process.execPath, ["--check", path.join(dir, "server.mjs")], dir);
   const r2 = run(process.execPath, ["--check", path.join(dir, "web", "app.js")], dir);
   const srv = fs.readFileSync(path.join(dir, "server.mjs"), "utf8");
-  const hasNoetic = srv.includes("NOETIC_PORT = 8792") && srv.includes("/proxy/noetic/");
+  const hasNoetic = srv.includes("NOETIC_PORT = 8795") && srv.includes("/proxy/noetic/");
   const ok = r1.rc === 0 && r2.rc === 0 && hasNoetic;
   checks.push({ repo: "omega-triscale-observatory", version: "6.4.0", gates: "syntax+7-endpoint-proxy", mutants: "n/a", lean: "orchestrates 186", lean_clean: true, ok, ms: r1.ms });
   console.log(`  [${ok ? "PASS" : "FAIL"}] 5/6 omega-triscale-observatory v6.4.0: syntax OK + 7-endpoint /proxy/noetic/ wired`);
