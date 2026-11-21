@@ -1,6 +1,6 @@
 {
   "schema": "m9-g1-6repo-foundation-gate/v1.0",
-  "generated_utc": "2026-11-21T22:15:42.245Z",
+  "generated_utc": "2026-11-21T22:25:54.189Z",
   "all_passed": true,
   "ecosystem_totals": {
     "connected_repos": 6,
@@ -24,7 +24,7 @@
       "lean": "38/38",
       "lean_clean": true,
       "ok": true,
-      "ms": 2403.6
+      "ms": 2767.4
     },
     {
       "repo": "cellulogonic-mecha",
@@ -34,7 +34,7 @@
       "lean": "58/58",
       "lean_clean": true,
       "ok": true,
-      "ms": 627.4
+      "ms": 640.7
     },
     {
       "repo": "cellular-engine-omega",
@@ -44,7 +44,7 @@
       "lean": "66/66",
       "lean_clean": true,
       "ok": true,
-      "ms": 765.6
+      "ms": 828
     },
     {
       "repo": "noetic-organism-omega",
@@ -54,7 +54,7 @@
       "lean": "24/24",
       "lean_clean": true,
       "ok": true,
-      "ms": 100.6
+      "ms": 99.7
     },
     {
       "repo": "omega-triscale-observatory",
@@ -64,11 +64,11 @@
       "lean": "orchestrates 186",
       "lean_clean": true,
       "ok": true,
-      "ms": 80.5
+      "ms": 114.3
     },
     {
       "repo": "alife-singularity-omega-package",
-      "version": "3.2.0-omega",
+      "version": "3.3.0-omega",
       "gates": "825-spec + honest E2 trace",
       "mutants": "5/5",
       "lean": "audits ecosystem",
