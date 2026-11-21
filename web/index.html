@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NOETIC ORGANISM OMEGA v1.0.0 — Whole-Organism Cognitive & M5–M10 Observatory</title>
+<style>
+  :root { --bg:#060a14; --panel:#0c1324; --line:#1c2c4c; --txt:#dce8ff; --mut:#7b93ba; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --acc:#38bdf8; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:12px/1.4 ui-monospace,Consolas,monospace; background:var(--bg); color:var(--txt); }
+  header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; padding:10px 14px; background:#091020; border-bottom:1px solid var(--line); }
+  .title { font-size:13px; font-weight:700; letter-spacing:.04em; color:#7dd3fc; }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { padding:3px 8px; border-radius:999px; font-size:11px; border:1px solid var(--line); background:#0f1930; }
+  .badge.ok { border-color:#15803d; color:#86efac; background:#052e16; }
+  .badge.bad { border-color:#b91c1c; color:#fca5a5; background:#3b0a0a; }
+  .badge.info { border-color:#0369a1; color:#7dd3fc; background:#082f49; }
+  main { display:grid; grid-template-columns: 1.15fr 1fr; gap:10px; padding:10px; }
+  @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px; }
+  h2 { margin:0 0 8px; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#93c5fd; }
+  canvas { width:100%; display:block; background:#030711; border:1px solid #162442; border-radius:6px; }
+  .controls { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; align-items:center; }
+  button, select { background:#111d38; color:var(--txt); border:1px solid #294170; border-radius:5px; padding:4px 8px; font:inherit; cursor:pointer; }
+  button:hover { border-color:var(--acc); }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:8px; }
+  .kpi { background:#081022; border:1px solid #192948; border-radius:6px; padding:6px 8px; }
+  .kpi .k { font-size:10px; color:var(--mut); }
+  .kpi .v { font-size:14px; font-weight:700; color:#e0f2fe; }
+  .abl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; max-height:195px; overflow:auto; }
+  .abl-item { display:flex; align-items:center; gap:5px; padding:3px 5px; background:#081022; border:1px solid #182744; border-radius:4px; font-size:10px; cursor:pointer; }
+  .abl-item.on { border-color:#ef4444; background:#2a0b12; color:#fecaca; }
+  table { width:100%; border-collapse:collapse; font-size:10.5px; }
+  th, td { text-align:left; padding:3px 5px; border-bottom:1px solid #15223d; }
+  th { color:#93c5fd; position:sticky; top:0; background:#0c1324; }
+  .scroll-tbl { max-height:300px; overflow:auto; border:1px solid #162442; border-radius:6px; }
+  .pass { color:#4ade80; font-weight:700; }
+  .fail { color:#f87171; font-weight:700; }
+  .notice { margin-top:8px; padding:6px 8px; border-left:3px solid var(--warn); background:#1c1507; color:#fde68a; font-size:10.5px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="title">NOETIC ORGANISM OMEGA v1.0.0 · WHOLE-ORGANISM COGNITIVE &amp; M5–M10 OBSERVATORY</div>
+    <div style="color:var(--mut);font-size:10.5px;">Zero-Fanout Structural Ablations · Exact int64 11-Pool Conservation · Forked-Snapshot PCI* · 24 Pure Lean 4 Proofs (186 Ecosystem)</div>
+  </div>
+  <div class="badges">
+    <span id="b-drift" class="badge ok">1ST LAW Δ: 0 uq</span>
+    <span id="b-2nd" class="badge ok">2ND LAW VIOL: 0</span>
+    <span id="b-pci" class="badge info">PCI*: 0.000 (0-bit clean)</span>
+    <span id="b-lean" class="badge ok">LEAN 4: 24/24 PURE</span>
+    <span id="b-sha" class="badge">SHA: —</span>
+  </div>
+</header>
+<main>
+  <section class="card">
+    <h2>Live Embodied Spatial World &amp; Cortical Dynamics (64×64 Toroid)</h2>
+    <div class="controls">
+      <button id="btn-play">Pause</button>
+      <button id="btn-step">+10 Ticks</button>
+      <button id="btn-pci">Forked PCI*</button>
+      <select id="sel-arm">
+        <option value="0">Arm: INTACT</option>
+        <option value="1">Arm: SHAM (Matched)</option>
+        <option value="3">Arm: SHUFFLED Sensors</option>
+        <option value="4">Arm: PASSIVE Body</option>
+      </select>
+      <button id="btn-reset">Reset Seed 5001</button>
+      <button id="btn-clear-abl">Restore All 18 Circuits</button>
+    </div>
+    <canvas id="world-canvas" width="640" height="360"></canvas>
+    <div class="grid4">
+      <div class="kpi"><div class="k">Tick / Gen</div><div class="v" id="k-tick">0</div></div>
+      <div class="kpi"><div class="k">ATP / Stores</div><div class="v" id="k-atp">0</div></div>
+      <div class="kpi"><div class="k">Integrity / Temp</div><div class="v" id="k-body">0</div></div>
+      <div class="kpi"><div class="k">Meta Conf / Reality</div><div class="v" id="k-meta">0</div></div>
+    </div>
+    <h2 style="margin-top:10px;">Live Structural Circuit Ablations (18 Real Circuit Cuts — Zero Score Hacks)</h2>
+    <div id="abl-grid" class="abl-grid"></div>
+  </section>
+
+  <section class="card">
+    <h2>M8 E2 Empirical Scorecard (N=48 Locked Seeds 5001–5024 + 5101–5124 · 5 Arms · Holm FWER)</h2>
+    <div class="grid4" style="margin-top:0;margin-bottom:8px;">
+      <div class="kpi"><div class="k">Butlin-14 (Ind.)</div><div class="v" id="s-butlin">—</div></div>
+      <div class="kpi"><div class="k">Theories-10 (Ind.)</div><div class="v" id="s-theories">—</div></div>
+      <div class="kpi"><div class="k">CQM-25</div><div class="v" id="s-cqm">—</div></div>
+      <div class="kpi"><div class="k">MIR-01..05</div><div class="v" id="s-mir">—</div></div>
+    </div>
+    <div class="scroll-tbl">
+      <table>
+        <thead><tr><th>ID</th><th>Suite</th><th>Intact</th><th>Sham</th><th>Lesion</th><th>Shuf</th><th>d_z</th><th>p_Holm</th><th>Status</th></tr></thead>
+        <tbody id="e2-body"><tr><td colspan="9">Loading M8 E2 receipt…</td></tr></tbody>
+      </table>
+    </div>
+    <h2 style="margin-top:10px;">M8 E3 Scaling &amp; Cache Footprint</h2>
+    <div class="scroll-tbl" style="max-height:130px;">
+      <table>
+        <thead><tr><th>N Org</th><th>Bytes</th><th>Cache Tier</th><th>Org-Ticks/s</th><th>µs/Tick</th><th>Drift</th></tr></thead>
+        <tbody id="e3-body"><tr><td colspan="6">Loading M8 E3 receipt…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="notice">
+      <strong>Epistemic Honesty (ADR 0018 Rule-4 &amp; Rule-6):</strong> Butlin-14, Theories-10, and CQM13/19–22 measure computational/architectural indicator proxies under real structural ablations — never subjective qualia or phenomenal consciousness.
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

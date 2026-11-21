@@ -1,0 +1,29 @@
+{
+  "suite": "M8_E1_18_CIRCUIT_ABLATIONS",
+  "n_seeds": 48,
+  "seed_blocks": "5001-5024 + 5101-5124",
+  "effects": 18,
+  "total": 18,
+  "max_energy_residual_uq": 0,
+  "second_law_violations": 0,
+  "circuits": [
+    {"bit":0,"circuit":"RECURRENT_SLTC","intact":0.390592,"lesion":0.180000,"d_z":8.4199,"ci_lo":7.2430,"ci_hi":10.3285,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":1,"circuit":"APICAL_DCAAP_BIND","intact":0.860690,"lesion":0.299958,"d_z":1.9269,"ci_lo":1.6558,"ci_hi":2.3315,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":2,"circuit":"SPECIALISTS_MOD","intact":0.623876,"lesion":0.130629,"d_z":14.1503,"ci_lo":12.5052,"ci_hi":16.9428,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":3,"circuit":"WORKSPACE_IGNITION","intact":0.823125,"lesion":0.005903,"d_z":20.0488,"ci_lo":18.1831,"ci_hi":23.2359,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":4,"circuit":"ATTN_TTC_GATE","intact":0.900000,"lesion":0.893808,"d_z":1.0573,"ci_lo":0.7977,"ci_hi":4.9218,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":5,"circuit":"REALITY_MONITOR","intact":0.913079,"lesion":0.460000,"d_z":29.0721,"ci_lo":20.7060,"ci_hi":53.4829,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":6,"circuit":"META_2ND_ORDER","intact":0.802945,"lesion":0.780776,"d_z":1.4295,"ci_lo":1.0805,"ci_hi":1.9277,"delta_pair":0.7917,"raw_p":1.323386e-11,"holm_p":1.323386e-11,"verdict":"EFFECT"},
+    {"bit":7,"circuit":"QUALITY_MANIFOLD","intact":0.883064,"lesion":0.504437,"d_z":45.5476,"ci_lo":38.4622,"ci_hi":59.0398,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":8,"circuit":"ATTN_SCHEMA_AST","intact":0.854189,"lesion":0.384532,"d_z":38.4883,"ci_lo":32.9748,"ci_hi":48.2391,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":9,"circuit":"PRED_CODING_EFE","intact":0.698484,"lesion":0.021238,"d_z":22.9231,"ci_lo":20.0031,"ci_hi":28.4494,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":10,"circuit":"MODEL_DEVAL_ARBITER","intact":0.900000,"lesion":0.281836,"d_z":2.1423,"ci_lo":1.8051,"ci_hi":2.6662,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":11,"circuit":"EFFERENCE_COPY","intact":0.774062,"lesion":0.188118,"d_z":143.5502,"ci_lo":125.6754,"ci_hi":175.5867,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":12,"circuit":"THALER_CREATIVITY","intact":0.692916,"lesion":0.545252,"d_z":2.6711,"ci_lo":2.2188,"ci_hi":3.4318,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":13,"circuit":"THALAMOCORTICAL_PCI","intact":0.728572,"lesion":0.052650,"d_z":14.8646,"ci_lo":13.2222,"ci_hi":17.6696,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":14,"circuit":"KURAMOTO_WAVE_PHASE","intact":0.939259,"lesion":0.221036,"d_z":9.9291,"ci_lo":8.2350,"ci_hi":12.8878,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":15,"circuit":"UAL_CONFIG_CASCADE","intact":0.883500,"lesion":0.074109,"d_z":77.1789,"ci_lo":73.8841,"ci_hi":83.4412,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":16,"circuit":"EGOCENTRIC_DETOUR","intact":0.906082,"lesion":0.438795,"d_z":5.5876,"ci_lo":4.5081,"ci_hi":7.4769,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"},
+    {"bit":17,"circuit":"HOMEOSTASIS_VALENCE","intact":0.671991,"lesion":0.084406,"d_z":20.4315,"ci_lo":12.7155,"ci_hi":58.2448,"delta_pair":1.0000,"raw_p":3.552714e-15,"holm_p":6.394885e-14,"verdict":"EFFECT"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "suite": "M8_E3_SCALING_BENCHMARK",
+  "sizeof_world_bytes": 6776,
+  "rows": [
+    {"organisms":1,"ticks":2000,"bytes_total":6776,"cache_tier":"L1D_FIT","wall_ms":6.795,"org_ticks_per_sec":294355.73,"us_per_org_tick":3.3973,"max_energy_residual_uq":0},
+    {"organisms":16,"ticks":500,"bytes_total":108416,"cache_tier":"L2_FIT","wall_ms":28.132,"org_ticks_per_sec":284368.61,"us_per_org_tick":3.5166,"max_energy_residual_uq":0},
+    {"organisms":64,"ticks":200,"bytes_total":433664,"cache_tier":"L2_FIT","wall_ms":58.266,"org_ticks_per_sec":219681.77,"us_per_org_tick":4.5520,"max_energy_residual_uq":0},
+    {"organisms":256,"ticks":80,"bytes_total":1734656,"cache_tier":"L2_FIT","wall_ms":93.864,"org_ticks_per_sec":218187.32,"us_per_org_tick":4.5832,"max_energy_residual_uq":0},
+    {"organisms":1024,"ticks":30,"bytes_total":6938624,"cache_tier":"L3_FIT","wall_ms":189.108,"org_ticks_per_sec":162447.20,"us_per_org_tick":6.1558,"max_energy_residual_uq":0},
+    {"organisms":4096,"ticks":10,"bytes_total":27754496,"cache_tier":"L3_FIT","wall_ms":229.731,"org_ticks_per_sec":178295.41,"us_per_org_tick":5.6087,"max_energy_residual_uq":0}
+  ]
+}

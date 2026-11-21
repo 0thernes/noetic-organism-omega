@@ -1,0 +1,4 @@
+bin/*.o
+lean/**/*.olean
+*.tmp
+node_modules/

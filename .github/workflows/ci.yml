@@ -1,0 +1,44 @@
+name: Noetic Organism Omega CI (C11 -Werror + 24 Pure Lean 4 Proofs)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  c11-and-m7-m8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & Run C11 -Wall -Wextra -Werror + M7 Mutants + M8 E1/E2/E3
+        run: |
+          chmod +x build_linux.sh
+          ./build_linux.sh
+          ./bin/noetic_engine_linux e1 48 results/ci_e1.json results/ci_e1.csv
+          ./bin/noetic_engine_linux e2 48 results/ci_e2.json results/ci_e2.csv
+          ./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
+
+  lean4-pure-proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Elan & Lean 4.35.0
+        run: |
+          curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.35.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile Live Receipt & Audit 24 Pure Lean 4 Theorems
+        run: |
+          gcc -std=c11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude \
+            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_eval.c src/main_cli.c \
+            -o bin/noetic_engine_linux -lm
+          ./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
+          cd lean
+          LEAN_PATH="$PWD" lean -R "$PWD" -o NoeticProofs/LiveC11Receipt.olean NoeticProofs/LiveC11Receipt.lean
+          LEAN_PATH="$PWD" lean -R "$PWD" NoeticProofs.lean > ../results/lean_audit.txt
+          cat ../results/lean_audit.txt
+          if grep -E 'sorryAx|_native\.bv_decide|warning:' ../results/lean_audit.txt; then
+            echo "FORBIDDEN AXIOM OR WARNING FOUND" && exit 1
+          fi
+          COUNT=$(grep -cE 'depends on axioms:|does not depend on any axioms' ../results/lean_audit.txt)
+          test "$COUNT" -ge 24
