@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-#define NOETIC_VERSION_STR "1.0.0"
+#define NOETIC_VERSION_STR "1.1.0"
 #define NOETIC_POOL_COUNT 11
 #define NOETIC_ABLATION_COUNT 18
 #define NOETIC_CORTEX_UNITS 16
@@ -295,7 +295,49 @@ typedef struct {
 void noetic_paired_stats_compute(const double *a, const double *b, int32_t n, uint64_t boot_seed, NoeticPairedStats *out);
 void noetic_holm_bonferroni(double *raw_p, double *holm_p, int32_t m);
 
-/* Evaluation Suites (M7 Anti-LARP, M8 E1/E2/E3, Lean Receipt Export) */
+/* Clean-Slate v3.0 Release Gates Native Core (GATE-02, 05, 06, 07, 09 WSE-12/Ring-0, 10 Blackiston, 11 10k-Obs) */
+typedef struct {
+    int32_t gates_passed;
+    int32_t gates_total;
+    /* GATE-02: 10,000-tick zero-alloc hot step */
+    int32_t g02_zero_alloc_ok;
+    int64_t g02_drift_10k_uq;
+    /* GATE-05: 3-phase fasting & antithetic glucose clamp */
+    double  g05_protein_sparing_ratio;
+    double  g05_antithetic_clamp_err_pct;
+    int64_t g05_drift_uq;
+    /* GATE-06: XPBD soft hydrostat <1% vol error & 0.55x crevice squeeze */
+    double  g06_max_vol_err_pct;
+    int32_t g06_intact_squeezed;
+    int32_t g06_stiff_lesion_blocked;
+    int32_t g06_zero_nans;
+    /* GATE-07: Packed b1.58/int4 peripheral ganglia & >=50% offload */
+    double  g07_bytes_per_syn;
+    double  g07_offload_pct;
+    int32_t g07_decerebrate_survived;
+    int32_t g07_pack_roundtrip_exact;
+    /* GATE-09: Ring-0 ACL + Tokenless 10-Operator WSE-12 + ||W||_2 <= 0.99 + 0-bit rollback */
+    int32_t g09_wse_ops_executed;
+    int32_t g09_ring0_traps_blocked;
+    int32_t g09_ring0_traps_attempted;
+    double  g09_spectral_norm;
+    int32_t g09_diff_bytes;
+    int32_t g09_zero_bit_rollback;
+    int32_t g09_ring0_zero_bit_immut;
+    /* GATE-10: Blackiston Metamorphosis M084 (>=80% motor remap + odor memory retention) */
+    double  g10_motor_remap_pct;
+    double  g10_adult_retention_acc;
+    double  g10_ablated_control_acc;
+    int64_t g10_drift_uq;
+    /* GATE-11: 10,000-tick headless vs observed 0-bit SHA-256 identity */
+    int32_t g11_observer_zero_bit_exact;
+    int32_t g11_observer_reads;
+    char    g11_sha256[65];
+} NoeticReleaseGatesReceipt;
+
+int noetic_run_release_gates_suite(NoeticReleaseGatesReceipt *out, const char *json_out_path);
+
+/* Evaluation Suites (M7 Anti-LARP, M8 E1/E2/E3, Release Gates, Lean Receipt Export) */
 int noetic_run_unit_and_mutant_tests(void);
 int noetic_run_e1_lesion_sweep(int32_t n_seeds, const char *json_out_path, const char *csv_out_path);
 int noetic_run_e2_cognitive_49(int32_t n_seeds, const char *json_out_path, const char *csv_out_path);

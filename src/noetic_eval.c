@@ -834,6 +834,9 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
     char sha[65];
     noetic_world_state_sha256(w, sha);
 
+    NoeticReleaseGatesReceipt gr;
+    (void)noetic_run_release_gates_suite(&gr, NULL);
+
     FILE *f = fopen(lean_out_path, "w");
     if (!f) { free(w); return 1; }
     fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean)\n");
@@ -850,6 +853,13 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
     fprintf(f, "def c11SecondLawViolations : Nat := %llu\n", (unsigned long long)w->ledger.second_law_violations);
     fprintf(f, "def c11PciNonInterferenceOk : Bool := %s\n", pci_clean ? "true" : "false");
     fprintf(f, "def c11PciMilli : Nat := %d\n", (int)llround(pci * 1000.0));
+    fprintf(f, "def c11NativeGatesPassed : Nat := %d\n", gr.gates_passed);
+    fprintf(f, "def c11NativeGatesTotal : Nat := %d\n", gr.gates_total);
+    fprintf(f, "def c11Ring0Blocked : Nat := %d\n", gr.g09_ring0_traps_blocked);
+    fprintf(f, "def c11WseOpsExecuted : Nat := %d\n", gr.g09_wse_ops_executed);
+    fprintf(f, "def c11WseDiffBytes : Nat := %d\n", gr.g09_diff_bytes);
+    fprintf(f, "def c11WseZeroBitRollback : Bool := %s\n", gr.g09_zero_bit_rollback ? "true" : "false");
+    fprintf(f, "def c11Observer10kZeroBit : Bool := %s\n", gr.g11_observer_zero_bit_exact ? "true" : "false");
     fprintf(f, "def c11PoolSum : Int :=\n");
     fprintf(f, "  c11Pool0 + c11Pool1 + c11Pool2 + c11Pool3 + c11Pool4 +\n");
     fprintf(f, "  c11Pool5 + c11Pool6 + c11Pool7 + c11Pool8 + c11Pool9\n\n");

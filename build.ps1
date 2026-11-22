@@ -21,6 +21,7 @@ $core = @(
     "$proj\src\noetic_rng.c",
     "$proj\src\noetic_stats.c",
     "$proj\src\noetic_organism.c",
+    "$proj\src\noetic_gates_core.c",
     "$proj\src\noetic_eval.c",
     "$proj\src\main_cli.c"
 )
@@ -39,16 +40,20 @@ Write-Host "[1/5] Building bin\noetic_engine.exe (C11 -Wall -Wextra -Werror) ...
 & $clang @cflags @core -o "$proj\bin\noetic_engine.exe" @ldflags @libs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host "[2/5] Running M7 Unit, Invariant & 5 Anti-LARP Mutant Suite ..."
+Write-Host "[2/6] Running M7 Unit, Invariant & 5 Anti-LARP Mutant Suite ..."
 & "$proj\bin\noetic_engine.exe" test
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host "[3/5] Exporting Live C11 -> Lean 4 Receipt (seed 5001) ..."
+Write-Host "[3/6] Running Clean-Slate v3.0 Native Release Gates Suite (GATE-02,05,06,07,09-WSE12/Ring0,10,11) ..."
+& "$proj\bin\noetic_engine.exe" gates "$proj\results\m9_native_release_gates.json"
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+Write-Host "[4/6] Exporting Live C11 -> Lean 4 Receipt (seed 5001) ..."
 & "$proj\bin\noetic_engine.exe" export-lean 5001 "$proj\lean\NoeticProofs\LiveC11Receipt.lean"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 if (-not $SkipSuites) {
-    Write-Host "[4/5] Running M8 E1 (18 Ablations), E2 (49 Cognitive/CQM Battery, N=48 locked seeds), E3 (Scaling) ..."
+    Write-Host "[5/6] Running M8 E1 (18 Ablations), E2 (49 Cognitive/CQM Battery, N=48 locked seeds), E3 (Scaling) ..."
     & "$proj\bin\noetic_engine.exe" e1 48 "$proj\results\m8_e1_ablation_sweep.json" "$proj\results\m8_e1_ablation_sweep.csv"
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     & "$proj\bin\noetic_engine.exe" e2 48 "$proj\results\m8_e2_cognitive_49.json" "$proj\results\m8_e2_cognitive_49.csv"
@@ -58,7 +63,7 @@ if (-not $SkipSuites) {
 }
 
 if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
-    Write-Host "[5/5] Verifying 24 Pure-Kernel Lean 4 Mathematical Proofs (strict axiom allowlist) ..."
+    Write-Host "[6/6] Verifying 32 Pure-Kernel Lean 4 Mathematical Proofs (strict axiom allowlist) ..."
     Push-Location -LiteralPath "$proj\lean"
     $env:LEAN_PATH = "$proj\lean"
     & $lean -R "$proj\lean" -o "$proj\lean\NoeticProofs\LiveC11Receipt.olean" "$proj\lean\NoeticProofs\LiveC11Receipt.lean"
@@ -67,6 +72,7 @@ if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
     $leanOut = & $lean -R "$proj\lean" "$proj\lean\NoeticProofs.lean" 2>&1
     $leanRc = $LASTEXITCODE
     Pop-Location
+    [System.IO.File]::WriteAllText("$proj\results\lean4-noetic-audit.txt", (($leanOut | ForEach-Object { "$_" }) -join "`n") + "`n", [System.Text.Encoding]::UTF8)
     foreach ($line in $leanOut) { Write-Host $line }
     if ($leanRc -ne 0) {
         throw "Lean 4 verification failed with exit code $leanRc"
@@ -92,8 +98,8 @@ if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
             }
         }
     }
-    if ($audited -lt 24) {
-        throw "Expected at least 24 audited Lean theorems, found $audited"
+    if ($audited -lt 32) {
+        throw "Expected at least 32 audited Lean theorems, found $audited"
     }
-    Write-Host "PURE LEAN 4 AUDIT PASSED: $audited / 24 theorems strictly within {propext, Classical.choice, Quot.sound}!"
+    Write-Host "PURE LEAN 4 AUDIT PASSED: $audited / 32 theorems strictly within {propext, Classical.choice, Quot.sound}!"
 }

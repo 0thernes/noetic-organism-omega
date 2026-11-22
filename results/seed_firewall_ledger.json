@@ -1,0 +1,71 @@
+{
+  "schema": "clean-slate-v3-gate01-seed-firewall/v1.0",
+  "gate_id": "GATE-01",
+  "generated_utc": "2026-11-22T04:24:58.069Z",
+  "status": "PASS",
+  "partitions": {
+    "dev": {
+      "start": 1001,
+      "end": 1099,
+      "count": 99
+    },
+    "confirmatory": {
+      "start": 5001,
+      "end": 5024,
+      "count": 24
+    },
+    "heldout": {
+      "start": 5101,
+      "end": 5124,
+      "count": 24
+    },
+    "zero_overlap_verified": true
+  },
+  "self_tests": {
+    "chain_integrity_verified": true,
+    "burn_on_fail_reentry_blocked": true,
+    "tamper_detection_rejected_mutation": true,
+    "tamper_reason": "hash tamper detected at 1"
+  },
+  "head_sha256": "502ff2243d3a715cd9a6d683a1aa3030168e3bc2c555ddd8261eef71eb871380",
+  "entries": [
+    {
+      "index": 0,
+      "prev_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event": "FIREWALL_PARTITION_SEAL",
+      "dev_range": [
+        1001,
+        1099
+      ],
+      "confirmatory_range": [
+        5001,
+        5024
+      ],
+      "heldout_range": [
+        5101,
+        5124
+      ],
+      "total_locked_eval_seeds": 48,
+      "disjoint_verified": true,
+      "entry_sha256": "75c3097feb71a386aff2ef8eb9d9245f01f86fe3b0d5f561903d94350aa3f04b"
+    },
+    {
+      "index": 1,
+      "prev_sha256": "75c3097feb71a386aff2ef8eb9d9245f01f86fe3b0d5f561903d94350aa3f04b",
+      "event": "CONFIRMATORY_AND_HELDOUT_BINDING",
+      "m8_e1_sha256": "34a4b2fc7c769793eab9463f8ad838e7e3af02c19c7aa4d1a710c29faeb74b91",
+      "m8_e2_sha256": "0e8646c419b77a63ed129807ce8a7df6948c30ff8bfc99334ffffe38f3194e8e",
+      "m9_gates_sha256": "9988720222467e4c52aad881c8ec6eedd8a47cee2481605b2cd35b7289652118",
+      "burn_on_fail_policy": "STRICT_NO_REUSE_AFTER_FAILURE",
+      "entry_sha256": "6fd2fb97f95016da2fea1911303ec58ffaef5465ff99ab9a5de8610f65523589"
+    },
+    {
+      "index": 2,
+      "prev_sha256": "6fd2fb97f95016da2fea1911303ec58ffaef5465ff99ab9a5de8610f65523589",
+      "event": "BURN_ON_FAIL_SELF_TEST",
+      "probe_seed": 999901,
+      "reentry_blocked": true,
+      "entry_sha256": "502ff2243d3a715cd9a6d683a1aa3030168e3bc2c555ddd8261eef71eb871380"
+    }
+  ]
+}

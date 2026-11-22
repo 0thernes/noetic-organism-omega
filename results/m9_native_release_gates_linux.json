@@ -1,0 +1,11 @@
+{
+  "schema": "noetic-native-release-gates/v1.1",
+  "gates_passed": 7, "gates_total": 7,
+  "GATE-02": {"passed": true, "sizeof_world_bytes": 6776, "ticks": 10000, "drift_uq": 0},
+  "GATE-05": {"passed": true, "antithetic_clamp_err_pct": 0.000003, "protein_sparing_ratio": 2.4348, "drift_uq": 0},
+  "GATE-06": {"passed": true, "max_vol_err_pct": 0.000304, "intact_squeezed": true, "stiff_lesion_blocked": true, "zero_nans": true},
+  "GATE-07": {"passed": true, "bytes_per_syn": 0.2500, "offload_pct": 84.13, "decerebrate_survived": true, "pack_exact": true},
+  "GATE-09": {"passed": true, "wse_ops": 10, "ring0_blocked": 10, "ring0_attempted": 10, "spectral_norm": 0.844337, "diff_bytes": 2464, "zero_bit_rollback": true, "ring0_immutable": true},
+  "GATE-10": {"passed": true, "motor_remap_pct": 87.50, "adult_retention_acc": 1.0000, "ablated_control_acc": 0.5000, "drift_uq": 0},
+  "GATE-11": {"passed": true, "ticks": 10000, "observer_reads": 200, "zero_bit_exact": true, "sha256": "580216cf8043eb0280603354e6bf67d35caeaad1a43bb6e20b20ffc0b9af010c"}
+}

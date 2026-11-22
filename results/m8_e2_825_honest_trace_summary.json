@@ -1,23 +1,25 @@
 {
-  "schema": "m8-e2-825-honest-trace/v1.0",
-  "generated_utc": "2026-11-21T22:15:00.055Z",
+  "schema": "m8-e2-825-honest-trace/v1.1",
+  "generated_utc": "2026-11-22T04:10:02.657Z",
   "total_checks_indexed": 825,
   "unique_conceptual_checks": 820,
   "mirrors_declared": 5,
-  "anti_inflation_policy": "Zero 32->825 scalar fan-out. Only genuine native C11 whole-organism ablations (49 items in noetic-organism-omega) and explicitly audited biophysical gates are marked PASS; all remaining frontier mechanisms are honestly labeled PARTIAL_PROXY or NOT_BUILT_YET.",
+  "anti_inflation_policy": "Zero 32->825 scalar fan-out. Only genuine native C11 whole-organism ablations (49 items), Clean-Slate v3.0 native release gates (L7_WSE12 12/12 + GATE-02,05,06,07,09,10,11), and explicitly audited biophysical gates are marked PASS; all remaining frontier mechanisms are honestly labeled PARTIAL_PROXY or NOT_BUILT_YET.",
   "epistemic_notice": "Butlin-14 (14/14), Theories-10 (10/10), and CQM13/19-22 (5/5) are strictly computational/architectural INDICATOR_ONLY proxies under ADR 0018 Rule-4 & Rule-6; never claims phenomenal consciousness.",
   "counts_by_status": {
     "EXECUTED_PASS_INDICATOR_ONLY": 29,
     "EXECUTED_PASS": 20,
-    "NOT_BUILT_YET": 725,
-    "PARTIAL_PROXY": 27,
-    "NATIVE_BIOPHYSICS_PASS": 24
+    "NOT_BUILT_YET": 693,
+    "PARTIAL_PROXY": 38,
+    "NATIVE_RELEASE_GATE_PASS": 23,
+    "NATIVE_BIOPHYSICS_PASS": 22
   },
   "counts_by_suite": {
     "L1_BUTLIN14": {
       "total": 14,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 14,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
       "PARTIAL_PROXY": 0,
       "NOT_BUILT_YET": 0
@@ -26,6 +28,7 @@
       "total": 10,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 10,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
       "PARTIAL_PROXY": 0,
       "NOT_BUILT_YET": 0
@@ -34,6 +37,7 @@
       "total": 25,
       "EXECUTED_PASS": 20,
       "EXECUTED_PASS_INDICATOR_ONLY": 5,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
       "PARTIAL_PROXY": 0,
       "NOT_BUILT_YET": 0
@@ -42,6 +46,7 @@
       "total": 100,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
       "PARTIAL_PROXY": 0,
       "NOT_BUILT_YET": 100
@@ -50,14 +55,16 @@
       "total": 500,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
-      "PARTIAL_PROXY": 15,
-      "NOT_BUILT_YET": 485
+      "PARTIAL_PROXY": 30,
+      "NOT_BUILT_YET": 470
     },
     "L6_NOVEL100": {
       "total": 100,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
+      "NATIVE_RELEASE_GATE_PASS": 0,
       "NATIVE_BIOPHYSICS_PASS": 0,
       "PARTIAL_PROXY": 8,
       "NOT_BUILT_YET": 92
@@ -66,25 +73,28 @@
       "total": 12,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
+      "NATIVE_RELEASE_GATE_PASS": 12,
       "NATIVE_BIOPHYSICS_PASS": 0,
-      "PARTIAL_PROXY": 4,
-      "NOT_BUILT_YET": 8
+      "PARTIAL_PROXY": 0,
+      "NOT_BUILT_YET": 0
     },
     "L8_SOFT40": {
       "total": 40,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
-      "NATIVE_BIOPHYSICS_PASS": 16,
+      "NATIVE_RELEASE_GATE_PASS": 7,
+      "NATIVE_BIOPHYSICS_PASS": 15,
       "PARTIAL_PROXY": 0,
-      "NOT_BUILT_YET": 24
+      "NOT_BUILT_YET": 18
     },
     "L9_HW24": {
       "total": 24,
       "EXECUTED_PASS": 0,
       "EXECUTED_PASS_INDICATOR_ONLY": 0,
-      "NATIVE_BIOPHYSICS_PASS": 8,
+      "NATIVE_RELEASE_GATE_PASS": 4,
+      "NATIVE_BIOPHYSICS_PASS": 7,
       "PARTIAL_PROXY": 0,
-      "NOT_BUILT_YET": 16
+      "NOT_BUILT_YET": 13
     }
   }
 }

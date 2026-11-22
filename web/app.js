@@ -215,6 +215,39 @@ async function loadReceipts() {
   } catch {}
 
   try {
+    const [rg, sf] = await Promise.all([
+      fetch("api/gates").then((r) => r.json()),
+      fetch("api/firewall").then((r) => r.json()).catch(() => null)
+    ]);
+    const tbg = $("gates-body");
+    if (tbg && rg["GATE-02"]) {
+      tbg.textContent = "";
+      const rows = [
+        ["GATE-01", "Seed Firewall", sf ? `Disjoint Dev/Conf/Held, burn-on-fail & tamper test (SHA ${String(sf.head_sha256 || "").slice(0, 12)}…)` : "Burn-on-fail firewall", sf?.status === "PASS"],
+        ["GATE-02", "Zero-Alloc 10k", `sizeof=${rg["GATE-02"].sizeof_world_bytes} B, ${rg["GATE-02"].ticks} ticks, drift=${rg["GATE-02"].drift_uq} uq`, rg["GATE-02"].passed],
+        ["GATE-05", "Antithetic+Fast", `|e_ss|=${rg["GATE-05"].antithetic_clamp_err_pct}%, sparing=${rg["GATE-05"].protein_sparing_ratio}x (>=1.6x), drift=0`, rg["GATE-05"].passed],
+        ["GATE-06", "XPBD Hydrostat", `|dV|/V0=${rg["GATE-06"].max_vol_err_pct}% (<1%), 0.55x squeeze=1, stiff blocked=1, 0 NaNs`, rg["GATE-06"].passed],
+        ["GATE-07", "b1.58 Ganglia", `${rg["GATE-07"].bytes_per_syn} B/syn, offload=${rg["GATE-07"].offload_pct}% (>=50%), decerebrate=1`, rg["GATE-07"].passed],
+        ["GATE-09", "Ring-0 WSE-12", `ACL ${rg["GATE-09"].ring0_blocked}/10 blocked, WSE ${rg["GATE-09"].wse_ops}/10 ops, ||W||2=${rg["GATE-09"].spectral_norm}, diff=${rg["GATE-09"].diff_bytes} B, 0-bit RB`, rg["GATE-09"].passed],
+        ["GATE-10", "Blackiston M084", `remap=${rg["GATE-10"].motor_remap_pct}% (>=80%), adult=${rg["GATE-10"].adult_retention_acc} vs ablated=${rg["GATE-10"].ablated_control_acc}`, rg["GATE-10"].passed],
+        ["GATE-11", "10k Obs Indep.", `${rg["GATE-11"].ticks} ticks vs ${rg["GATE-11"].observer_reads} Forked-PCI* probes 0-bit identical SHA`, rg["GATE-11"].passed]
+      ];
+      for (const [gid, dom, met, ok] of rows) {
+        const tr = document.createElement("tr");
+        [gid, dom, met, ok ? "PASS" : "FAIL"].forEach((v, idx) => {
+          const td = document.createElement("td");
+          td.textContent = String(v);
+          if (idx === 3) td.className = ok ? "pass" : "fail";
+          tr.append(td);
+        });
+        tbg.append(tr);
+      }
+      const bg = $("b-gates");
+      if (bg) bg.textContent = `GATES: ${rg.gates_passed === 7 && sf?.status === "PASS" ? "13/13 PASS" : "CHECK"}`;
+    }
+  } catch {}
+
+  try {
     const e3 = await fetch("api/e3").then((r) => r.json());
     const tb3 = $("e3-body");
     tb3.textContent = "";

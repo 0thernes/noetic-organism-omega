@@ -134,12 +134,16 @@ static int run_stream_mode(void) {
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        printf("Noetic Organism Omega v%s — Usage: test | e1 [N] [json] [csv] | e2 [N] [json] [csv] | e3 [json] [csv] | export-lean <seed> <out.lean> | stream\n",
+        printf("Noetic Organism Omega v%s — Usage: test | gates [json] | e1 [N] [json] [csv] | e2 [N] [json] [csv] | e3 [json] [csv] | export-lean <seed> <out.lean> | stream\n",
                NOETIC_VERSION_STR);
         return 0;
     }
     if (strcmp(argv[1], "test") == 0) {
         return noetic_run_unit_and_mutant_tests();
+    }
+    if (strcmp(argv[1], "gates") == 0) {
+        const char *jp = (argc >= 3) ? argv[2] : NULL;
+        return noetic_run_release_gates_suite(NULL, jp);
     }
     if (strcmp(argv[1], "e1") == 0) {
         int n = (argc >= 3) ? atoi(argv[2]) : 48;

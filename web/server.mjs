@@ -169,6 +169,8 @@ const server = http.createServer(async (req, res) => {
     if (u.pathname === "/api/e1" && req.method === "GET") return serveResultJson(res, "m8_e1_ablation_sweep.json");
     if (u.pathname === "/api/e2" && req.method === "GET") return serveResultJson(res, "m8_e2_cognitive_49.json");
     if (u.pathname === "/api/e3" && req.method === "GET") return serveResultJson(res, "m8_e3_scaling_bench.json");
+    if (u.pathname === "/api/gates" && req.method === "GET") return serveResultJson(res, "m9_native_release_gates.json");
+    if (u.pathname === "/api/firewall" && req.method === "GET") return serveResultJson(res, "seed_firewall_ledger.json");
     if (u.pathname === "/api/trace825" && req.method === "GET") return serveResultJson(res, "m8_e2_825_honest_trace_summary.json");
     if (u.pathname === "/api/g1" && req.method === "GET") return serveResultJson(res, "m9_g1_foundation_gate_receipt.json");
 
@@ -226,5 +228,5 @@ process.on("SIGINT", cleanup);
 process.on("SIGTERM", cleanup);
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`NOETIC ORGANISM OMEGA v1.0.0 Observatory listening on http://127.0.0.1:${PORT}/`);
+  console.log(`NOETIC ORGANISM OMEGA v1.1.0 Observatory listening on http://127.0.0.1:${PORT}/`);
 });

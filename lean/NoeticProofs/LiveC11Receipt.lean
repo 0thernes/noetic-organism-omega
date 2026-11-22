@@ -20,6 +20,13 @@ def c11HeatFinal : Int := 96513
 def c11SecondLawViolations : Nat := 0
 def c11PciNonInterferenceOk : Bool := true
 def c11PciMilli : Nat := 744
+def c11NativeGatesPassed : Nat := 7
+def c11NativeGatesTotal : Nat := 7
+def c11Ring0Blocked : Nat := 10
+def c11WseOpsExecuted : Nat := 10
+def c11WseDiffBytes : Nat := 2464
+def c11WseZeroBitRollback : Bool := true
+def c11Observer10kZeroBit : Bool := true
 def c11PoolSum : Int :=
   c11Pool0 + c11Pool1 + c11Pool2 + c11Pool3 + c11Pool4 +
   c11Pool5 + c11Pool6 + c11Pool7 + c11Pool8 + c11Pool9

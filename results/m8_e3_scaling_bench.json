@@ -2,11 +2,11 @@
   "suite": "M8_E3_SCALING_BENCHMARK",
   "sizeof_world_bytes": 6776,
   "rows": [
-    {"organisms":1,"ticks":2000,"bytes_total":6776,"cache_tier":"L1D_FIT","wall_ms":6.795,"org_ticks_per_sec":294355.73,"us_per_org_tick":3.3973,"max_energy_residual_uq":0},
-    {"organisms":16,"ticks":500,"bytes_total":108416,"cache_tier":"L2_FIT","wall_ms":28.132,"org_ticks_per_sec":284368.61,"us_per_org_tick":3.5166,"max_energy_residual_uq":0},
-    {"organisms":64,"ticks":200,"bytes_total":433664,"cache_tier":"L2_FIT","wall_ms":58.266,"org_ticks_per_sec":219681.77,"us_per_org_tick":4.5520,"max_energy_residual_uq":0},
-    {"organisms":256,"ticks":80,"bytes_total":1734656,"cache_tier":"L2_FIT","wall_ms":93.864,"org_ticks_per_sec":218187.32,"us_per_org_tick":4.5832,"max_energy_residual_uq":0},
-    {"organisms":1024,"ticks":30,"bytes_total":6938624,"cache_tier":"L3_FIT","wall_ms":189.108,"org_ticks_per_sec":162447.20,"us_per_org_tick":6.1558,"max_energy_residual_uq":0},
-    {"organisms":4096,"ticks":10,"bytes_total":27754496,"cache_tier":"L3_FIT","wall_ms":229.731,"org_ticks_per_sec":178295.41,"us_per_org_tick":5.6087,"max_energy_residual_uq":0}
+    {"organisms":1,"ticks":2000,"bytes_total":6776,"cache_tier":"L1D_FIT","wall_ms":5.886,"org_ticks_per_sec":339812.42,"us_per_org_tick":2.9428,"max_energy_residual_uq":0},
+    {"organisms":16,"ticks":500,"bytes_total":108416,"cache_tier":"L2_FIT","wall_ms":29.181,"org_ticks_per_sec":274146.29,"us_per_org_tick":3.6477,"max_energy_residual_uq":0},
+    {"organisms":64,"ticks":200,"bytes_total":433664,"cache_tier":"L2_FIT","wall_ms":48.250,"org_ticks_per_sec":265287.17,"us_per_org_tick":3.7695,"max_energy_residual_uq":0},
+    {"organisms":256,"ticks":80,"bytes_total":1734656,"cache_tier":"L2_FIT","wall_ms":74.543,"org_ticks_per_sec":274739.65,"us_per_org_tick":3.6398,"max_energy_residual_uq":0},
+    {"organisms":1024,"ticks":30,"bytes_total":6938624,"cache_tier":"L3_FIT","wall_ms":116.197,"org_ticks_per_sec":264377.46,"us_per_org_tick":3.7825,"max_energy_residual_uq":0},
+    {"organisms":4096,"ticks":10,"bytes_total":27754496,"cache_tier":"L3_FIT","wall_ms":194.055,"org_ticks_per_sec":211074.51,"us_per_org_tick":4.7377,"max_energy_residual_uq":0}
   ]
 }

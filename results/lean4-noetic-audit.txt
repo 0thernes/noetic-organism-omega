@@ -1,0 +1,32 @@
+﻿'NoeticProofs.N01_atp_to_heat_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N02_atp_to_heat_monotone_sink' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N03_atp_to_heat_preserves_nonneg' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N04_patch_to_gut_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N05_workspace_billing_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N06_workspace_billing_monotone_heat' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N07_autopoietic_repair_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N08_solar_inflow_exact_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N09_closed_tick_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N10_leaky_mutant_nonzero_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N11_forked_pci_observer_noninterference' does not depend on any axioms
+'NoeticProofs.N12_master_825_dedup_exact' does not depend on any axioms
+'NoeticProofs.N13_cognitive_49_dedup_exact' does not depend on any axioms
+'NoeticProofs.N14_mirror_exact_parity' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N15_wilcoxon_rank_sum_identity' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N16_wilcoxon_n48_exact' does not depend on any axioms
+'NoeticProofs.N17_holm_bonferroni_inflation_bound' depends on axioms: [propext]
+'NoeticProofs.N18_non_ceiling_strictly_below_max' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N19_sham_noninferiority_symmetric' does not depend on any axioms
+'NoeticProofs.N20_seed_firewall_disjoint' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N21_anti_oracle_separation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N22_ablation_mask_18_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NoeticProofs.N23_ecosystem_186_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N24_live_c11_receipt_verified' does not depend on any axioms
+'NoeticProofs.N25_ring0_acl_blocks_protected_regions' does not depend on any axioms
+'NoeticProofs.N26_wse_rollback_involution' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N27_wse_diff_budget_bounded' does not depend on any axioms
+'NoeticProofs.N28_xpbd_area_constraint_bounded' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N29_packed_b158_2bit_roundtrip' does not depend on any axioms
+'NoeticProofs.N30_fasting_protein_sparing_ratio' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N31_ecosystem_194_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N32_release_gates_live_c11_verified' does not depend on any axioms

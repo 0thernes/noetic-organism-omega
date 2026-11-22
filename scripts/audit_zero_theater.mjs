@@ -10,7 +10,7 @@ function check(label, ok, detail) {
   if (!ok) fails++;
 }
 
-// 1. Zero-theater scan in C11 organism & eval readout
+// 1. Zero-theater scan in C11 organism, eval readout, and release gates core
 const evalSrc = fs.readFileSync(path.join(ROOT, "src", "noetic_eval.c"), "utf8");
 const readoutSlice = evalSrc.split("static double readout_metric(")[1]?.split("static uint64_t locked_seed_at(")[0] || "";
 const armInReadout = /w->arm|NOETIC_ARM_|ablation_mask/.test(readoutSlice);
@@ -20,6 +20,15 @@ const orgSrc = fs.readFileSync(path.join(ROOT, "src", "noetic_organism.c"), "utf
 const bannedPatterns = ["arm5(", "shamJitter", "lesionJitter", "evalBinding('lesion') *"];
 const hits = bannedPatterns.filter((p) => orgSrc.includes(p));
 check("Zero synthetic wrapper patterns in noetic_organism.c", hits.length === 0, hits.length ? hits.join(", ") : "0 hits");
+
+// GATE-02 static proof: zero dynamic heap allocations inside noetic_world_step()
+const stepSlice = orgSrc.split("int noetic_world_step(")[1] || "";
+const heapInStep = /\b(malloc|calloc|realloc|free)\s*\(/.test(stepSlice);
+check("GATE-02 static zero-alloc hot loop inside noetic_world_step()", !heapInStep, heapInStep ? "FOUND heap alloc!" : "0 malloc/calloc/realloc/free");
+
+const gatesSrc = fs.readFileSync(path.join(ROOT, "src", "noetic_gates_core.c"), "utf8");
+const gatesBanned = bannedPatterns.filter((p) => gatesSrc.includes(p));
+check("Zero theater patterns in noetic_gates_core.c", gatesBanned.length === 0, gatesBanned.length ? gatesBanned.join(", ") : "0 hits");
 
 // 2. Lean 4 zero sorry/admit/axiom/bv_decide scan
 const leanSrc = fs.readFileSync(path.join(ROOT, "lean", "NoeticProofs.lean"), "utf8")
@@ -43,8 +52,29 @@ check("M8 E2 49-item Cognitive/CQM Battery (0 drift, 5/5 mirrors)",
 check("M8 E3 scaling benchmark 6 tiers (0 drift)", e3.rows.length === 6 && e3.rows.every((r) => r.max_energy_residual_uq === 0),
   `${e3.rows.length} scale tiers (N=1..4096), max drift=0`);
 
+// 4. Verify M9 Clean-Slate v3.0 Native Release Gates (7/7) & GATE-01 Seed Firewall
+const rg = JSON.parse(fs.readFileSync(path.join(ROOT, "results", "m9_native_release_gates.json"), "utf8"));
+const g02 = rg["GATE-02"], g05 = rg["GATE-05"], g06 = rg["GATE-06"], g07 = rg["GATE-07"], g09 = rg["GATE-09"], g10 = rg["GATE-10"], g11 = rg["GATE-11"];
+check("Clean-Slate v3.0 Native Release Gates (7/7 PASS)",
+  rg.gates_passed === 7 && rg.gates_total === 7 &&
+  g02?.passed && g02.drift_uq === 0 &&
+  g05?.passed && g05.drift_uq === 0 &&
+  g06?.passed && g06.zero_nans && g06.intact_squeezed && g06.stiff_lesion_blocked &&
+  g07?.passed && g07.pack_exact && g07.decerebrate_survived &&
+  g09?.passed && g09.ring0_blocked === 10 && g09.wse_ops === 10 && g09.zero_bit_rollback && g09.ring0_immutable &&
+  g10?.passed && g10.drift_uq === 0 &&
+  g11?.passed && g11.zero_bit_exact,
+  `${rg.gates_passed}/${rg.gates_total} PASS (Ring-0 ${g09.ring0_blocked}/10, WSE ${g09.wse_ops}/10, XPBD ${g06.max_vol_err_pct}%, b1.58 ${g07.offload_pct}%, 10k 0-bit obs)`);
+
+const sf = JSON.parse(fs.readFileSync(path.join(ROOT, "results", "seed_firewall_ledger.json"), "utf8"));
+check("Clean-Slate v3.0 GATE-01 Cryptographic Seed Firewall",
+  sf.status === "PASS" && sf.partitions.zero_overlap_verified &&
+  sf.self_tests.chain_integrity_verified && sf.self_tests.burn_on_fail_reentry_blocked &&
+  sf.self_tests.tamper_detection_rejected_mutation,
+  `status=${sf.status}, head=${sf.head_sha256.slice(0, 16)}...`);
+
 if (fails > 0) {
   console.error(`AUDIT FAILED (${fails} failure(s))`);
   process.exit(1);
 }
-console.log("ZERO-THEATER & M7/M8 RECEIPT AUDIT: 100% PASS!");
+console.log("ZERO-THEATER, M7/M8 & CLEAN-SLATE v3.0 RELEASE GATES AUDIT: 100% PASS!");
