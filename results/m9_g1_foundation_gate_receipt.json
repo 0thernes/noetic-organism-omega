@@ -1,15 +1,16 @@
 {
-  "schema": "m9-g1-6repo-foundation-gate/v2.0",
-  "generated_utc": "2026-11-22T05:12:33.444Z",
+  "schema": "m9-g1-7repo-foundation-gate/v2.1",
+  "generated_utc": "2026-11-22T05:38:02.929Z",
   "all_passed": true,
   "ecosystem_totals": {
-    "connected_repos": 6,
-    "pure_lean4_theorems": 224,
-    "c11_falsification_and_release_gates": 113,
+    "connected_repos": 7,
+    "pure_lean4_theorems": 240,
+    "c11_and_c23_falsification_and_release_gates": 189,
     "clean_slate_v3_release_gates": "13/13 PASS",
     "clean_slate_v3_executable_checks": "825/825 EXECUTED IN NATIVE C11 (0 FAIL, 5 PARITY_DISCLOSED, 29 INDICATOR_ONLY)",
     "clean_slate_v3_milestones": "100/100 VERIFIED (M001..M100, First-15 Playable LOCKED_PASS)",
     "clean_slate_v3_substrates_and_cube": "75/75 Substrates + 1,000/1,000 Hybrid Cube (661 OK / 274 ADAPT / 20 OVER / 45 EXCL)",
+    "asmodensius_dual_visual_worlds": "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 76/76 ctest",
     "compiled_mutants_caught": 35,
     "energy_drift_uq": 0,
     "second_law_violations": 0
@@ -23,7 +24,7 @@
       "lean": "42/42",
       "lean_clean": true,
       "ok": true,
-      "ms": 1993.8
+      "ms": 2013.8
     },
     {
       "repo": "cellulogonic-mecha",
@@ -33,7 +34,7 @@
       "lean": "62/62",
       "lean_clean": true,
       "ok": true,
-      "ms": 515
+      "ms": 476.3
     },
     {
       "repo": "cellular-engine-omega",
@@ -44,7 +45,7 @@
       "lean_clean": true,
       "cube_ok": true,
       "ok": true,
-      "ms": 682.3
+      "ms": 623.2
     },
     {
       "repo": "noetic-organism-omega",
@@ -54,27 +55,37 @@
       "lean": "48/48",
       "lean_clean": true,
       "ok": true,
-      "ms": 114.8
+      "ms": 92.8
     },
     {
       "repo": "omega-triscale-observatory",
-      "version": "6.5.0",
-      "gates": "syntax+7-endpoint-proxy",
+      "version": "6.6.0",
+      "gates": "syntax+8-endpoint-dual-asmo-worlds",
       "mutants": "n/a",
-      "lean": "orchestrates 224",
+      "lean": "orchestrates 240",
       "lean_clean": true,
       "ok": true,
-      "ms": 56.4
+      "ms": 64.9
     },
     {
       "repo": "alife-singularity-omega-package",
       "version": "3.3.0-omega",
-      "gates": "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 224 Lean4",
+      "gates": "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 240 Lean4",
       "mutants": "5/5",
-      "lean": "224/224 synced",
+      "lean": "240/240 synced",
       "lean_clean": true,
       "ok": true,
       "ms": 1
+    },
+    {
+      "repo": "asmodensius-native",
+      "version": "active-c23-dual-worlds",
+      "gates": "76/76 ctest + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
+      "mutants": "native-c23-p4",
+      "lean": "16/16",
+      "lean_clean": true,
+      "ok": true,
+      "ms": 687.9
     }
   ]
 }

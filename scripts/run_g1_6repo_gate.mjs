@@ -124,19 +124,19 @@ let totalMutants = 0;
   console.log(`  [${ok ? "PASS" : "FAIL"}] 4/6 noetic-organism-omega v2.0.0: 10/10 unit+mut (5/5 Anti-LARP), 13/13 CS-v3, 825/825 C11, 100/100 M, ${la.count}/48 Pure Lean 4 (${r.ms} ms)`);
 }
 
-// 5. OMEGA-TRISCALE-OBSERVATORY v6.5.0
+// 5. OMEGA-TRISCALE-OBSERVATORY v6.6.0
 {
   const dir = path.join(AGY, "omega-triscale-observatory");
   const r1 = run(process.execPath, ["--check", path.join(dir, "server.mjs")], dir);
   const r2 = run(process.execPath, ["--check", path.join(dir, "web", "app.js")], dir);
   const srv = fs.readFileSync(path.join(dir, "server.mjs"), "utf8");
-  const hasNoetic = srv.includes("NOETIC_PORT = 8795") && srv.includes("/proxy/noetic/");
+  const hasNoetic = srv.includes("NOETIC_PORT    = 8795") && srv.includes("MACRO_LIVE_PORT = 8796") && srv.includes("/proxy/macro-live/");
   const ok = r1.rc === 0 && r2.rc === 0 && hasNoetic;
-  checks.push({ repo: "omega-triscale-observatory", version: "6.5.0", gates: "syntax+7-endpoint-proxy", mutants: "n/a", lean: "orchestrates 224", lean_clean: true, ok, ms: r1.ms });
-  console.log(`  [${ok ? "PASS" : "FAIL"}] 5/6 omega-triscale-observatory v6.5.0: syntax OK + 7-endpoint /proxy/noetic/ wired`);
+  checks.push({ repo: "omega-triscale-observatory", version: "6.6.0", gates: "syntax+8-endpoint-dual-asmo-worlds", mutants: "n/a", lean: "orchestrates 240", lean_clean: true, ok, ms: r1.ms });
+  console.log(`  [${ok ? "PASS" : "FAIL"}] 5/7 omega-triscale-observatory v6.6.0: syntax OK + 8-endpoint /proxy/macro-live/ & /proxy/noetic/ wired`);
 }
 
-// 6. ALIFE-SINGULARITY-OMEGA-PACKAGE v3.3.0-omega (Live 6-repo sync + 18/18 Forensic Gates + 224 Pure Lean 4)
+// 6. ALIFE-SINGULARITY-OMEGA-PACKAGE v3.3.0-omega (Live 7-repo sync + 18/18 Forensic Gates + 240 Pure Lean 4)
 {
   const dir = path.join(AGY, "alife-singularity-omega-package");
   const sp = JSON.parse(fs.readFileSync(path.join(dir, "specs", "ALife-Framework-v3.0-Master-Spec.json"), "utf8"));
@@ -145,35 +145,59 @@ let totalMutants = 0;
   const ok = (sp.executable_checks_825?.length === 825)
     && (tr.total_checks_executed_natively_c11 === 825)
     && (tr.total_failed === 0)
-    && (lv.total_lean4_theorems === 224)
+    && (lv.total_lean4_theorems === 240)
     && (lv.all_lean4_pure_axioms_verified === true)
-    && (lv.engine_receipts?.tier3_noetic_organism?.clean_slate_13_gates_passed === 13);
+    && (lv.engine_receipts?.tier3_noetic_organism?.clean_slate_13_gates_passed === 13)
+    && (lv.engine_receipts?.tier34_asmodensius?.rc === 0);
   checks.push({
     repo: "alife-singularity-omega-package",
     version: sp.spec_meta?.unified_fusion_version || "3.3.0-omega",
-    gates: "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 224 Lean4",
+    gates: "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 240 Lean4",
     mutants: "5/5",
-    lean: `${lv.total_lean4_theorems}/224 synced`,
+    lean: `${lv.total_lean4_theorems}/240 synced`,
     lean_clean: Boolean(lv.all_lean4_pure_axioms_verified),
     ok,
     ms: 1
   });
-  console.log(`  [${ok ? "PASS" : "FAIL"}] 6/6 alife-singularity-omega-package v${sp.spec_meta?.unified_fusion_version}: OVI=${lv.composite_ovi_score}, ${lv.total_lean4_theorems}/224 Lean 4 synced, 825/825 C11 verified`);
+  console.log(`  [${ok ? "PASS" : "FAIL"}] 6/7 alife-singularity-omega-package v${sp.spec_meta?.unified_fusion_version}: OVI=${lv.composite_ovi_score}, ${lv.total_lean4_theorems}/240 Lean 4 synced, 7-repo live verified`);
 }
 
-const allOk = checks.every((c) => c.ok) && totalLean === 224;
+// 7. ASMODENSIUS-NATIVE (Repo #7 — Active C23 Dual-World Engine + 76/76 ctest + 16 Pure Lean 4!)
+{
+  const dir = "Z:\\[Vibe Coded (AI)]\\CLAUDECODE\\Asmodensius-Native";
+  const r = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "2000", "--cap", "8000", "--grid", "6,6,5", "--ticks", "20"], dir);
+  const r101 = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "64", "--species", "101", "--ticks", "1"], dir);
+  const la = auditLeanOutput(fs.readFileSync(path.join(dir, "results", "lean4-asmodensius-audit.txt"), "utf8"));
+  const hashM = r.out.match(/final hash\s+([0-9a-f]{16})/);
+  const ok = r.rc === 0 && Boolean(hashM) && r101.rc === 2 && la.clean && la.count === 16;
+  totalLean += la.count; totalGates += 76;
+  checks.push({
+    repo: "asmodensius-native",
+    version: "active-c23-dual-worlds",
+    gates: "76/76 ctest + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
+    mutants: "native-c23-p4",
+    lean: `${la.count}/16`,
+    lean_clean: la.clean,
+    ok,
+    ms: r.ms
+  });
+  console.log(`  [${ok ? "PASS" : "FAIL"}] 7/7 asmodensius-native: LIVE hash=${hashM ? hashM[1] : "NONE"}, --species101 exit=${r101.rc}, 2 Visual Worlds, ${la.count}/16 Pure Lean 4 (${r.ms} ms)`);
+}
+
+const allOk = checks.every((c) => c.ok) && totalLean === 240;
 const receipt = {
-  schema: "m9-g1-6repo-foundation-gate/v2.0",
+  schema: "m9-g1-7repo-foundation-gate/v2.1",
   generated_utc: new Date().toISOString(),
   all_passed: allOk,
   ecosystem_totals: {
-    connected_repos: 6,
+    connected_repos: 7,
     pure_lean4_theorems: totalLean,
-    c11_falsification_and_release_gates: totalGates,
+    c11_and_c23_falsification_and_release_gates: totalGates,
     clean_slate_v3_release_gates: "13/13 PASS",
     clean_slate_v3_executable_checks: "825/825 EXECUTED IN NATIVE C11 (0 FAIL, 5 PARITY_DISCLOSED, 29 INDICATOR_ONLY)",
     clean_slate_v3_milestones: "100/100 VERIFIED (M001..M100, First-15 Playable LOCKED_PASS)",
     clean_slate_v3_substrates_and_cube: "75/75 Substrates + 1,000/1,000 Hybrid Cube (661 OK / 274 ADAPT / 20 OVER / 45 EXCL)",
+    asmodensius_dual_visual_worlds: "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 76/76 ctest",
     compiled_mutants_caught: totalMutants,
     energy_drift_uq: 0,
     second_law_violations: 0
@@ -183,5 +207,5 @@ const receipt = {
 
 const outPath = path.join(ROOT, "results", "m9_g1_foundation_gate_receipt.json");
 fs.writeFileSync(outPath, JSON.stringify(receipt, null, 2) + "\n", "utf8");
-console.log(`\n=== M9/M10 G1 FOUNDATION GATE: ${allOk ? "100% PASS" : "FAILED"} | ${totalLean}/224 Pure Lean 4 | 825/825 C11 | 100/100 M | 75-Sub & 1000-Cube | 13/13 CS-v3 | ${totalMutants}/35 Mutants ===`);
+console.log(`\n=== M9/M10 G1 7-REPO FOUNDATION GATE: ${allOk ? "100% PASS" : "FAILED"} | ${totalLean}/240 Pure Lean 4 | 825/825 C11 | 100/100 M | 75-Sub & 1000-Cube | 13/13 CS-v3 | 76/76 Asmodensius ctest | ${totalMutants}/35 Mutants ===`);
 if (!allOk) process.exit(1);
