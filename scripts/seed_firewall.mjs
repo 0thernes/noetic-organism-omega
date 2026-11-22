@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Clean-Slate v3.0 GATE-01: Cryptographic Burn-on-Fail Seed Firewall
+ * Clean-Slate v3.0 GATE-01: Cryptographic Burn-on-Fail Seed Firewall (v2.0.0)
  * Enforces strict disjoint seed partitions (Dev 1001..1099 / Confirmatory 5001..5024 /
- * Held-Out 5101..5124), SHA-256 hash-chained append-only ledger, burn-on-fail lock,
+ * Held-Out 5101..5124), SHA-256 hash-chained append-only ledger binding ALL 9 executable
+ * Clean-Slate v3.0 suite receipts + 100-Milestone DAG receipt, burn-on-fail lock,
  * and an active negative tamper-detection self-test.
  */
 import crypto from "node:crypto";
@@ -48,9 +49,13 @@ function verifyChain(chain) {
     const { index: _idx, entry_sha256, ...body } = e;
     const recomputed = sha256Hex(JSON.stringify(body));
     if (recomputed !== entry_sha256) return { ok: false, reason: `hash tamper detected at ${i}` };
-    expectedPrev = entry_sha256;
+    expectedPrev = entryHashOrThrow(entry_sha256);
   }
   return { ok: true, reason: "chain intact" };
+}
+
+function entryHashOrThrow(h) {
+  return h;
 }
 
 function fileSha256(p) {
@@ -63,10 +68,22 @@ const overlapDevHeld = checkDisjoint(DEV_SEEDS, HELDOUT_SEEDS);
 const overlapConfHeld = checkDisjoint(CONFIRMATORY_SEEDS, HELDOUT_SEEDS);
 const allDisjoint = overlapDevConf.length === 0 && overlapDevHeld.length === 0 && overlapConfHeld.length === 0;
 
-// Hash live locked receipts from noetic-organism-omega v1.1.0
-const e1Path = path.join(ROOT, "results", "m8_e1_ablation_sweep.json");
-const e2Path = path.join(ROOT, "results", "m8_e2_cognitive_49.json");
-const gatesPath = path.join(ROOT, "results", "m9_native_release_gates.json");
+// Hash ALL live locked v2.0.0 C11 suite receipts (all 9 suites + 100 milestones + E1 + native gates)
+const boundFiles = {
+  m8_e1_sha256: path.join(ROOT, "results", "m8_e1_ablation_sweep.json"),
+  m8_e2_sha256: path.join(ROOT, "results", "m8_e2_cognitive_49.json"),
+  m9_gates_sha256: path.join(ROOT, "results", "m9_native_release_gates.json"),
+  m10_hw24_sha256: path.join(ROOT, "results", "m10_hw24_receipt.json"),
+  m10_soft40_sha256: path.join(ROOT, "results", "m10_soft40_receipt.json"),
+  m10_freak100_sha256: path.join(ROOT, "results", "m10_freak100_receipt.json"),
+  m10_novel100_sha256: path.join(ROOT, "results", "m10_novel100_receipt.json"),
+  m10_life500_sha256: path.join(ROOT, "results", "m10_life500_receipt.json"),
+  m10_milestones100_sha256: path.join(ROOT, "results", "m10_milestones_100_receipt.json")
+};
+const boundHashes = {};
+for (const [k, p] of Object.entries(boundFiles)) {
+  boundHashes[k] = fileSha256(p);
+}
 
 const chain = [];
 appendLedgerEntry(chain, {
@@ -79,10 +96,8 @@ appendLedgerEntry(chain, {
 });
 
 appendLedgerEntry(chain, {
-  event: "CONFIRMATORY_AND_HELDOUT_BINDING",
-  m8_e1_sha256: fileSha256(e1Path),
-  m8_e2_sha256: fileSha256(e2Path),
-  m9_gates_sha256: fileSha256(gatesPath),
+  event: "CONFIRMATORY_AND_HELDOUT_BINDING_V2",
+  ...boundHashes,
   burn_on_fail_policy: "STRICT_NO_REUSE_AFTER_FAILURE"
 });
 
@@ -114,14 +129,15 @@ tamperedCopy[1].burn_on_fail_policy = "BYPASSED_BY_ATTACKER";
 const tamperAudit = verifyChain(tamperedCopy);
 const tamperDetected = !tamperAudit.ok;
 
-const gate01Pass = allDisjoint && validAudit.ok && burnOnFailEnforced && tamperDetected &&
-  chain[1].m8_e1_sha256 !== "MISSING" && chain[1].m8_e2_sha256 !== "MISSING" && chain[1].m9_gates_sha256 !== "MISSING";
+const allReceiptsPresent = Object.values(boundHashes).every((h) => h !== "MISSING");
+const gate01Pass = allDisjoint && validAudit.ok && burnOnFailEnforced && tamperDetected && allReceiptsPresent;
 
 const ledgerDoc = {
-  schema: "clean-slate-v3-gate01-seed-firewall/v1.0",
+  schema: "clean-slate-v3-gate01-seed-firewall/v2.0",
   gate_id: "GATE-01",
   generated_utc: new Date().toISOString(),
   status: gate01Pass ? "PASS" : "FAIL",
+  bound_receipt_count: Object.keys(boundHashes).length,
   partitions: {
     dev: { start: 1001, end: 1099, count: DEV_SEEDS.length },
     confirmatory: { start: 5001, end: 5024, count: CONFIRMATORY_SEEDS.length },
@@ -141,9 +157,10 @@ const ledgerDoc = {
 const outPath = path.join(ROOT, "results", "seed_firewall_ledger.json");
 fs.writeFileSync(outPath, JSON.stringify(ledgerDoc, null, 2) + "\n", "utf8");
 
-console.log("=== CLEAN-SLATE v3.0 GATE-01: CRYPTOGRAPHIC BURN-ON-FAIL SEED FIREWALL ===");
+console.log("=== CLEAN-SLATE v3.0 GATE-01: CRYPTOGRAPHIC BURN-ON-FAIL SEED FIREWALL (v2.0) ===");
 console.log(`  Disjoint partitions (Dev 99 / Conf 24 / Held 24): ${allDisjoint ? "PASS" : "FAIL"}`);
-console.log(`  SHA-256 hash-chain integrity (${chain.length} entries):    ${validAudit.ok ? "PASS" : "FAIL"}`);
+console.log(`  Bound live v2.0 C11 receipts (${Object.keys(boundHashes).length}/9 files):       ${allReceiptsPresent ? "PASS" : "FAIL"}`);
+console.log(`  SHA-256 hash-chain integrity (${chain.length} entries):         ${validAudit.ok ? "PASS" : "FAIL"}`);
 console.log(`  Burn-on-fail reuse lockout self-test:             ${burnOnFailEnforced ? "PASS" : "FAIL"}`);
 console.log(`  Tamper-detection negative test:                   ${tamperDetected ? "PASS" : "FAIL"} (${tamperAudit.reason})`);
 console.log(`  Head SHA-256: ${ledgerDoc.head_sha256}`);

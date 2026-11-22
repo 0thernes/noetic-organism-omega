@@ -38,6 +38,7 @@ extern void*  __cdecl memcpy(void* dst, const void* src, size_t n);
 extern void*  __cdecl memset(void* dst, int c, size_t n);
 extern int    __cdecl strcmp(const char* a, const char* b);
 extern int    __cdecl strncmp(const char* a, const char* b, size_t n);
+extern size_t __cdecl strlen(const char* s);
 
 extern double __cdecl log(double x);
 extern double __cdecl log2(double x);
@@ -56,8 +57,8 @@ extern long long __cdecl llround(double x);
 
 static inline long long noetic_llabs(long long v) { return v < 0 ? -v : v; }
 #define llabs noetic_llabs
-static inline int noetic_isfinite_f(float x) { return (x == x) && (x - x == 0.0f); }
-#define isfinite(x) noetic_isfinite_f((float)(x))
+static inline int noetic_isfinite_d(double x) { return (x == x) && (x - x == 0.0); }
+#define isfinite(x) noetic_isfinite_d((double)(x))
 
 typedef int BOOL;
 __declspec(dllimport) BOOL __stdcall QueryPerformanceCounter(int64_t* lpPerformanceCount);

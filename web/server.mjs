@@ -172,6 +172,12 @@ const server = http.createServer(async (req, res) => {
     if (u.pathname === "/api/gates" && req.method === "GET") return serveResultJson(res, "m9_native_release_gates.json");
     if (u.pathname === "/api/firewall" && req.method === "GET") return serveResultJson(res, "seed_firewall_ledger.json");
     if (u.pathname === "/api/trace825" && req.method === "GET") return serveResultJson(res, "m8_e2_825_honest_trace_summary.json");
+    if (u.pathname === "/api/hw24" && req.method === "GET") return serveResultJson(res, "m10_hw24_receipt.json");
+    if (u.pathname === "/api/soft40" && req.method === "GET") return serveResultJson(res, "m10_soft40_receipt.json");
+    if (u.pathname === "/api/freak100" && req.method === "GET") return serveResultJson(res, "m10_freak100_receipt.json");
+    if (u.pathname === "/api/novel100" && req.method === "GET") return serveResultJson(res, "m10_novel100_receipt.json");
+    if (u.pathname === "/api/life500" && req.method === "GET") return serveResultJson(res, "m10_life500_receipt.json");
+    if (u.pathname === "/api/milestones100" && req.method === "GET") return serveResultJson(res, "m10_milestones_100_receipt.json");
     if (u.pathname === "/api/g1" && req.method === "GET") return serveResultJson(res, "m9_g1_foundation_gate_receipt.json");
 
     if (u.pathname === "/api/cmd") {
@@ -228,5 +234,5 @@ process.on("SIGINT", cleanup);
 process.on("SIGTERM", cleanup);
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`NOETIC ORGANISM OMEGA v1.1.0 Observatory listening on http://127.0.0.1:${PORT}/`);
+  console.log(`NOETIC ORGANISM OMEGA v2.0.0 Observatory listening on http://127.0.0.1:${PORT}/`);
 });

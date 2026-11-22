@@ -1,4 +1,4 @@
-name: Noetic Organism Omega CI (C11 -Werror + 13 Release Gates + 32 Pure Lean 4 Proofs)
+name: Noetic Organism Omega v2.0.0 CI (C11 -Werror + 9 Suites 825 Checks + 100 Milestones + 48 Pure Lean 4)
 
 on:
   push:
@@ -7,18 +7,24 @@ on:
     branches: [ main ]
 
 jobs:
-  c11-and-m7-m8-gates:
+  c11-full-825-and-milestones:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Build & Run C11 -Wall -Wextra -Werror + M7 Mutants + Clean-Slate v3.0 Gates + M8 E1/E2/E3
+      - name: Build & Run C11 -Wall -Wextra -Werror + 5 Mutants + 13 Release Gates + Full 825 Checks + 100 Milestones
         run: |
           chmod +x build_linux.sh
           ./build_linux.sh
           ./bin/noetic_engine_linux gates results/m9_native_release_gates.json
+          ./bin/noetic_engine_linux hw24 results/m10_hw24_receipt.json
+          ./bin/noetic_engine_linux soft40 results/m10_soft40_receipt.json
+          ./bin/noetic_engine_linux freak100 results/m10_freak100_receipt.json
+          ./bin/noetic_engine_linux novel100 results/m10_novel100_receipt.json
+          ./bin/noetic_engine_linux life500 results/m10_life500_receipt.json
+          ./bin/noetic_engine_linux milestones100 results/m10_milestones_100_receipt.json
           ./bin/noetic_engine_linux e1 48 results/m8_e1_ablation_sweep.json results/m8_e1_ablation_sweep.csv
           ./bin/noetic_engine_linux e2 48 results/m8_e2_cognitive_49.json results/m8_e2_cognitive_49.csv
           ./bin/noetic_engine_linux e3 results/m8_e3_scaling_bench.json
@@ -34,10 +40,12 @@ jobs:
         run: |
           curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.35.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Compile Live Receipt & Audit 32 Pure Lean 4 Theorems
+      - name: Compile Live Receipt & Audit 48 Pure Lean 4 Theorems
         run: |
           gcc -std=c11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude \
-            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_eval.c src/noetic_gates_core.c src/main_cli.c \
+            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_eval.c \
+            src/noetic_gates_core.c src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c \
+            src/noetic_novel100.c src/noetic_life500.c src/noetic_milestones100.c src/main_cli.c \
             -o bin/noetic_engine_linux -lm
           ./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
           cd lean
@@ -48,4 +56,4 @@ jobs:
             echo "FORBIDDEN AXIOM OR WARNING FOUND" && exit 1
           fi
           COUNT=$(grep -cE 'depends on axioms:|does not depend on any axioms' ../results/lean_audit.txt)
-          test "$COUNT" -ge 32
+          test "$COUNT" -ge 48

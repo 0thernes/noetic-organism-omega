@@ -248,6 +248,43 @@ async function loadReceipts() {
   } catch {}
 
   try {
+    const [tr, m100] = await Promise.all([
+      fetch("api/trace825").then((r) => r.json()),
+      fetch("api/milestones100").then((r) => r.json()).catch(() => null)
+    ]);
+    const tbs = $("suites-body");
+    if (tbs && tr.counts_by_suite) {
+      tbs.textContent = "";
+      for (const [sid, c] of Object.entries(tr.counts_by_suite)) {
+        const pass = (c.EXECUTED_PASS || 0) + (c.NATIVE_RELEASE_GATE_PASS || 0);
+        const ind = c.EXECUTED_PASS_INDICATOR_ONLY || 0;
+        const par = c.PASS_CLASSICAL_PARITY_DISCLOSED || 0;
+        const fl = c.EXECUTED_FAIL || 0;
+        const trEl = document.createElement("tr");
+        [sid, c.total, pass, ind, par, fl].forEach((v, idx) => {
+          const td = document.createElement("td");
+          td.textContent = String(v);
+          if (idx === 5) td.className = fl === 0 ? "pass" : "fail";
+          trEl.append(td);
+        });
+        tbs.append(trEl);
+      }
+      if (m100) {
+        const trM = document.createElement("tr");
+        ["MILESTONES M001..M100", m100.total, m100.verified, 0, 0, m100.total - m100.verified].forEach((v, idx) => {
+          const td = document.createElement("td");
+          td.textContent = String(v);
+          if (idx === 5) td.className = m100.verified === m100.total ? "pass" : "fail";
+          trM.append(td);
+        });
+        tbs.append(trM);
+      }
+      const b825 = $("b-825");
+      if (b825) b825.textContent = `${tr.total_checks_executed_natively_c11}/825 C11 · ${tr.milestones_verified || "100/100"} M`;
+    }
+  } catch {}
+
+  try {
     const e3 = await fetch("api/e3").then((r) => r.json());
     const tb3 = $("e3-body");
     tb3.textContent = "";

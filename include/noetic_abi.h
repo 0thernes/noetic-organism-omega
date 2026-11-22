@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-#define NOETIC_VERSION_STR "1.1.0"
+#define NOETIC_VERSION_STR "2.0.0"
 #define NOETIC_POOL_COUNT 11
 #define NOETIC_ABLATION_COUNT 18
 #define NOETIC_CORTEX_UNITS 16
@@ -254,10 +254,16 @@ typedef struct {
     int32_t last_pci_noninterference_ok;
 } NoeticWorld;
 
-/* PRNG & SHA-256 & Exact Conservation Ledger */
+/* PRNG & Deterministic Core Math & SHA-256 & Exact Conservation Ledger */
 uint64_t noetic_philox_u64(uint64_t seed, uint64_t domain, uint64_t counter);
+uint64_t noetic_philox_keyed(uint32_t ver, uint32_t seed, uint32_t domain,
+                             uint32_t entity_id, uint32_t organ_id,
+                             uint32_t tick, uint32_t purpose, uint32_t draw_idx);
 double   noetic_philox_uniform(uint64_t seed, uint64_t domain, uint64_t counter);
 double   noetic_philox_normal(uint64_t seed, uint64_t domain, uint64_t counter);
+double   noetic_exp_det(double x);
+double   noetic_log_det(double x);
+double   noetic_tanh_det(double x);
 void     noetic_sha256(const uint8_t *data, size_t len, uint8_t out[32]);
 void     noetic_sha256_hex(const uint8_t *data, size_t len, char out_hex[65]);
 
@@ -336,6 +342,25 @@ typedef struct {
 } NoeticReleaseGatesReceipt;
 
 int noetic_run_release_gates_suite(NoeticReleaseGatesReceipt *out, const char *json_out_path);
+
+/* Unified Suite Summary Receipt for M10 Full 825-Check & 100-Milestone Native C11 Verification */
+typedef struct {
+    int32_t passed;
+    int32_t parity_disclosed; /* Quantum-vs-classical honest parity disclosure count */
+    int32_t failed;
+    int32_t total;
+    int32_t n_seeds;
+    int64_t max_energy_drift_uq;
+    double  max_fp64_drift;
+    char    sha256[65];
+} NoeticSuiteSummary;
+
+int noetic_run_hw24_suite(NoeticSuiteSummary *out, const char *json_out_path);
+int noetic_run_soft40_suite(int32_t n_seeds, NoeticSuiteSummary *out, const char *json_out_path);
+int noetic_run_freak100_suite(int32_t n_seeds, NoeticSuiteSummary *out, const char *json_out_path);
+int noetic_run_novel100_suite(int32_t n_seeds, NoeticSuiteSummary *out, const char *json_out_path);
+int noetic_run_life500_suite(int32_t n_seeds, NoeticSuiteSummary *out, const char *json_out_path);
+int noetic_run_milestones100_suite(NoeticSuiteSummary *out, const char *json_out_path);
 
 /* Evaluation Suites (M7 Anti-LARP, M8 E1/E2/E3, Release Gates, Lean Receipt Export) */
 int noetic_run_unit_and_mutant_tests(void);

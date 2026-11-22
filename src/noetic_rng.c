@@ -41,6 +41,73 @@ uint64_t noetic_philox_u64(uint64_t seed, uint64_t domain, uint64_t counter) {
     return ((uint64_t)ctr[1] << 32) | (uint64_t)ctr[0];
 }
 
+/* Clean-Slate v3.0 HW16 / M002: 8-tuple domain-isolated Philox4x32-10
+ * keyed by (ver, seed, domain, entity_id, organ_id, tick, purpose, draw_idx).
+ * Strictly isolates WORLD_EXOG from ENTITY_INT and Organ A from Organ B.
+ */
+uint64_t noetic_philox_keyed(uint32_t ver, uint32_t seed, uint32_t domain,
+                             uint32_t entity_id, uint32_t organ_id,
+                             uint32_t tick, uint32_t purpose, uint32_t draw_idx) {
+    uint32_t ctr[4] = {
+        draw_idx,
+        tick,
+        (entity_id * 0x9E3779B1u) ^ (organ_id * 0x85EBCA77u),
+        (domain * 0xC2B2AE3Du) ^ (purpose * 0x27D4EB2Fu) ^ (ver * 0x165667B1u)
+    };
+    uint32_t key[2] = {
+        seed ^ (domain * 0x9E3779B9u),
+        (ver << 16) ^ (organ_id ^ (entity_id << 8))
+    };
+    philox4x32_10(ctr, key);
+    return ((uint64_t)ctr[1] << 32) | (uint64_t)ctr[0];
+}
+
+/* Core-shipped bit-deterministic IEEE-754 transcendentals (HW15 / BUG-01):
+ * Eliminates cross-OS Win64/Linux libm 1-2 ULP transcendental drift via
+ * pure IEEE-754 arithmetic range reduction + Horner minimax polynomials.
+ */
+double noetic_exp_det(double x) {
+    if (x < -700.0) return 0.0;
+    if (x > 700.0) return 1.0142320547350045e304;
+    const double INV_LN2 = 1.44269504088896340736;
+    const double LN2_HI  = 0.69314718036912381649;
+    const double LN2_LO  = 1.90821492927058770002e-10;
+    int64_t k = (int64_t)(x * INV_LN2 + (x >= 0.0 ? 0.5 : -0.5));
+    double r = (x - (double)k * LN2_HI) - (double)k * LN2_LO;
+    double p = 1.0 + r * (1.0 + r * (0.5 + r * (1.0/6.0 + r * (1.0/24.0 +
+               r * (1.0/120.0 + r * (1.0/720.0 + r * (1.0/5040.0 + r * (1.0/40320.0 +
+               r * (1.0/362880.0 + r * (1.0/3628800.0 + r * (1.0/39916800.0 +
+               r * (1.0/479001600.0))))))))))));
+    /* Multiply by 2^k via exact IEEE-754 exponent bit manipulation */
+    uint64_t bits = (uint64_t)(k + 1023) << 52;
+    double scale = 1.0;
+    memcpy(&scale, &bits, sizeof(scale));
+    return p * scale;
+}
+
+double noetic_log_det(double x) {
+    if (x <= 0.0) return -700.0;
+    uint64_t bits = 0;
+    memcpy(&bits, &x, sizeof(bits));
+    int64_t e = (int64_t)((bits >> 52) & 0x7FFu) - 1023;
+    uint64_t mbits = (bits & 0x000FFFFFFFFFFFFFULL) | (1023ULL << 52);
+    double m = 1.0;
+    memcpy(&m, &mbits, sizeof(m));
+    if (m > 1.4142135623730950488) { m *= 0.5; e += 1; }
+    double t = (m - 1.0) / (m + 1.0);
+    double t2 = t * t;
+    double poly = t * (2.0 + t2 * (2.0/3.0 + t2 * (2.0/5.0 + t2 * (2.0/7.0 +
+                  t2 * (2.0/9.0 + t2 * (2.0/11.0 + t2 * (2.0/13.0 + t2 * (2.0/15.0))))))));
+    return (double)e * 0.69314718055994530942 + poly;
+}
+
+double noetic_tanh_det(double x) {
+    if (x > 20.0) return 1.0;
+    if (x < -20.0) return -1.0;
+    double e2 = noetic_exp_det(2.0 * x);
+    return (e2 - 1.0) / (e2 + 1.0);
+}
+
 double noetic_philox_uniform(uint64_t seed, uint64_t domain, uint64_t counter) {
     uint64_t u = noetic_philox_u64(seed, domain, counter);
     return (double)(u >> 11) * (1.0 / 9007199254740992.0);

@@ -836,10 +836,16 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
 
     NoeticReleaseGatesReceipt gr;
     (void)noetic_run_release_gates_suite(&gr, NULL);
+    NoeticSuiteSummary shw, ssf, sfr, snv, slf;
+    (void)noetic_run_hw24_suite(&shw, NULL);
+    (void)noetic_run_soft40_suite(48, &ssf, NULL);
+    (void)noetic_run_freak100_suite(48, &sfr, NULL);
+    (void)noetic_run_novel100_suite(48, &snv, NULL);
+    (void)noetic_run_life500_suite(48, &slf, NULL);
 
     FILE *f = fopen(lean_out_path, "w");
     if (!f) { free(w); return 1; }
-    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean)\n");
+    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean v2.0)\n");
     fprintf(f, "-- Seed: %llu | Ticks: %llu | SHA-256: %s\n", (unsigned long long)seed, (unsigned long long)w->tick, sha);
     fprintf(f, "namespace NoeticLiveReceipt\n\n");
     fprintf(f, "def c11Seed : Nat := %llu\n", (unsigned long long)seed);
@@ -860,6 +866,13 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
     fprintf(f, "def c11WseDiffBytes : Nat := %d\n", gr.g09_diff_bytes);
     fprintf(f, "def c11WseZeroBitRollback : Bool := %s\n", gr.g09_zero_bit_rollback ? "true" : "false");
     fprintf(f, "def c11Observer10kZeroBit : Bool := %s\n", gr.g11_observer_zero_bit_exact ? "true" : "false");
+    fprintf(f, "def c11Hw24Passed : Nat := %d\n", shw.passed);
+    fprintf(f, "def c11Soft40Passed : Nat := %d\n", ssf.passed);
+    fprintf(f, "def c11Freak100Failed : Nat := %d\n", sfr.failed);
+    fprintf(f, "def c11Novel100Failed : Nat := %d\n", snv.failed);
+    fprintf(f, "def c11Life500Failed : Nat := %d\n", slf.failed);
+    fprintf(f, "def c11SuitesMaxDrift : Int := %lld\n",
+            (long long)(shw.max_energy_drift_uq + ssf.max_energy_drift_uq + snv.max_energy_drift_uq + slf.max_energy_drift_uq));
     fprintf(f, "def c11PoolSum : Int :=\n");
     fprintf(f, "  c11Pool0 + c11Pool1 + c11Pool2 + c11Pool3 + c11Pool4 +\n");
     fprintf(f, "  c11Pool5 + c11Pool6 + c11Pool7 + c11Pool8 + c11Pool9\n\n");

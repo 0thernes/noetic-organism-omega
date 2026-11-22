@@ -30,3 +30,19 @@
 'NoeticProofs.N30_fasting_protein_sparing_ratio' depends on axioms: [propext, Quot.sound]
 'NoeticProofs.N31_ecosystem_194_pure_lean_theorems' does not depend on any axioms
 'NoeticProofs.N32_release_gates_live_c11_verified' does not depend on any axioms
+'NoeticProofs.N33_quantum_cap_10_bytes_le_16384' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N34_five_gear_60s_exact_divisors' does not depend on any axioms
+'NoeticProofs.N35_philox_key_domain_distinct' does not depend on any axioms
+'NoeticProofs.N36_carcass_lysis_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N37_yolk_cleavage_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N38_b158_5trit_radix_fits_u8' does not depend on any axioms
+'NoeticProofs.N39_xls_shard_below_excel_limit' does not depend on any axioms
+'NoeticProofs.N40_suite_825_exact_partition' does not depend on any axioms
+'NoeticProofs.N41_suite_825_minus_5_mirrors' does not depend on any axioms
+'NoeticProofs.N42_milestones_100_stage_partition' does not depend on any axioms
+'NoeticProofs.N43_first15_plus_85_eq_100' does not depend on any axioms
+'NoeticProofs.N44_hybrid_cube_1000_exact' does not depend on any axioms
+'NoeticProofs.N45_substrates_75_exact' does not depend on any axioms
+'NoeticProofs.N46_compiled_mutants_35_exact' does not depend on any axioms
+'NoeticProofs.N47_ecosystem_224_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N48_live_c11_full_825_and_100m_verified' does not depend on any axioms

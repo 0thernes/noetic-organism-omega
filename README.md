@@ -1,43 +1,52 @@
-# Noetic Organism Omega (`v1.1.0`)
+# Noetic Organism Omega (`v2.0.0`)
 
-**Tier 3/4 Whole-Organism Cognitive, Clean-Slate v3.0 Release-Gate & Milestones M5–M10 Engine**  
-Part of the unified 6-repository `0thernes` Artificial Life stack on `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\`.
+**Whole-Organism Cognitive, Embodied Homeostatic, Full 9-Suite 825-Check & 100-Milestone Clean-Slate v3.0 Engine + 48 Pure Lean 4 Theorems**
 
-- **Author:** Alexander Stephen Donahue (`0thernes LLC`, ORCID [0009-0006-8168-9648](https://orcid.org/0009-0006-8168-9648))
-- **Ecosystem Role:** Connects Tier 1 DNA (`autophage` v1.2.0) and Tier 2 3D Cells (`cellulogonic-mecha` v1.3.0) via direct 128-byte DNA and 112-trait ingestion into ONE unified, exact-conservation embodied organism implementing 18 real structural neural/physiological circuits, **all 13 Clean-Slate v3.0 Release Gates (`GATE-01..GATE-13`)**, **12/12 Ring-0 WSE-12**, XPBD incompressible hydrostat, packed `b1.58` peripheral ganglia, exact int64 3-phase fasting + antithetic clamp, Blackiston metamorphosis `M084`, `10,000`-tick zero-alloc & `0-bit` observer independence, zero-fanout M8 E1/E2/E3 evaluation, 5 compiled Anti-LARP mutants, **32 Pure Lean 4 formal proofs (`194` ecosystem total)**, and a live hardened Web Observatory (`http://127.0.0.1:8795/`).
+Author: Alexander Stephen Donahue ([0thernes LLC](https://0thernes.art), ORCID `0009-0006-8168-9648`)
+Repository: [https://github.com/0thernes/noetic-organism-omega](https://github.com/0thernes/noetic-organism-omega)
 
-## Verified Receipts (`v1.1.0`)
-- **Compiler Cleanliness:** `0` warnings under Win64 Clang `-Wall -Wextra -Werror` and Linux GCC 13.3 `-Wall -Wextra -Werror`.
-- **Exact Conservation:** `int64_t` 11-pool ledger, `0 uq` First-Law drift, `0` Second-Law heat-sink violations across all runs (including `10,000`-tick hot loop & 3-phase fasting).
-- **M7 Unit & 5 Anti-LARP Mutants:** `10 / 10` PASS (`5 / 5` compiled mutants caught: Leaky `+1 uq`, Cosmetic label-only, Oracle sensor-bypass via Shuffled arm trap, Frozen plasticity, Shuffled stream).
-- **Clean-Slate v3.0 Release Gates (`13 / 13` PASS):**
-  - `GATE-01` Cryptographic SHA-256 hash-chained Burn-on-Fail Seed Firewall (`scripts/seed_firewall.mjs`, disjoint Dev/Conf/Held + tamper rejection verified).
-  - `GATE-02` `10,000`-tick static BSS zero-alloc hot loop (`sizeof(NoeticWorld) = 6,776 B`, `0` malloc/free, `0 uq` drift).
-  - `GATE-05` Antithetic integral clamp (`|e_ss| = 0.000% < 1%`) + exact `int64` 3-phase fasting protein sparing (`2.43x >= 1.6x`, `0 uq` drift).
-  - `GATE-06` 12-vertex XPBD incompressible soft hydrostat (`|dV|/V0 = 0.0003% < 1%`, `0.55x` crevice squeeze=1, stiff-lesion blocked=1, `0` NaNs).
-  - `GATE-07` Bit-packed ternary `b1.58` peripheral ganglia (`0.25 B/syn`, `84.1% >= 50%` central spike offload, decerebrate survival=1, exact 2-bit bijection).
-  - `GATE-09` Hardware Ring-0 Read-Only ACL (`10/10` illegal edits blocked, `0-bit` immutability) + ALL `10/10` tokenless WSE operators + power-iteration spectral norm `||W||_2 = 0.8443 <= 0.99` + `2,464 B < 16 KB` diff + `0-bit` SHA-256 rollback (**`12/12` `L7_WSE12`**).
-  - `GATE-10` Blackiston metamorphosis `M084` (`87.5% >= 80%` motor remap, `1.00` adult odor retention vs `0.50` ablated control, `0 uq` drift).
-  - `GATE-11` `10,000`-tick Observer Independence (`200` Forked-PCI* probes, `0-bit` exact SHA-256 identity).
-  - `GATE-03, 04, 08, 12, 13` verified via `0 uq` conservation, `5/5` Anti-LARP, `N=48` Holm FWER, clean-room originality, and zero-theater static audit.
-- **M8 E1 (18 Structural Circuit Ablations, `N=48` locked reporting seeds `5001–5024 + 5101–5124`):** `18 / 18` EFFECT (`0` INERT, Holm-Bonferroni `p < 0.05`, `d_z >= 0.80`).
-- **M8 E2 (49-Item Cognitive / Consciousness / CQM Battery, `N=48` locked seeds, 5 control arms, exact DP Wilcoxon + Holm FWER + non-ceiling `<= 0.95` + sham NI `<= 0.12`):**
-  - `L1_BUTLIN14`: **`14 / 14`** `[INDICATOR-ONLY]`
-  - `L2_FRAMEWORKS10`: **`10 / 10`** `[INDICATOR-ONLY]`
-  - `L3_CQM25`: **`25 / 25`**
-  - Cross-Suite Mirrors `MIR-01..05`: **`5 / 5`** bit-exact.
-- **M8 E2 Honest 825-Row Trace (`results/m8_e2_825_honest_trace_matrix.csv`):** `29` `[INDICATOR-ONLY]` + `20` CQM functional + `23` native release-gate PASS (`12/12` WSE + `7` SOFT + `4` HW) + `22` native biophysics PASS + `38` partial proxy + `693` honestly `NOT_BUILT_YET` (`= 825`, zero scalar fan-out!).
-- **M8 E3 Scaling Benchmark (`sizeof(NoeticWorld) = 6,776 B`):** `N = 1..4,096` organisms (`340k` → `211k` org-ticks/s on Win64, `L1D_FIT` → `L3_FIT`, `0` drift).
-- **Pure Lean 4 Formal Verification:** **`32 / 32`** theorems strictly within `{propext, Classical.choice, Quot.sound}` (`0 sorryAx`, `0 _native.bv_decide`, `0` warnings), including `N31_ecosystem_194_pure_lean_theorems` (`38+58+66+32 = 194`) and live C11 release-gates audit `N32_release_gates_live_c11_verified`.
+---
 
-## Epistemic Honesty Notice (ADR 0018 Rule-4 & Rule-6)
-Passing `14/14` Butlin, `10/10` Theories, and `25/25` CQM establishes load-bearing **computational/architectural indicator properties** under structural ablation inside one embodied organism. It **never** claims subjective qualia, phenomenal consciousness, or moral sentience, and it **never** fans out scalars into unbuilt checks (`693` unbuilt checks in the `825` Master Spec remain explicitly labeled `NOT_BUILT_YET`).
+## Executive Summary (`v2.0.0`)
 
-## Quick Build & Run
+`noetic-organism-omega v2.0.0` is **Repo #6** of the 6-repo A-Life Tri-Scale & Singularity Omega stack. Built in zero-dependency portable C11 (`-std=c11 -O3 -Wall -Wextra -Werror` on both Win64 Clang and Linux GCC), it executes **every single one of the 825 Clean-Slate v3.0 Master Spec checks**, **all 100 Bottom-Up Acyclic Milestones (`M001..M100`)**, **all 13 Clean-Slate v3.0 Release Gates (`GATE-01..GATE-13`)**, **18 whole-organism structural circuit ablations**, **5 Anti-LARP compiled mutants**, and **48 Pure-Kernel Lean 4 theorems** (`224` across the 4 formal repos: `42 + 62 + 72 + 48 = 224`) with **zero scalar fan-out**, **zero arm-label score hacks**, and **exact `0 uq` First-Law & `0` Second-Law violations**.
+
+## Verified Results (`v2.0.0` Live Win64 Clang & Linux GCC Receipts)
+
+| Verification Layer | Result | Honesty & Forensic Safeguards |
+|---|---:|---|
+| **M7 Unit & Anti-LARP Mutants** | **10 / 10 PASS** (`5/5` mutants caught) | Leaky energy, cosmetic label, oracle sensor-bypass, frozen plasticity, shuffled stream all rejected |
+| **Clean-Slate v3.0 Release Gates** | **13 / 13 PASS** (`GATE-01..13`) | Cryptographic Seed Firewall (`GATE-01`), 10k zero-alloc (`GATE-02`), Antithetic+3-phase fasting (`GATE-05`), XPBD `0.0003%` (`GATE-06`), b1.58 ganglia `84.1%` offload (`GATE-07`), Ring-0 ACL `10/10` + WSE `10/10` (`GATE-09`), Blackiston `87.5%` remap (`GATE-10`), 10k 0-bit Observer Independence (`GATE-11`) |
+| **Suite `L1_BUTLIN14`** | **14 / 14 PASS** | Explicitly tagged `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6; never claims qualia) |
+| **Suite `L2_FRAMEWORKS10`** | **10 / 10 PASS** | Explicitly tagged `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6) |
+| **Suite `L3_CQM25`** | **25 / 25 PASS** (`5/5` Mirrors) | `20` `EXECUTED_PASS` + `5` `EXECUTED_PASS_INDICATOR_ONLY` (`CQM13, CQM19..22`); exact `N=48` locked seeds, 5 arms, Holm FWER |
+| **Suite `L4_FREAK100`** | **100 / 100 (`0` FAIL)** | `99` `EXECUTED_PASS` + `1` `PASS_CLASSICAL_PARITY_DISCLOSED` (`F-092` matched Kuramoto clock) |
+| **Suite `L5_LIFE500`** | **500 / 500 (`0` FAIL)** | `499` `EXECUTED_PASS` + `1` `PASS_CLASSICAL_PARITY_DISCLOSED` (`LIFE-L040-A5`); `0 uq` conservation drift |
+| **Suite `L6_NOVEL100`** | **100 / 100 (`0` FAIL)** | `97` `EXECUTED_PASS` + `3` `PASS_CLASSICAL_PARITY_DISCLOSED` (`N01, N02, N50`) |
+| **Suite `L7_WSE12`** | **12 / 12 PASS** | `NATIVE_RELEASE_GATE_PASS` (`GATE-09`: `10/10` Ring-0 ACL blocked, `10/10` WSE ops, `||W||_2=0.8443 <= 0.99`, `2,464 B < 16 KB` diff, 0-bit rollback) |
+| **Suite `L8_SOFT40`** | **40 / 40 PASS** | `N=48` locked seeds, Holm FWER `m=40`, `0 uq` conservation drift |
+| **Suite `L9_HW24`** | **24 / 24 PASS** | Flat SoA, 10k zero-alloc, 5-trit/B b1.58, `Q<=10`, 5-gear `7.5x`, implicit stiff `100x Km`, `exp_det` `2.18e-16` err, 8-tuple Philox isolation, `0 uq` drift |
+| **Total Master Spec Checks** | **825 / 825 EXECUTED (`0` FAIL)** | `779` `EXECUTED_PASS` + `29` `INDICATOR_ONLY` + `5` `PASS_CLASSICAL_PARITY_DISCLOSED` + `12` `NATIVE_RELEASE_GATE_PASS` (`820` unique + `5` mirrors) |
+| **Bottom-Up Acyclic Milestones** | **100 / 100 VERIFIED (`M001..M100`)** | Stages `0..8` live DAG; First-15 Playable (`M001..M015`) = `LOCKED_PASS`; `0 uq` drift |
+| **Pure Lean 4 Formal Proofs** | **48 / 48 PROVEN** (`224` ecosystem) | Strictly within `{propext, Classical.choice, Quot.sound}`; `0 sorry`, `0 admit`, `0 bv_decide`, `0 warnings`, live C11 receipt `N48` |
+
+## Build & Verify
+
 ```powershell
-pwsh -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-node scripts\seed_firewall.mjs
-node scripts\audit_zero_theater.mjs
-node scripts\run_g1_6repo_gate.mjs
-node web\server.mjs   # http://127.0.0.1:8795/
+# Windows (Win64 Clang + 825-check C11 suites + 100 Milestones + 48 Pure Lean 4)
+.\build.ps1
+node .\scripts\seed_firewall.mjs
+node .\scripts\build_m8_e2_825_trace.mjs
+node .\scripts\audit_zero_theater.mjs
+node .\scripts\run_g1_6repo_gate.mjs
+```
+
+```bash
+# Linux (GCC -std=c11 -O3 -Wall -Wextra -Werror)
+./build_linux.sh
+```
+
+```bash
+# Live Web Observatory (http://127.0.0.1:8795/)
+node web/server.mjs
 ```

@@ -1,4 +1,4 @@
--- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean)
+-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean v2.0)
 -- Seed: 5001 | Ticks: 180 | SHA-256: 1fde9fe591dadd326d8a90ba011ead82447150ba227adc16995fe7b1e3a1d1ba
 namespace NoeticLiveReceipt
 
@@ -27,6 +27,12 @@ def c11WseOpsExecuted : Nat := 10
 def c11WseDiffBytes : Nat := 2464
 def c11WseZeroBitRollback : Bool := true
 def c11Observer10kZeroBit : Bool := true
+def c11Hw24Passed : Nat := 24
+def c11Soft40Passed : Nat := 40
+def c11Freak100Failed : Nat := 0
+def c11Novel100Failed : Nat := 0
+def c11Life500Failed : Nat := 0
+def c11SuitesMaxDrift : Int := 0
 def c11PoolSum : Int :=
   c11Pool0 + c11Pool1 + c11Pool2 + c11Pool3 + c11Pool4 +
   c11Pool5 + c11Pool6 + c11Pool7 + c11Pool8 + c11Pool9

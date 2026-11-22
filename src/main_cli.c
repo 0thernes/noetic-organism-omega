@@ -134,7 +134,7 @@ static int run_stream_mode(void) {
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        printf("Noetic Organism Omega v%s — Usage: test | gates [json] | e1 [N] [json] [csv] | e2 [N] [json] [csv] | e3 [json] [csv] | export-lean <seed> <out.lean> | stream\n",
+        printf("Noetic Organism Omega v%s — Usage: test | gates [json] | hw24 [json] | soft40 [N] [json] | freak100 [N] [json] | novel100 [N] [json] | life500 [N] [json] | milestones100 [json] | e1 [N] [json] [csv] | e2 [N] [json] [csv] | e3 [json] [csv] | export-lean <seed> <out.lean> | stream\n",
                NOETIC_VERSION_STR);
         return 0;
     }
@@ -144,6 +144,34 @@ int main(int argc, char **argv) {
     if (strcmp(argv[1], "gates") == 0) {
         const char *jp = (argc >= 3) ? argv[2] : NULL;
         return noetic_run_release_gates_suite(NULL, jp);
+    }
+    if (strcmp(argv[1], "hw24") == 0) {
+        const char *jp = (argc >= 3) ? argv[2] : NULL;
+        return noetic_run_hw24_suite(NULL, jp);
+    }
+    if (strcmp(argv[1], "soft40") == 0) {
+        int n = (argc >= 3) ? atoi(argv[2]) : 48;
+        const char *jp = (argc >= 4) ? argv[3] : NULL;
+        return noetic_run_soft40_suite(n, NULL, jp);
+    }
+    if (strcmp(argv[1], "freak100") == 0) {
+        int n = (argc >= 3) ? atoi(argv[2]) : 48;
+        const char *jp = (argc >= 4) ? argv[3] : NULL;
+        return noetic_run_freak100_suite(n, NULL, jp);
+    }
+    if (strcmp(argv[1], "novel100") == 0) {
+        int n = (argc >= 3) ? atoi(argv[2]) : 48;
+        const char *jp = (argc >= 4) ? argv[3] : NULL;
+        return noetic_run_novel100_suite(n, NULL, jp);
+    }
+    if (strcmp(argv[1], "life500") == 0) {
+        int n = (argc >= 3) ? atoi(argv[2]) : 48;
+        const char *jp = (argc >= 4) ? argv[3] : NULL;
+        return noetic_run_life500_suite(n, NULL, jp);
+    }
+    if (strcmp(argv[1], "milestones100") == 0) {
+        const char *jp = (argc >= 3) ? argv[2] : NULL;
+        return noetic_run_milestones100_suite(NULL, jp);
     }
     if (strcmp(argv[1], "e1") == 0) {
         int n = (argc >= 3) ? atoi(argv[2]) : 48;
