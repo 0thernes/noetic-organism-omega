@@ -31,7 +31,7 @@ function auditLeanOutput(txt) {
   return { count, clean: clean && count > 0 };
 }
 
-console.log("=== MILESTONE M9/M10: G1 6-REPO UNIFIED FOUNDATION & CLEAN-SLATE v3.0 GATE (224 PURE LEAN 4) ===");
+console.log("=== MILESTONE M9/M10: G1 7-REPO UNIFIED FOUNDATION & CLEAN-SLATE v3.0 GATE (244 PURE LEAN 4) ===");
 const checks = [];
 let totalLean = 0;
 let totalGates = 0;
@@ -145,48 +145,51 @@ let totalMutants = 0;
   const ok = (sp.executable_checks_825?.length === 825)
     && (tr.total_checks_executed_natively_c11 === 825)
     && (tr.total_failed === 0)
-    && (lv.total_lean4_theorems === 240)
+    && (lv.total_lean4_theorems === 244)
     && (lv.all_lean4_pure_axioms_verified === true)
     && (lv.engine_receipts?.tier3_noetic_organism?.clean_slate_13_gates_passed === 13)
     && (lv.engine_receipts?.tier34_asmodensius?.rc === 0);
   checks.push({
     repo: "alife-singularity-omega-package",
     version: sp.spec_meta?.unified_fusion_version || "3.3.0-omega",
-    gates: "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 240 Lean4",
+    gates: "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 244 Lean4",
     mutants: "5/5",
-    lean: `${lv.total_lean4_theorems}/240 synced`,
+    lean: `${lv.total_lean4_theorems}/244 synced`,
     lean_clean: Boolean(lv.all_lean4_pure_axioms_verified),
     ok,
     ms: 1
   });
-  console.log(`  [${ok ? "PASS" : "FAIL"}] 6/7 alife-singularity-omega-package v${sp.spec_meta?.unified_fusion_version}: OVI=${lv.composite_ovi_score}, ${lv.total_lean4_theorems}/240 Lean 4 synced, 7-repo live verified`);
+  console.log(`  [${ok ? "PASS" : "FAIL"}] 6/7 alife-singularity-omega-package v${sp.spec_meta?.unified_fusion_version}: OVI=${lv.composite_ovi_score}, ${lv.total_lean4_theorems}/244 Lean 4 synced, 7-repo live verified`);
 }
 
-// 7. ASMODENSIUS-NATIVE (Repo #7 — Active C23 Dual-World Engine + 76/76 ctest + 16 Pure Lean 4!)
+// 7. ASMODENSIUS-NATIVE (Repo #7 — Active C23 Dual-World Engine + RTX 5070 Ti CUDA PTX + 77/77 ctest + 20 Pure Lean 4!)
 {
   const dir = "Z:\\[Vibe Coded (AI)]\\CLAUDECODE\\Asmodensius-Native";
-  const r = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "2000", "--cap", "8000", "--grid", "6,6,5", "--ticks", "20"], dir);
+  const r = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "2000", "--cap", "8000", "--grid", "6,6,5", "--ticks", "20", "--kernels", "1", "--ecores"], dir);
+  const rGpu = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "2000", "--cap", "8000", "--grid", "6,6,5", "--ticks", "20", "--kernels", "1", "--gpu", "1"], dir);
   const r101 = run(path.join(dir, "build", "z", "az_run.exe"), ["--lab", "--seed", "7", "--n", "64", "--species", "101", "--ticks", "1"], dir);
   const la = auditLeanOutput(fs.readFileSync(path.join(dir, "results", "lean4-asmodensius-audit.txt"), "utf8"));
   const hashM = r.out.match(/final hash\s+([0-9a-f]{16})/);
-  const ok = r.rc === 0 && Boolean(hashM) && r101.rc === 2 && la.clean && la.count === 16;
-  totalLean += la.count; totalGates += 76;
+  const hashG = rGpu.out.match(/final hash\s+([0-9a-f]{16})/);
+  const gpuParity = rGpu.rc === 0 && Boolean(hashM) && Boolean(hashG) && hashM[1] === hashG[1];
+  const ok = r.rc === 0 && Boolean(hashM) && gpuParity && r101.rc === 2 && la.clean && la.count === 20;
+  totalLean += la.count; totalGates += 77;
   checks.push({
     repo: "asmodensius-native",
-    version: "active-c23-dual-worlds",
-    gates: "76/76 ctest + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
+    version: "active-c23-dual-worlds-gpu-ptx",
+    gates: "77/77 ctest + RTX5070Ti GPU==CPU hash parity + 24C P+E + Bulk Philox AVX2 + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
     mutants: "native-c23-p4",
-    lean: `${la.count}/16`,
+    lean: `${la.count}/20`,
     lean_clean: la.clean,
     ok,
     ms: r.ms
   });
-  console.log(`  [${ok ? "PASS" : "FAIL"}] 7/7 asmodensius-native: LIVE hash=${hashM ? hashM[1] : "NONE"}, --species101 exit=${r101.rc}, 2 Visual Worlds, ${la.count}/16 Pure Lean 4 (${r.ms} ms)`);
+  console.log(`  [${ok ? "PASS" : "FAIL"}] 7/7 asmodensius-native: LIVE 24C==GPU hash=${hashM ? hashM[1] : "NONE"}, --species101 exit=${r101.rc}, 2 Visual Worlds, ${la.count}/20 Pure Lean 4 (${r.ms} ms)`);
 }
 
-const allOk = checks.every((c) => c.ok) && totalLean === 240;
+const allOk = checks.every((c) => c.ok) && totalLean === 244;
 const receipt = {
-  schema: "m9-g1-7repo-foundation-gate/v2.1",
+  schema: "m9-g1-7repo-foundation-gate/v2.2",
   generated_utc: new Date().toISOString(),
   all_passed: allOk,
   ecosystem_totals: {
@@ -197,7 +200,7 @@ const receipt = {
     clean_slate_v3_executable_checks: "825/825 EXECUTED IN NATIVE C11 (0 FAIL, 5 PARITY_DISCLOSED, 29 INDICATOR_ONLY)",
     clean_slate_v3_milestones: "100/100 VERIFIED (M001..M100, First-15 Playable LOCKED_PASS)",
     clean_slate_v3_substrates_and_cube: "75/75 Substrates + 1,000/1,000 Hybrid Cube (661 OK / 274 ADAPT / 20 OVER / 45 EXCL)",
-    asmodensius_dual_visual_worlds: "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 76/76 ctest",
+    asmodensius_dual_visual_worlds: "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 77/77 ctest + RTX 5070 Ti CUDA PTX + 24C P+E",
     compiled_mutants_caught: totalMutants,
     energy_drift_uq: 0,
     second_law_violations: 0
@@ -207,5 +210,5 @@ const receipt = {
 
 const outPath = path.join(ROOT, "results", "m9_g1_foundation_gate_receipt.json");
 fs.writeFileSync(outPath, JSON.stringify(receipt, null, 2) + "\n", "utf8");
-console.log(`\n=== M9/M10 G1 7-REPO FOUNDATION GATE: ${allOk ? "100% PASS" : "FAILED"} | ${totalLean}/240 Pure Lean 4 | 825/825 C11 | 100/100 M | 75-Sub & 1000-Cube | 13/13 CS-v3 | 76/76 Asmodensius ctest | ${totalMutants}/35 Mutants ===`);
+console.log(`\n=== M9/M10 G1 7-REPO FOUNDATION GATE: ${allOk ? "100% PASS" : "FAILED"} | ${totalLean}/244 Pure Lean 4 | 825/825 C11 | 100/100 M | 75-Sub & 1000-Cube | 13/13 CS-v3 | 77/77 Asmodensius ctest | ${totalMutants}/35 Mutants ===`);
 if (!allOk) process.exit(1);

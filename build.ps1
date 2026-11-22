@@ -34,6 +34,8 @@ $core = @(
 
 $cflags = @(
     "-std=c11", "-O3", "-Wall", "-Wextra", "-Werror", "-Wno-unused-parameter",
+    "-march=native", "-mavx2", "-mavxvnni", "-mbmi", "-mbmi2", "-mpopcnt",
+    "-ffp-contract=off", "-flto=thin",
     "--target=x86_64-w64-windows-gnu",
     "-DNOETIC_BARE_WIN64",
     "-I$proj\include",
@@ -42,7 +44,7 @@ $cflags = @(
 $ldflags = @("-L$root\lib", "-fuse-ld=lld")
 $libs = @("-lkernel32", "-lucrtbase", "-lm", "-lmingw32", "-lmingwex")
 
-Write-Host "[1/7] Building bin\noetic_engine.exe v2.0.0 (12 C11 modules, -Wall -Wextra -Werror) ..."
+Write-Host "[1/7] Building bin\noetic_engine.exe v2.0.0 (12 C11 modules, AVX2/VNNI + ThinLTO, -Wall -Wextra -Werror) ..."
 & $clang @cflags @core -o "$proj\bin\noetic_engine.exe" @ldflags @libs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 

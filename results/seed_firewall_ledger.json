@@ -1,7 +1,7 @@
 {
   "schema": "clean-slate-v3-gate01-seed-firewall/v2.0",
   "gate_id": "GATE-01",
-  "generated_utc": "2026-11-22T05:38:00.038Z",
+  "generated_utc": "2026-11-22T21:55:13.330Z",
   "status": "PASS",
   "bound_receipt_count": 9,
   "partitions": {
