@@ -1,91 +1,95 @@
 {
-  "schema": "m9-g1-7repo-foundation-gate/v2.2",
-  "generated_utc": "2026-11-22T21:55:16.151Z",
+  "schema": "m9-g1-7repo-foundation-gate/v3.0",
+  "generated_utc": "2026-11-26T04:03:57.695Z",
   "all_passed": true,
   "ecosystem_totals": {
     "connected_repos": 7,
-    "pure_lean4_theorems": 244,
-    "c11_and_c23_falsification_and_release_gates": 190,
+    "formal_lean4_repos": 6,
+    "pure_lean4_theorems": 327,
+    "native_engine_lean4_theorems": 291,
+    "package_local_lean4_theorems": 36,
+    "mega_atlas_open_problems_retired": "0/1900",
+    "c11_c23_and_verification_gates": 238,
     "clean_slate_v3_release_gates": "13/13 PASS",
     "clean_slate_v3_executable_checks": "825/825 EXECUTED IN NATIVE C11 (0 FAIL, 5 PARITY_DISCLOSED, 29 INDICATOR_ONLY)",
     "clean_slate_v3_milestones": "100/100 VERIFIED (M001..M100, First-15 Playable LOCKED_PASS)",
     "clean_slate_v3_substrates_and_cube": "75/75 Substrates + 1,000/1,000 Hybrid Cube (661 OK / 274 ADAPT / 20 OVER / 45 EXCL)",
-    "asmodensius_dual_visual_worlds": "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 77/77 ctest + RTX 5070 Ti CUDA PTX + 24C P+E",
-    "compiled_mutants_caught": 35,
+    "asmodensius_dual_visual_worlds": "World #1 WebGL2 (:8794) + World #2 Native az_view (:8796) + 77/77 ctest + 164/164 test_gpu + RTX 5070 Ti CUDA PTX + 24C P+E",
+    "compiled_and_surgical_mutants_caught": 47,
     "energy_drift_uq": 0,
     "second_law_violations": 0
   },
   "repos": [
     {
       "repo": "autophage",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "gates": "18/18",
       "mutants": "6/6",
-      "lean": "42/42",
-      "lean_clean": true,
-      "ok": true,
-      "ms": 1565.3
-    },
-    {
-      "repo": "cellulogonic-mecha",
-      "version": "1.4.0",
-      "gates": "24/24",
-      "mutants": "8/8",
-      "lean": "62/62",
-      "lean_clean": true,
-      "ok": true,
-      "ms": 465.1
-    },
-    {
-      "repo": "cellular-engine-omega",
-      "version": "5.1.0",
-      "gates": "54/54 + 75-sub + 1000-cube",
-      "mutants": "16/16",
-      "lean": "72/72",
-      "lean_clean": true,
-      "cube_ok": true,
-      "ok": true,
-      "ms": 600.5
-    },
-    {
-      "repo": "noetic-organism-omega",
-      "version": "2.0.0",
-      "gates": "10/10 unit + 13/13 CS-v3 + 825/825 C11 + 100/100 M",
-      "mutants": "5/5",
       "lean": "48/48",
       "lean_clean": true,
       "ok": true,
-      "ms": 81.7
+      "ms": 1703
+    },
+    {
+      "repo": "cellulogonic-mecha",
+      "version": "1.5.0",
+      "gates": "26/26",
+      "mutants": "8/8",
+      "lean": "70/70",
+      "lean_clean": true,
+      "ok": true,
+      "ms": 668.3
+    },
+    {
+      "repo": "cellular-engine-omega",
+      "version": "5.2.0",
+      "gates": "60/60 + 75-sub + 1000-cube",
+      "mutants": "16/16",
+      "lean": "89/89",
+      "lean_clean": true,
+      "cube_ok": true,
+      "ok": true,
+      "ms": 693.6
+    },
+    {
+      "repo": "noetic-organism-omega",
+      "version": "2.1.0",
+      "gates": "10/10 unit + 13/13 CS-v3 + 825/825 C11 + 100/100 M",
+      "mutants": "5/5",
+      "lean": "54/54",
+      "lean_clean": true,
+      "ok": true,
+      "ms": 85.4
     },
     {
       "repo": "omega-triscale-observatory",
-      "version": "6.6.0",
-      "gates": "syntax+8-endpoint-dual-asmo-worlds",
-      "mutants": "n/a",
-      "lean": "orchestrates 240",
+      "version": "6.7.0",
+      "gates": "12/12 Node + 5/5 Py + 8-endpoint-dual-asmo-worlds",
+      "mutants": "6/6",
+      "lean": "0 local (supervises 327)",
       "lean_clean": true,
       "ok": true,
-      "ms": 44.9
+      "ms": 57
     },
     {
       "repo": "alife-singularity-omega-package",
-      "version": "3.3.0-omega",
-      "gates": "825/825 C11 + 100M + 75-sub + 1000-cube + 18/18 pkg + 244 Lean4",
-      "mutants": "5/5",
-      "lean": "244/244 synced",
+      "version": "3.4.0-omega",
+      "gates": "22/22 Omniscient + Z<->I parity + 825/825 C11 + 100M + 75-sub + 1000-cube",
+      "mutants": "6/6",
+      "lean": "36/36 local (+4 Palomar = 40 lines) -> 327 ecosystem",
       "lean_clean": true,
       "ok": true,
       "ms": 1
     },
     {
       "repo": "asmodensius-native",
-      "version": "active-c23-dual-worlds-gpu-ptx",
-      "gates": "77/77 ctest + RTX5070Ti GPU==CPU hash parity + 24C P+E + Bulk Philox AVX2 + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
+      "version": "1.1.0",
+      "gates": "77/77 ctest + 164/164 test_gpu + RTX5070Ti GPU==CPU hash parity + 24C P+E + --species101 exit=2 + 2 Visual Worlds (:8794 & :8796)",
       "mutants": "native-c23-p4",
-      "lean": "20/20",
+      "lean": "30/30",
       "lean_clean": true,
       "ok": true,
-      "ms": 580.7
+      "ms": 624.4
     }
   ]
 }
