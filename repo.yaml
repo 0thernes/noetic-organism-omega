@@ -1,0 +1,117 @@
+# yaml-language-server: $schema=./repo-standard.schema.json
+# Project manifest for the Build Standard for LLMs v1.2.0. Read by scripts/audit-repo.sh and Audit-Repo.ps1.
+standard: "1.2.0"
+name: "noetic-organism-omega"
+description: "Exact-Conservation Portable C11 Whole-Organism Cognitive Engine, 825-Check & 100-Milestone Clean-Slate v3.0 Falsification Harness, and 54-Theorem 6-Kernel Palomar Lean 4.35.0 Proofs"
+owner: "Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA)"
+year: "2026"
+project_type: research
+stack: [c11, lean4, node, python, latex]
+flags:
+  public: true
+  package: false
+  visual: true
+  ui: true
+  native: true
+  ai: false
+  personal_data: false
+  service: true
+  deployed: false
+  api: true
+  perf: true
+  concurrent: true
+  numeric: true
+  experimental: true
+  ml: false
+  formal: true
+items:
+  A01: {status: done}  # README with a one-line purpose [core]
+  A02: {status: done}  # Badge ribbon [recommended]
+  A03: {status: done}  # Quickstart that works from a clean clone [core]
+  A04: {status: done}  # Usage examples [core]
+  A05: {status: done}  # Demo media (docs/media/social-preview.svg) [recommended]
+  A06: {status: done}  # LICENSE (Apache-2.0) + LICENSE-DOCS (CC-BY-4.0) [core]
+  A07: {status: done}  # CHANGELOG [core]
+  A08: {status: done}  # Semantic version 2.1.0 across VERSION, CHANGELOG, CITATION.cff [core]
+  A09: {status: done}  # Automated tests (tests/noetic_prop.test.mjs + noetic_engine test) [core]
+  A10: {status: done}  # Informational CI (.github/workflows/ci.yml) [core]
+  A11: {status: done}  # Releases (tags: ["v*"] in ci.yml) [recommended]
+  A12: {status: done}  # .gitignore [core]
+  A13: {status: done}  # .gitattributes and .editorconfig [recommended]
+  A14: {status: done}  # CONTRIBUTING.md [recommended]
+  A15: {status: done}  # CODE_OF_CONDUCT.md [recommended]
+  A16: {status: done}  # SECURITY.md [core]
+  A17: {status: done}  # SUPPORT.md [recommended]
+  A18: {status: done}  # Issue templates (.github/ISSUE_TEMPLATE/{bug,feature,question,config}.yml; zero PR templates) [recommended]
+  A19: {status: done, note: "GitHub About description & topics updated via gh repo edit (v2.1.0, 54 Lean proofs, Independent Researcher)."}
+  A20: {status: done}  # docs/ folder [recommended]
+  A21: {status: done}  # Architecture Decision Records (docs/adr/0001-*.md) [recommended]
+  A22: {status: done}  # CITATION.cff [advanced]
+  A23: {status: done}  # Clean history and correct identity on main [core]
+  A24: {status: done}  # No secrets, build output or huge files (>5 MB) committed [core]
+  A25: {status: done}  # Cross-platform CI (ubuntu-latest + windows-latest) [recommended]
+  A26: {status: done}  # Social preview image (docs/media/social-preview.svg) [recommended]
+  A27: {status: n/a, note: "Web Observatory (web/server.mjs) streams a live native C11 engine process over 127.0.0.1:8795; static GitHub Pages cannot execute the native binary."}
+  A28: {status: n/a, note: "Zero-dependency C11 + built-in Node + zero-Mathlib Lean research repo; not published to npm/PyPI/crates.io (package: false)."}
+  A29: {status: done}  # ROADMAP.md [recommended]
+  A30: {status: done}  # Labels for the 10 finding classes (.github/labels.tsv) [recommended]
+  A31: {status: done}  # Task runner with one-word commands (justfile) [core]
+  A32: {status: done}  # Agent entry points: AGENTS.md canonical, CLAUDE.md, GEMINI.md, Cursor rules, llms.txt [core]
+  A33: {status: done}  # Environment and configuration documented (.env.example + docs/configuration.md) [core]
+  A34: {status: done, note: "Loopback Observatory exposes GET /healthz worker liveness + structured JSON error responses & stderr diagnostics."}
+  A35: {status: done}  # Data, backups, git bundle & offsite mirror documented in docs/operations.md [recommended]
+  A36: {status: n/a, note: "Local native C11 engine and loopback Observatory; not deployed to hosted production (deployed: false)."}
+  A37: {status: done, note: "Explicit performance budgets defined in docs/benchmarks.md and enforced by L9_HW24 (HW01, HW02, HW03, HW10, HW19, HW23) and GATE-02/06/07/09."}
+  A38: {status: done, note: "web/index.html specifies lang=en, semantic header/main/section landmarks, role=status aria-live telemetry badges, role=toolbar and explicit aria-label attributes."}
+  A39: {status: done}  # NOTICE + THIRD_PARTY_NOTICES.md [recommended]
+  A40: {status: n/a, note: "Zero runtime AI/LLM SDKs or models shipped or invoked by engine code (ai: false)."}
+  A41: {status: n/a, note: "Not a distributed package library (package: false); semver changes tracked in CHANGELOG.md."}
+  A42: {status: done}  # Maintenance status (status: active in README.md) [recommended]
+  A43: {status: n/a, note: "package: false; runnable demo still provided in examples/run_quick_demo.mjs."}
+  A44: {status: done}  # docs/faq.md & docs/glossary.md [recommended]
+  A45: {status: n/a, note: "Zero personal data collected, stored, processed, or transmitted (personal_data: false)."}
+  B01: {status: done}  # Reproducible build from a clean clone (justfile reproduce + REPLICATION.md) [core]
+  B02: {status: n/a, note: "Zero external package dependencies (package: false); Lean toolchain pinned in lean/lean-toolchain and lean/lake-manifest.json."}
+  B03: {status: done, note: "Twin-run 0-bit SHA-256 determinism verified in T01, GATE-11 (10k ticks), HW16 (10k Philox organ isolation), HW20, and tests/noetic_prop.test.mjs."}
+  B04: {status: done}  # CLAIMS.md ledger [core]
+  B05: {status: done, note: "Every claim C1..C9 in CLAIMS.md maps to explicit C11/Lean verification commands and falsification conditions."}
+  B06: {status: done, note: "Negative tests include T02 heat-sink backflow trap, MUT-1..5 Anti-LARP mutants, GATE-01 tamper rejection, GATE-09 Ring-0 traps, HW08 invalid Q rejects, HW24 NaN/arena watchdog, and unknown CLI exit-2 check."}
+  B07: {status: done, note: "Regression coverage locks v2.1.0 fixes (N51/N54 refutations, check_readme_axioms.py verbatim parity, check_citations.py live DOI/URL gate, build_paper.py zero-overflow gate)."}
+  B08: {status: done, note: "Golden SHA-256 receipts (T01, GATE-11, seed_firewall_ledger.json, CHECKSUMS.sha256, data/MANIFEST.sha256) and verbatim results/lean4-noetic-audit.txt parity."}
+  B09: {status: done, note: "CLI subcommand exit codes, JSON stream ABI, and loopback /healthz + /api/* contracts verified by tests/noetic_prop.test.mjs and web/server.mjs guards."}
+  B10: {status: done}  # Property-based tests (prop_check in tests/noetic_prop.test.mjs over 32 randomized trials = 96 frames) [core]
+  B11: {status: done, note: "Differential testing across Win64 Clang vs Linux GCC deterministic math (HW15 max_rel_err=2.175e-16), FP64 Kahan-Neumaier vs int64 ledger (HW18), and 5-6 independent Lean 4.35.0 kernels."}
+  B12: {status: done, note: "Reference oracles: exact analytic Wilcoxon p=1/1024 (T05), IEEE-754 libm reference (HW15), and Lean 4.35.0 Spec.lean oracle audited against live exported C11 receipts (N24/N32/N48)."}
+  B13: {status: done}  # Mutation testing (5/5 compiled Anti-LARP mutants caught in src/noetic_eval.c) [recommended]
+  B14: {status: done, note: "Metamorphic invariance verified via sham non-inferiority symmetry (N19), 10k-tick observer non-interference (GATE-11/HW20), Philox Organ-A deletion invariance on Organ-B/WORLD_EXOG (HW16), and WSE rollback involution (N26)."}
+  B15: {status: done}  # Fuzzing (libfuzzer harness in tests/fuzz_noetic_input.c) [recommended]
+  B16: {status: done}  # Sanitizers (-fsanitize=address,undefined in justfile & .github/workflows/ci.yml) [core]
+  B17: {status: done}  # Static analysis (cppcheck / clang-tidy report-only target in justfile + audit_zero_theater.mjs) [recommended]
+  B18: {status: done}  # Strict type checking (-Wall -Wextra -Werror in C11 + autoImplicit=false dependent typing across 6 Lean kernels) [recommended]
+  B19: {status: done, note: "Off-main-thread isolated OS simulation worker (HW13), 3-retry SeqLock with double-buffer fallback (HW14), and bounded 16-request queue in web/server.mjs."}
+  B20: {status: done, note: "Pure IEEE-754 exp_det/log_det/tanh_det (HW15: 2.175e-16), Kahan-Neumaier FP64 ledger (HW18: <1e-12), implicit stiff chemistry (HW11), and non-finite NaN watchdog (HW24)."}
+  B21: {status: done, note: "Failure injection via MUT-1..5, HW24 NaN/87%-arena/neg-diss injection, GATE-01 ledger tampering, GATE-09 Ring-0 attack traps, and Observatory worker kill/restart recovery."}
+  B22: {status: done}  # Formal specification and proof (lean/ — 54 theorems, Palomar Challenge/Solution, 6 kernels) [advanced]
+  B23: {status: n/a, note: "Finite-state thermodynamic conservation and Ring-0 ACL transitions are machine-checked directly in Lean 4.35.0; no separate TLA+/Alloy model."}
+  B24: {status: n/a, note: "Simulation runtime targets zero-dependency portable C11 (AVX2/VNNI ThinLTO) for ~200k org-ticks/s; core invariants are formally verified in Lean 4.35.0."}
+  B25: {status: n/a, note: "C11 engine verified via -Wall -Wextra -Werror, ASan/UBSan in CI, libFuzzer harness, 5 compiled mutants, 825 checks, and live Lean receipts (N24/N32/N48); no separate CBMC/Frama-C run."}
+  B26: {status: done}  # Honest benchmarks (docs/benchmarks.md + results/m8_e3_scaling_bench.json) [core]
+  B27: {status: done, note: "CI uploads results/m8_e3_scaling_bench.json artifact on every push to main for report-only performance tracking."}
+  B28: {status: done, note: "N=48 locked Philox4x32-10 seeds (5001..5024 + 5101..5124) across 5 paired arms (INTACT, SHAM, LESION, SHUFFLED, PASSIVE) under GATE-01 Seed Firewall."}
+  B29: {status: done, note: "Exact dynamic-programming Wilcoxon signed-rank significance tests in src/noetic_stats.c (unit-verified in T05, formalized in N15..N16)."}
+  B30: {status: done, note: "Paired standardized effect sizes (d_z), deterministic Philox bootstrap 95% confidence intervals (ci_lo, ci_hi), and paired win rates (delta_pair) recorded in all JSON receipts."}
+  B31: {status: done, note: "Holm-Bonferroni step-down FWER adjustment (noetic_holm_bonferroni, N17) applied across all multi-item suites."}
+  B32: {status: done}  # Pre-registration of hypotheses (docs/preregistration.md) [advanced]
+  B33: {status: n/a, note: "No ML model training or dataset hyperparameter selection (ml: false)."}
+  B34: {status: n/a, note: "No runtime LLM/AI inference or hallucination surface in code (ai: false)."}
+  B35: {status: done}  # Security scanning (gitleaks report-only in .github/workflows/ci.yml) [recommended]
+  B36: {status: done}  # Threat model (docs/threat-model.md) [recommended]
+  B37: {status: done}  # Release hashes and checksums (SHA256SUMS in ci.yml + CHECKSUMS.sha256) [core]
+  B38: {status: done}  # Build provenance and attestations (actions/attest-build-provenance@v2 in ci.yml) [recommended]
+  B39: {status: done}  # Data checksums (data/MANIFEST.sha256) [recommended]
+  B40: {status: done}  # Audit trail (docs/run-log.md + HARDENING_LOG.md) [recommended]
+  B41: {status: done}  # Limitations and real-vs-metaphor (LIMITATIONS.md) [core]
+  B42: {status: done}  # What would prove us wrong (CLAIMS.md explicit falsification column) [core]
+  B43: {status: done}  # Replication protocol (REPLICATION.md) [core]
+  B44: {status: done}  # Independent replication log table in REPLICATION.md (honestly awaiting external replicator) [advanced]
+  B45: {status: done}  # Peer and red-team review (docs/reviews/2026-11-25-10-pass-red-team-audit.md) [recommended]

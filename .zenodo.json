@@ -1,0 +1,29 @@
+{
+  "title": "Noetic Organism Omega (v2.1.0): Exact-Conservation Portable C11 Whole-Organism Cognitive Engine, 825-Check Falsification Harness, and 6-Kernel Lean 4.35.0 Proofs",
+  "version": "2.1.0",
+  "upload_type": "software",
+  "publication_date": "2026-11-25",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "creators": [
+    {
+      "name": "Donahue, Alexander Stephen",
+      "orcid": "0009-0006-8168-9648",
+      "affiliation": "Independent Researcher, Spokane, WA, USA"
+    }
+  ],
+  "description": "Zero-dependency portable C11 whole-organism cognitive and homeostatic simulation engine (6,776 B/world) executing 825/825 Clean-Slate v3.0 checks, 100/100 milestones, 13/13 release gates, and 5/5 Anti-LARP mutants with 0 uq integer First-Law drift, paired with 54 pure Lean 4.35.0 Palomar theorems verified across independent proof kernels and an AMS-LaTeX white paper. AI-assisted independent research under human direction; not peer-reviewed. All 29 cognitive/consciousness checks are strictly [INDICATOR-ONLY] computational proxies.",
+  "keywords": [
+    "artificial life",
+    "C11",
+    "Lean 4",
+    "formal verification",
+    "Palomar",
+    "thermodynamic conservation",
+    "XPBD",
+    "BitNet b1.58",
+    "Philox4x32-10",
+    "falsification"
+  ],
+  "notes": "Dual license: Apache-2.0 for source code, Lean 4 proofs, tests, and scripts; CC-BY-4.0 for white paper, PDFs, documentation, and datasets. AI-assisted research under human direction; evaluate depositor eligibility against Zenodo generative-AI guidelines prior to minting any DOI."
+}

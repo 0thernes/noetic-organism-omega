@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use or audit Noetic Organism Omega, please cite it using this metadata."
+title: "Noetic Organism Omega: Exact-Conservation Portable C11 Whole-Organism Cognitive Engine, 825-Check Falsification Harness, and 6-Kernel Lean 4.35.0 Proofs"
+version: "2.1.0"
+date-released: "2026-11-25"
+type: software
+license: "Apache-2.0"
+repository-code: "https://github.com/0thernes/noetic-organism-omega"
+url: "https://0thernes.art"
+authors:
+  - family-names: "Donahue"
+    given-names: "Alexander Stephen"
+    orcid: "https://orcid.org/0009-0006-8168-9648"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
+    email: "0_0@0thernes.art"
+keywords:
+  - artificial-life
+  - c11
+  - lean4
+  - formal-verification
+  - thermodynamic-conservation
+  - xpbd
+  - bitnet-b158
+  - philox
+  - falsification
+abstract: "Portable zero-dependency C11 whole-organism simulation engine (6,776 B/world) coupling exact 11-pool int64 thermodynamic conservation, 18 structural circuit ablations, XPBD soft-body hydrostat, packed b1.58 ganglia, Ring-0 WSE-12 self-editing ACL, 825-check & 100-milestone Clean-Slate v3.0 verification, and 54 pure Lean 4.35.0 theorems verified under the 6-kernel Palomar contract. AI-assisted independent research under human direction; not peer-reviewed; cognitive indicators are strictly computational proxies."

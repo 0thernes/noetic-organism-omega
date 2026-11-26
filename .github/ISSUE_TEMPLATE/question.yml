@@ -1,0 +1,11 @@
+name: Research or Replication Question
+description: Ask about the engine, Lean 4 proofs, epistemic boundaries, or replication steps.
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      placeholder: Describe your question and reference relevant files, theorems, or paper sections.
+    validations:
+      required: true

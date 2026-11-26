@@ -1,59 +1,156 @@
-name: Noetic Organism Omega v2.0.0 CI (C11 -Werror + 9 Suites 825 Checks + 100 Milestones + 48 Pure Lean 4)
+name: Noetic Organism Omega v2.1.0 CI (Cross-Platform C11 + ASan/UBSan + 6-Kernel Lean 4.35.0 + Paper + SLSA)
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
 
 jobs:
-  c11-full-825-and-milestones:
-    runs-on: ubuntu-latest
+  c11-cross-platform:
+    name: C11 Engine, 825 Checks, 100 Milestones & Property Tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Build & Run C11 -Wall -Wextra -Werror + 5 Mutants + 13 Release Gates + Full 825 Checks + 100 Milestones
+
+      - name: Build & Verify on Linux (GCC -Werror + Full 825 Checks + 100 Milestones + ASan/UBSan)
+        if: matrix.os == 'ubuntu-latest'
         run: |
           chmod +x build_linux.sh
           ./build_linux.sh
           ./bin/noetic_engine_linux gates results/m9_native_release_gates.json
           ./bin/noetic_engine_linux hw24 results/m10_hw24_receipt.json
-          ./bin/noetic_engine_linux soft40 results/m10_soft40_receipt.json
-          ./bin/noetic_engine_linux freak100 results/m10_freak100_receipt.json
-          ./bin/noetic_engine_linux novel100 results/m10_novel100_receipt.json
-          ./bin/noetic_engine_linux life500 results/m10_life500_receipt.json
+          ./bin/noetic_engine_linux soft40 48 results/m10_soft40_receipt.json
+          ./bin/noetic_engine_linux freak100 48 results/m10_freak100_receipt.json
+          ./bin/noetic_engine_linux novel100 48 results/m10_novel100_receipt.json
+          ./bin/noetic_engine_linux life500 48 results/m10_life500_receipt.json
           ./bin/noetic_engine_linux milestones100 results/m10_milestones_100_receipt.json
           ./bin/noetic_engine_linux e1 48 results/m8_e1_ablation_sweep.json results/m8_e1_ablation_sweep.csv
           ./bin/noetic_engine_linux e2 48 results/m8_e2_cognitive_49.json results/m8_e2_cognitive_49.csv
-          ./bin/noetic_engine_linux e3 results/m8_e3_scaling_bench.json
+          ./bin/noetic_engine_linux e3 results/m8_e3_scaling_bench.json results/m8_e3_scaling_bench.csv
           ./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
           node scripts/seed_firewall.mjs
           node scripts/audit_zero_theater.mjs
+          node tests/noetic_prop.test.mjs
+          node examples/run_quick_demo.mjs
 
-  lean4-pure-proofs:
+          # AddressSanitizer + UndefinedBehaviorSanitizer runtime verification
+          gcc -std=c11 -O1 -g -Wall -Wextra -Werror -Wno-unused-parameter -fsanitize=address,undefined -Iinclude \
+            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_gates_core.c \
+            src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c src/noetic_novel100.c \
+            src/noetic_life500.c src/noetic_milestones100.c src/noetic_eval.c src/main_cli.c \
+            -o bin/noetic_engine_asan -lm
+          ./bin/noetic_engine_asan test
+          ./bin/noetic_engine_asan gates
+
+      - name: Upload M8 E3 Scaling Benchmark Receipt (report-only tracking)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: noetic-benchmarks-json
+          path: results/m8_e3_scaling_bench.json
+
+      - name: Build & Verify on Windows (GCC/MinGW -Werror + Tests + Property Check)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path bin, results | Out-Null
+          gcc -std=c11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude `
+            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_gates_core.c `
+            src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c src/noetic_novel100.c `
+            src/noetic_life500.c src/noetic_milestones100.c src/noetic_eval.c src/main_cli.c `
+            -o bin/noetic_engine.exe -lm
+          .\bin\noetic_engine.exe test
+          .\bin\noetic_engine.exe gates results/m9_native_release_gates.json
+          node tests/noetic_prop.test.mjs
+          node examples/run_quick_demo.mjs
+
+  lean4-6kernel-palomar:
+    name: Pure Lean 4.35.0 — 54 Theorems & 6-Kernel Palomar Comparator
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Elan & Lean 4.35.0
+      - name: Install bubblewrap for Palomar multi-kernel sandbox
+        run: sudo apt-get update && sudo apt-get install -y bubblewrap
+      - name: Install elan & pinned Lean 4.35.0 toolchain
         run: |
-          curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.35.0
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Compile Live Receipt & Audit 48 Pure Lean 4 Theorems
+      - name: Export Live C11 Receipt & Build 54 Theorems + Isolated Challenge
         run: |
+          mkdir -p bin
           gcc -std=c11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude \
-            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_eval.c \
-            src/noetic_gates_core.c src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c \
-            src/noetic_novel100.c src/noetic_life500.c src/noetic_milestones100.c src/main_cli.c \
+            src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_gates_core.c \
+            src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c src/noetic_novel100.c \
+            src/noetic_life500.c src/noetic_milestones100.c src/noetic_eval.c src/main_cli.c \
             -o bin/noetic_engine_linux -lm
           ./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
           cd lean
-          LEAN_PATH="$PWD" lean -R "$PWD" -o NoeticProofs/LiveC11Receipt.olean NoeticProofs/LiveC11Receipt.lean
-          LEAN_PATH="$PWD" lean -R "$PWD" NoeticProofs.lean > ../results/lean_audit.txt
-          cat ../results/lean_audit.txt
-          if grep -E 'sorryAx|_native\.bv_decide|warning:' ../results/lean_audit.txt; then
-            echo "FORBIDDEN AXIOM OR WARNING FOUND" && exit 1
-          fi
-          COUNT=$(grep -cE 'depends on axioms:|does not depend on any axioms' ../results/lean_audit.txt)
-          test "$COUNT" -ge 48
+          lake build
+          lake build Challenge
+          lake env lean VerifyAxioms.lean > ../results/lean4-noetic-audit.txt
+          cat ../results/lean4-noetic-audit.txt
+          cd ..
+          python3 scripts/check_readme_axioms.py
+      - name: Verify All 6 Independent Kernels (leanchecker-paranoid + lake check + lake comparator)
+        working-directory: lean
+        run: |
+          lake env leanchecker --fresh Solution
+          lake env leanchecker-paranoid --fresh Solution
+          lake check --paranoid
+          lake comparator --config comparator.json --paranoid
+
+  paper-pdf-and-provenance:
+    name: AMS-LaTeX White Paper, Live Citations, SHA256SUMS & SLSA Provenance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Tectonic
+        run: |
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          sudo mv tectonic /usr/local/bin/tectonic
+      - name: Verify Citations (offline cross-check) & Compile AMS-LaTeX + Clean-Room arXiv Tarball
+        run: |
+          python3 scripts/check_citations.py --offline
+          python3 scripts/build_paper.py
+      - name: Generate SHA256SUMS
+        run: |
+          sha256sum dist/Donahue_2026_noetic_organism_omega.pdf dist/arxiv_submission.tar.gz results/lean4-noetic-audit.txt results/lean4-multi-kernel.txt > SHA256SUMS
+          cat SHA256SUMS
+      - name: Attest build provenance (SLSA)
+        uses: actions/attest-build-provenance@v2
+        continue-on-error: true
+        with:
+          subject-path: |
+            dist/Donahue_2026_noetic_organism_omega.pdf
+            dist/arxiv_submission.tar.gz
+            SHA256SUMS
+
+  audit-and-security:
+    name: Build Standard v1.2.0 Audit & Report-Only Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build Standard v1.2.0 self-audit (report-only)
+        continue-on-error: true
+        run: bash scripts/audit-repo.sh .
+      - name: Secret scan via gitleaks (report-only)
+        continue-on-error: true
+        run: |
+          GITLEAKS_VER="8.21.2"
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VER}/gitleaks_${GITLEAKS_VER}_linux_x64.tar.gz" | tar -xz -C /tmp gitleaks
+          /tmp/gitleaks detect --source . --no-banner --redact

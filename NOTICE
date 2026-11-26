@@ -1,0 +1,15 @@
+Noetic Organism Omega (v2.1.0)
+Copyright 2026 Alexander Stephen Donahue
+ORCID: 0009-0006-8168-9648
+Independent Researcher, Spokane, WA, USA
+https://0thernes.art | https://github.com/0thernes/noetic-organism-omega
+
+Code, Lean 4.35.0 formalizations, tests, and scripts are licensed under the
+Apache License, Version 2.0 (LICENSE). Papers, PDFs, figures, documentation,
+and empirical receipt datasets are licensed under CC-BY-4.0 (LICENSE-DOCS).
+
+AI-Assistance Disclosure:
+This work was produced through AI-assisted research, software engineering, and
+formalization under the direction, scoping, verification, and editorial control
+of Alexander Stephen Donahue. See docs/AI_DISCLOSURE.md and lean/formalization.yaml
+for exact tool provenance, verification boundaries, and CRediT attribution.

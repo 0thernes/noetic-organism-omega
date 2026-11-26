@@ -44,7 +44,7 @@ $cflags = @(
 $ldflags = @("-L$root\lib", "-fuse-ld=lld")
 $libs = @("-lkernel32", "-lucrtbase", "-lm", "-lmingw32", "-lmingwex")
 
-Write-Host "[1/7] Building bin\noetic_engine.exe v2.0.0 (12 C11 modules, AVX2/VNNI + ThinLTO, -Wall -Wextra -Werror) ..."
+Write-Host "[1/7] Building bin\noetic_engine.exe v2.1.0 (12 C11 modules, AVX2/VNNI + ThinLTO, -Wall -Wextra -Werror) ..."
 & $clang @cflags @core -o "$proj\bin\noetic_engine.exe" @ldflags @libs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
@@ -85,13 +85,15 @@ Write-Host "[6/7] Exporting Live C11 -> Lean 4 Receipt (seed 5001) ..."
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
-    Write-Host "[7/7] Verifying 48 Pure-Kernel Lean 4 Mathematical Proofs (strict axiom allowlist) ..."
+    Write-Host "[7/7] Verifying 54 Pure-Kernel Lean 4.35.0 Proofs (Lake Palomar + strict axiom allowlist) ..."
+    $env:PATH = "$root\bin;$env:USERPROFILE\.elan\bin;$env:PATH"
     Push-Location -LiteralPath "$proj\lean"
-    $env:LEAN_PATH = "$proj\lean"
-    & $lean -R "$proj\lean" -o "$proj\lean\NoeticProofs\LiveC11Receipt.olean" "$proj\lean\NoeticProofs\LiveC11Receipt.lean"
-    if ($LASTEXITCODE -ne 0) { Pop-Location; throw "Failed compiling LiveC11Receipt.lean" }
+    & "$root\bin\lake.exe" build
+    if ($LASTEXITCODE -ne 0) { Pop-Location; throw "lake build failed" }
+    & "$root\bin\lake.exe" build Challenge
+    if ($LASTEXITCODE -ne 0) { Pop-Location; throw "lake build Challenge failed" }
 
-    $leanOut = & $lean -R "$proj\lean" "$proj\lean\NoeticProofs.lean" 2>&1
+    $leanOut = & "$root\bin\lake.exe" env lean VerifyAxioms.lean 2>&1
     $leanRc = $LASTEXITCODE
     Pop-Location
     [System.IO.File]::WriteAllText("$proj\results\lean4-noetic-audit.txt", (($leanOut | ForEach-Object { "$_" }) -join "`n") + "`n", [System.Text.Encoding]::UTF8)
@@ -105,7 +107,7 @@ if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
     foreach ($raw in $leanOut) {
         $line = "$raw".Trim()
         if ($line -eq "") { continue }
-        if ($line -match "sorryAx|_native\.bv_decide|warning:") {
+        if ($line -match "sorryAx|_native\.bv_decide|Lean\.ofReduceBool|Lean\.trustCompiler|warning:") {
             throw "FORBIDDEN Lean output detected: $line"
         }
         if ($line -match "^'([^']+)' does not depend on any axioms$") {
@@ -120,8 +122,8 @@ if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
             }
         }
     }
-    if ($audited -lt 48) {
-        throw "Expected at least 48 audited Lean theorems, found $audited"
+    if ($audited -lt 54) {
+        throw "Expected at least 54 audited Lean theorems, found $audited"
     }
-    Write-Host "PURE LEAN 4 AUDIT PASSED: $audited / 48 theorems strictly within {propext, Classical.choice, Quot.sound}!"
+    Write-Host "PURE LEAN 4.35.0 AUDIT PASSED: $audited / 54 theorems strictly within {propext, Classical.choice, Quot.sound}!"
 }

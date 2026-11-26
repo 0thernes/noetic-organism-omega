@@ -1,7 +1,7 @@
 {
   "schema": "clean-slate-v3-gate01-seed-firewall/v2.0",
   "gate_id": "GATE-01",
-  "generated_utc": "2026-11-22T21:55:13.330Z",
+  "generated_utc": "2026-11-26T02:48:59.937Z",
   "status": "PASS",
   "bound_receipt_count": 9,
   "partitions": {
@@ -28,7 +28,7 @@
     "tamper_detection_rejected_mutation": true,
     "tamper_reason": "hash tamper detected at 1"
   },
-  "head_sha256": "d5922a62e2d07703f09d769aef61301125a052e18c63445a631cee9975fd875c",
+  "head_sha256": "b646df6f51fbeae4e93b50c8800fee35d7d7927638f7842ba90b071460006c4e",
   "entries": [
     {
       "index": 0,
@@ -55,24 +55,24 @@
       "prev_sha256": "75c3097feb71a386aff2ef8eb9d9245f01f86fe3b0d5f561903d94350aa3f04b",
       "event": "CONFIRMATORY_AND_HELDOUT_BINDING_V2",
       "m8_e1_sha256": "34a4b2fc7c769793eab9463f8ad838e7e3af02c19c7aa4d1a710c29faeb74b91",
-      "m8_e2_sha256": "46058fe372866c11b6299227766dc233159a5aa04eb5dd44631c5490e487ae6c",
+      "m8_e2_sha256": "cba334f552e9eb41fec9d637567d588372b215c8917598583dc36c94833411b2",
       "m9_gates_sha256": "9988720222467e4c52aad881c8ec6eedd8a47cee2481605b2cd35b7289652118",
-      "m10_hw24_sha256": "513976c1dff873efd9b517273d36862020e8ecd024838927873ab93ab919210d",
+      "m10_hw24_sha256": "391b6251a6a245150facf16d4f9b3cd43eacdd31f927d278a934ca3b44c900cf",
       "m10_soft40_sha256": "21e0b394c40e3527918e3d3e1e7df9e50c2794395686ee638968c93c615dc585",
       "m10_freak100_sha256": "586e346cb1376ba566364dc71bb3bf7c9da333c2942af25e2335c6922073171b",
       "m10_novel100_sha256": "4b9da2625e75083045b572daeeeeda18d97b6ad16c1cc1831ced22f2089fd95b",
       "m10_life500_sha256": "a32e33c2e76d7573926bcf2cfb804fe48bcee39c6ee22b594aa671d1654945a4",
       "m10_milestones100_sha256": "5b2742af195961a12b8cc2644e86d446e47f56be7b60221c40cd78f6e3b7e6f3",
       "burn_on_fail_policy": "STRICT_NO_REUSE_AFTER_FAILURE",
-      "entry_sha256": "2c85a2aef6f571ed6e1fb750f44c9d20fcc1a9979b008e740b9351cc718be59b"
+      "entry_sha256": "78b9babe0436a38f9bf974ea5a48606e4b0b35499d40ef85a959587105e36340"
     },
     {
       "index": 2,
-      "prev_sha256": "2c85a2aef6f571ed6e1fb750f44c9d20fcc1a9979b008e740b9351cc718be59b",
+      "prev_sha256": "78b9babe0436a38f9bf974ea5a48606e4b0b35499d40ef85a959587105e36340",
       "event": "BURN_ON_FAIL_SELF_TEST",
       "probe_seed": 999901,
       "reentry_blocked": true,
-      "entry_sha256": "d5922a62e2d07703f09d769aef61301125a052e18c63445a631cee9975fd875c"
+      "entry_sha256": "b646df6f51fbeae4e93b50c8800fee35d7d7927638f7842ba90b071460006c4e"
     }
   ]
 }

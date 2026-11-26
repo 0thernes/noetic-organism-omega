@@ -1,0 +1,22 @@
+# Noetic Organism Omega (v2.1.0)
+
+> Exact-conservation portable C11 whole-organism cognitive engine (6,776 B/world), 825-check & 100-milestone Clean-Slate v3.0 falsification harness, and 54-theorem 6-kernel Palomar Lean 4.35.0 proof suite.
+
+Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID 0009-0006-8168-9648)
+License: Apache-2.0 (code/proofs) | CC-BY-4.0 (paper/docs/receipts)
+Epistemic Notice: Not peer-reviewed; 29 cognitive checks are strictly [INDICATOR-ONLY]; 0/1,900 Mega-Atlas problems retired.
+
+## Key Entry Points
+
+- [README.md](README.md): Executive summary, verified results, quickstart, and verbatim 54-theorem Lean `#print axioms` audit.
+- [AGENTS.md](AGENTS.md): Canonical engineering and verification instructions.
+- [CLAIMS.md](CLAIMS.md): Numbered claims ledger (`C1..C8`) with epistemic tags and explicit falsification conditions.
+- [LIMITATIONS.md](LIMITATIONS.md): Threats to validity and real-vs-metaphor boundaries.
+- [REPLICATION.md](REPLICATION.md): Clean-clone replication protocol and dated verification log.
+- [paper/main.tex](paper/main.tex) & [dist/Donahue_2026_noetic_organism_omega.pdf](dist/Donahue_2026_noetic_organism_omega.pdf): AMS-LaTeX white paper preprint.
+- [lean/NoeticProofs.lean](lean/NoeticProofs.lean), [lean/Challenge.lean](lean/Challenge.lean), [lean/Solution.lean](lean/Solution.lean), [lean/formalization.yaml](lean/formalization.yaml): 54-theorem 6-kernel Palomar Lean 4.35.0 suite.
+- [docs/statement-fidelity.md](docs/statement-fidelity.md): C11/equation-to-Lean fidelity audit matrix.
+- [docs/MEGA_ATLAS_CROSSCHECK.md](docs/MEGA_ATLAS_CROSSCHECK.md): Non-retirement cross-check against `0thernes/unsolved-problems-mega-atlas`.
+- [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md): Tool-by-tool AI-assistance disclosure and CRediT authorship.
+- [docs/benchmarks.md](docs/benchmarks.md): Measured `M8 E3` scaling and performance budgets.
+- [docs/reviews/2026-11-25-10-pass-red-team-audit.md](docs/reviews/2026-11-25-10-pass-red-team-audit.md): 10-pass red-team review and 3-cycle hardening record.

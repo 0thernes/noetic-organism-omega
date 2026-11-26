@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security & Vulnerability Reporting
+    url: https://github.com/0thernes/noetic-organism-omega/blob/main/SECURITY.md
+    about: Report C11 memory safety, loopback HTTP, or Ring-0 ACL issues responsibly.
+  - name: Replication Protocol
+    url: https://github.com/0thernes/noetic-organism-omega/blob/main/REPLICATION.md
+    about: Step-by-step clean-clone verification instructions before opening an issue.

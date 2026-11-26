@@ -42,7 +42,7 @@ const leanSrc = fs.readFileSync(path.join(ROOT, "lean", "NoeticProofs.lean"), "u
   .replace(/\/-[\s\S]*?-\//g, "")
   .replace(/--.*$/gm, "");
 const leanBad = /\b(sorry|admit|axiom)\b|bv_decide|native_decide/.test(leanSrc);
-check("Pure Lean 4 source (48 theorems) free of sorry/admit/axiom/bv_decide", !leanBad, leanBad ? "FOUND forbidden token!" : "clean");
+check("Pure Lean 4.35.0 source (54 theorems) free of sorry/admit/axiom/bv_decide", !leanBad, leanBad ? "FOUND forbidden token!" : "clean");
 
 // 3. Verify M8 E1/E2/E3 empirical JSON receipts exist and have 0 energy drift
 const e1 = JSON.parse(fs.readFileSync(path.join(ROOT, "results", "m8_e1_ablation_sweep.json"), "utf8"));

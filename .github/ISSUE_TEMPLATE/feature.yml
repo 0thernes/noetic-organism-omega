@@ -1,0 +1,18 @@
+name: Feature or Verification Enhancement
+description: Suggest a new falsification gate, Lean theorem, benchmark, or Observatory capability.
+labels: ["triage"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation & Scientific Scope
+      placeholder: What gap, hole, or research hypothesis does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Design & Falsification Test
+      placeholder: How should it be implemented and independently verified?
+    validations:
+      required: true

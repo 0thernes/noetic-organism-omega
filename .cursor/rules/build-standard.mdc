@@ -1,0 +1,14 @@
+---
+description: Canonical Build Standard v1.2.0 and verification rules for noetic-organism-omega
+alwaysApply: true
+---
+
+Read and obey `AGENTS.md` at the repository root before making any changes.
+
+Non-negotiable invariants:
+- Commit and push directly to `main` (no PRs, no feature branches, no commit signing).
+- Author affiliation is `Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA` (ORCID `0009-0006-8168-9648`). Never attribute an unformed corporate/LLC entity.
+- Dual license: `Apache-2.0` (`LICENSE`) for code/proofs, `CC-BY-4.0` (`LICENSE-DOCS`) for papers/docs/datasets.
+- Zero `sorry`, zero `admit`, zero `native_decide`, zero custom axioms in `lean/`.
+- Never fabricate numbers, citations, DOIs, peer review, or consciousness/sentience claims; preserve `[INDICATOR-ONLY]` and `PASS_CLASSICAL_PARITY_DISCLOSED` labels.
+- Always use `-LiteralPath` in PowerShell for bracketed workspace paths.

@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-#define NOETIC_VERSION_STR "2.0.0"
+#define NOETIC_VERSION_STR "2.1.0"
 #define NOETIC_POOL_COUNT 11
 #define NOETIC_ABLATION_COUNT 18
 #define NOETIC_CORTEX_UNITS 16

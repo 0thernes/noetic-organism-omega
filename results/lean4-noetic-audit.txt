@@ -46,3 +46,9 @@
 'NoeticProofs.N46_compiled_mutants_35_exact' does not depend on any axioms
 'NoeticProofs.N47_ecosystem_224_pure_lean_theorems' does not depend on any axioms
 'NoeticProofs.N48_live_c11_full_825_and_100m_verified' does not depend on any axioms
+'NoeticProofs.N49_nonvacuous_closed_tick_witness' does not depend on any axioms
+'NoeticProofs.N50_nonvacuous_ring0_vs_user_boundary' does not depend on any axioms
+'NoeticProofs.N51_refute_ring0_blocks_all_regions' does not depend on any axioms
+'NoeticProofs.N52_refute_quantum_cap_11_fits_16384' does not depend on any axioms
+'NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness' does not depend on any axioms
+'NoeticProofs.N54_refute_leaky_mutant_conserves_sum' does not depend on any axioms

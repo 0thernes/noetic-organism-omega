@@ -159,6 +159,10 @@ const server = http.createServer(async (req, res) => {
   try { u = new URL(req.url || "/", `http://127.0.0.1:${PORT}`); }
   catch { return sendJson(res, 400, { error: "Bad URL" }); }
 
+  if (u.pathname === "/healthz" && req.method === "GET") {
+    return sendJson(res, 200, { status: "ok", version: "2.1.0", worker_alive: Boolean(worker && worker.exitCode === null) });
+  }
+
   if (u.pathname.startsWith("/api/")) {
     if (!isLoopback(req)) return sendJson(res, 403, { error: "Forbidden host/origin/content-type" });
 
@@ -234,5 +238,5 @@ process.on("SIGINT", cleanup);
 process.on("SIGTERM", cleanup);
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`NOETIC ORGANISM OMEGA v2.0.0 Observatory listening on http://127.0.0.1:${PORT}/`);
+  console.log(`NOETIC ORGANISM OMEGA v2.1.0 Observatory listening on http://127.0.0.1:${PORT}/`);
 });

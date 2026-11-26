@@ -1,0 +1,67 @@
+module
+
+public import Solution
+
+/-!
+# NOETIC ORGANISM OMEGA v2.1.0 — Standalone Axiom Audit Script (`VerifyAxioms.lean`)
+
+Runs `#print axioms` on all 54 machine-checked theorems (`N01..N54`).
+Every theorem MUST depend strictly on `[propext, Classical.choice, Quot.sound]`
+(or zero axioms) with ZERO `sorryAx`, `Lean.ofReduceBool`, `Lean.trustCompiler`,
+`_native`, or custom axioms.
+-/
+
+#print axioms NoeticProofs.N01_atp_to_heat_conserves_sum
+#print axioms NoeticProofs.N02_atp_to_heat_monotone_sink
+#print axioms NoeticProofs.N03_atp_to_heat_preserves_nonneg
+#print axioms NoeticProofs.N04_patch_to_gut_conserves_sum
+#print axioms NoeticProofs.N05_workspace_billing_conserves_sum
+#print axioms NoeticProofs.N06_workspace_billing_monotone_heat
+#print axioms NoeticProofs.N07_autopoietic_repair_conserves_sum
+#print axioms NoeticProofs.N08_solar_inflow_exact_residual
+#print axioms NoeticProofs.N09_closed_tick_exact_conservation
+#print axioms NoeticProofs.N10_leaky_mutant_nonzero_residual
+#print axioms NoeticProofs.N11_forked_pci_observer_noninterference
+#print axioms NoeticProofs.N12_master_825_dedup_exact
+#print axioms NoeticProofs.N13_cognitive_49_dedup_exact
+#print axioms NoeticProofs.N14_mirror_exact_parity
+#print axioms NoeticProofs.N15_wilcoxon_rank_sum_identity
+#print axioms NoeticProofs.N16_wilcoxon_n48_exact
+#print axioms NoeticProofs.N17_holm_bonferroni_inflation_bound
+#print axioms NoeticProofs.N18_non_ceiling_strictly_below_max
+#print axioms NoeticProofs.N19_sham_noninferiority_symmetric
+#print axioms NoeticProofs.N20_seed_firewall_disjoint
+#print axioms NoeticProofs.N21_anti_oracle_separation
+#print axioms NoeticProofs.N22_ablation_mask_18_bound
+#print axioms NoeticProofs.N23_ecosystem_186_pure_lean_theorems
+#print axioms NoeticProofs.N24_live_c11_receipt_verified
+#print axioms NoeticProofs.N25_ring0_acl_blocks_protected_regions
+#print axioms NoeticProofs.N26_wse_rollback_involution
+#print axioms NoeticProofs.N27_wse_diff_budget_bounded
+#print axioms NoeticProofs.N28_xpbd_area_constraint_bounded
+#print axioms NoeticProofs.N29_packed_b158_2bit_roundtrip
+#print axioms NoeticProofs.N30_fasting_protein_sparing_ratio
+#print axioms NoeticProofs.N31_ecosystem_194_pure_lean_theorems
+#print axioms NoeticProofs.N32_release_gates_live_c11_verified
+#print axioms NoeticProofs.N33_quantum_cap_10_bytes_le_16384
+#print axioms NoeticProofs.N34_five_gear_60s_exact_divisors
+#print axioms NoeticProofs.N35_philox_key_domain_distinct
+#print axioms NoeticProofs.N36_carcass_lysis_exact_conservation
+#print axioms NoeticProofs.N37_yolk_cleavage_exact_conservation
+#print axioms NoeticProofs.N38_b158_5trit_radix_fits_u8
+#print axioms NoeticProofs.N39_xls_shard_below_excel_limit
+#print axioms NoeticProofs.N40_suite_825_exact_partition
+#print axioms NoeticProofs.N41_suite_825_minus_5_mirrors
+#print axioms NoeticProofs.N42_milestones_100_stage_partition
+#print axioms NoeticProofs.N43_first15_plus_85_eq_100
+#print axioms NoeticProofs.N44_hybrid_cube_1000_exact
+#print axioms NoeticProofs.N45_substrates_75_exact
+#print axioms NoeticProofs.N46_compiled_mutants_35_exact
+#print axioms NoeticProofs.N47_ecosystem_224_pure_lean_theorems
+#print axioms NoeticProofs.N48_live_c11_full_825_and_100m_verified
+#print axioms NoeticProofs.N49_nonvacuous_closed_tick_witness
+#print axioms NoeticProofs.N50_nonvacuous_ring0_vs_user_boundary
+#print axioms NoeticProofs.N51_refute_ring0_blocks_all_regions
+#print axioms NoeticProofs.N52_refute_quantum_cap_11_fits_16384
+#print axioms NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness
+#print axioms NoeticProofs.N54_refute_leaky_mutant_conserves_sum

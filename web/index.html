@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>NOETIC ORGANISM OMEGA v2.0.0 — Full 9-Suite 825-Check, 100-Milestone &amp; Clean-Slate v3.0 Observatory</title>
+<title>NOETIC ORGANISM OMEGA v2.1.0 — Full 9-Suite 825-Check, 100-Milestone &amp; Clean-Slate v3.0 Observatory</title>
 <style>
   :root { --bg:#060a14; --panel:#0c1324; --line:#1c2c4c; --txt:#dce8ff; --mut:#7b93ba; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --acc:#38bdf8; }
   * { box-sizing:border-box; }
@@ -42,36 +42,36 @@
 <body>
 <header>
   <div>
-    <div class="title">NOETIC ORGANISM OMEGA v2.0.0 · WHOLE-ORGANISM COGNITIVE &amp; FULL 825-CHECK CLEAN-SLATE v3.0 OBSERVATORY</div>
-    <div style="color:var(--mut);font-size:10.5px;">Zero-Fanout Structural Ablations · 825/825 Executed Native C11 (0 Fail · 5 Parity Disclosed · 29 Indicator-Only) · 100/100 Milestones · 13/13 Gates · 48 Pure Lean 4 (224 Ecosystem)</div>
+    <div class="title">NOETIC ORGANISM OMEGA v2.1.0 · WHOLE-ORGANISM COGNITIVE &amp; FULL 825-CHECK CLEAN-SLATE v3.0 OBSERVATORY</div>
+    <div style="color:var(--mut);font-size:10.5px;">Zero-Fanout Structural Ablations · 825/825 Executed Native C11 (0 Fail · 5 Parity Disclosed · 29 Indicator-Only) · 100/100 Milestones · 13/13 Gates · 54 Pure Lean 4.35.0 (6-Kernel Palomar)</div>
   </div>
-  <div class="badges">
+  <div class="badges" role="status" aria-live="polite" aria-label="Engine invariant telemetry">
     <span id="b-drift" class="badge ok">1ST LAW Δ: 0 uq</span>
     <span id="b-2nd" class="badge ok">2ND LAW VIOL: 0</span>
     <span id="b-pci" class="badge info">PCI*: 0.000 (0-bit clean)</span>
     <span id="b-825" class="badge ok">825/825 C11 · 100/100 M</span>
     <span id="b-gates" class="badge ok">GATES: 13/13 PASS</span>
-    <span id="b-lean" class="badge ok">LEAN 4: 48/48 PURE (224)</span>
+    <span id="b-lean" class="badge ok">LEAN 4.35: 54/54 PURE</span>
     <span id="b-sha" class="badge">SHA: —</span>
   </div>
 </header>
-<main>
-  <section class="card">
+<main aria-label="Noetic Organism Omega simulation and verification dashboard">
+  <section class="card" aria-label="Live embodied world canvas and circuit controls">
     <h2>Live Embodied Spatial World &amp; Cortical Dynamics (64×64 Toroid)</h2>
-    <div class="controls">
-      <button id="btn-play">Pause</button>
-      <button id="btn-step">+10 Ticks</button>
-      <button id="btn-pci">Forked PCI*</button>
-      <select id="sel-arm">
+    <div class="controls" role="toolbar" aria-label="Simulation controls">
+      <button id="btn-play" aria-label="Pause or resume simulation">Pause</button>
+      <button id="btn-step" aria-label="Advance simulation by 10 ticks">+10 Ticks</button>
+      <button id="btn-pci" aria-label="Compute Forked-Snapshot PCI star">Forked PCI*</button>
+      <select id="sel-arm" aria-label="Experimental control arm">
         <option value="0">Arm: INTACT</option>
         <option value="1">Arm: SHAM (Matched)</option>
         <option value="3">Arm: SHUFFLED Sensors</option>
         <option value="4">Arm: PASSIVE Body</option>
       </select>
-      <button id="btn-reset">Reset Seed 5001</button>
-      <button id="btn-clear-abl">Restore All 18 Circuits</button>
+      <button id="btn-reset" aria-label="Reset simulation to seed 5001">Reset Seed 5001</button>
+      <button id="btn-clear-abl" aria-label="Restore all 18 structural circuits">Restore All 18 Circuits</button>
     </div>
-    <canvas id="world-canvas" width="640" height="360"></canvas>
+    <canvas id="world-canvas" width="640" height="360" role="img" aria-label="Live 64 by 64 toroidal embodied organism world canvas"></canvas>
     <div class="grid4">
       <div class="kpi"><div class="k">Tick / Gen</div><div class="v" id="k-tick">0</div></div>
       <div class="kpi"><div class="k">ATP / Stores</div><div class="v" id="k-atp">0</div></div>

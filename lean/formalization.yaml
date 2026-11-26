@@ -1,0 +1,69 @@
+schema_version: "0.4"
+project: "noetic-organism-omega"
+version: "2.1.0"
+repository: "https://github.com/0thernes/noetic-organism-omega"
+license: "Apache-2.0"
+documentation_license: "CC-BY-4.0"
+authors:
+  - name: "Alexander Stephen Donahue"
+    orcid: "0009-0006-8168-9648"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
+    email: "0_0@0thernes.art"
+    credit_roles:
+      - Conceptualization
+      - Methodology
+      - Supervision
+      - Validation
+      - Writing - review & editing
+toolchain: "leanprover/lean4:v4.35.0"
+mathlib_dependency: false
+module_system: true
+lean_root: "lean"
+spec_module: "lean/NoeticProofs/Spec.lean"
+live_receipt_module: "lean/NoeticProofs/LiveC11Receipt.lean"
+challenge_module: "lean/Challenge.lean"
+solution_module: "lean/Solution.lean"
+comparator_config: "lean/comparator.json"
+audit_entrypoint: "lean/VerifyAxioms.lean"
+theorem_count: 54
+core_theorem_count: 48
+non_vacuity_and_refutation_count: 6
+permitted_axioms:
+  - propext
+  - Quot.sound
+  - Classical.choice
+forbidden_axioms:
+  - sorryAx
+  - Lean.ofReduceBool
+  - Lean.trustCompiler
+  - _native.bv_decide
+kernels:
+  - name: "Lean 4.35.0 reference kernel"
+    command: "lake build && lake env leanchecker --fresh Solution"
+  - name: "leanchecker-paranoid"
+    command: "lake env leanchecker-paranoid --fresh Solution"
+  - name: "lean4lean"
+    command: "lake check --paranoid"
+  - name: "nanoda_bin (Rust)"
+    command: "lake env nanoda_bin nanoda.json"
+  - name: "con-leche (--verified)"
+    command: "lake env con-leche --verified sol.export"
+  - name: "con-ron (--verified)"
+    command: "lake env con-ron --verified sol.export"
+comparator_command_ci: "cd lean && lake comparator --config comparator.json --paranoid"
+automation_and_ai_disclosure:
+  status: "AI-assisted research under human direction"
+  tools: "Frontier LLM coding and formalization assistants (Claude / Gemini agentic workflows)"
+  human_oversight: "Alexander Stephen Donahue set research goals, invariants, epistemic boundaries, and validated builds, multi-kernel audits, and receipts."
+scope_and_non_formalized_disclaimers:
+  formalized_scope:
+    - "Exact 10-pool integer First-Law conservation, Second-Law sink monotonicity, non-negativity, solar inflow residual, closed-tick composition, and +1 uq leaky mutant detection (N01..N10, N36, N37, N49, N54)."
+    - "Forked-Snapshot PCI* observer non-interference wrapper, Ring-0 read-only ACL immutability for regions < 4, WSE reversible rollback involution, WSE < 16 KB diff bound, XPBD area bound, packed b1.58 2-bit roundtrip & 5-trit/B uint8 radix, Q<=10 memory cap, 5-gear clock divisors, Philox domain key distinctness (N11, N25..N30, N33..N35, N38, N39, N50..N52)."
+    - "Exact Wilcoxon signed-rank sum identity & N=48 finite DP table bound, Holm-Bonferroni inflation bound, non-ceiling guard, sham symmetry, seed firewall disjointness, anti-oracle separation, 18-bit ablation mask isolation, and Clean-Slate v3.0 partition identities (N12..N23, N31, N40..N47, N53)."
+    - "Direct kernel verification of exported live C11 execution receipts from noetic_engine.exe export-lean 5001 (N24, N32, N48)."
+  not_formalized_in_lean:
+    - "The C11 source files themselves (src/*.c) are NOT formally verified via VST/CompCert; bridge fidelity rests on live receipt export (N24/N32/N48), -Wall -Wextra -Werror, ASan/UBSan in CI, 5 compiled Anti-LARP mutants, and 825 native checks."
+    - "Floating-point IEEE-754 transcendental approximations (noetic_exp_det/log_det/tanh_det) are empirically audited (max relative error 2.175e-16), not formally proved in Lean."
+    - "Phenomenal consciousness, subjective qualia, sentience, or moral patienthood are NOT proved or claimed; all 14 Butlin indicators and 10 framework suites are strictly [INDICATOR-ONLY] computational proxies."
+peer_review_status: "Not peer-reviewed; independent technical preprint and open-source artifact."
+statement_fidelity_audit: "docs/statement-fidelity.md"

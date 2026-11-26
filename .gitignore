@@ -1,4 +1,9 @@
 bin/*.o
+lean/.lake/
 lean/**/*.olean
+lean/**/*.ilean
+lean/**/*.c
+paper/build/
 *.tmp
 node_modules/
+.env

@@ -1,14 +1,13 @@
-# HANDOFF.md — noetic-organism-omega (v2.0.0)
+# HANDOFF.md — noetic-organism-omega (`v2.1.0`)
 
-**Status:** Verified green on Win64 Clang (`-Wall -Wextra -Werror`) and Linux GCC (`-Wall -Wextra -Werror`), synced with all 7 connected public repositories on `main`.
-**Repo Scope:** 10/10 unit+mut (5/5 Anti-LARP), 13/13 CS-v3 Release Gates, 825/825 C11 Checks (0 Fail, 29 Indicator-Only, 5 Parity Disclosed), 100/100 Milestones (First-15 Playable LOCKED_PASS), 48/48 Pure Lean 4 (N01..N48)
+**Status:** Verified green on Win64 Clang (`-Wall -Wextra -Werror`, AVX2/VNNI + ThinLTO), 5 local Lean 4.35.0 kernels (6/6 in Linux CI), zero-overflow Tectonic AMS-LaTeX PDF, 22/22 live citations, and 100.0% Build Standard v1.2.0 compliance.
+**Author:** Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA (ORCID `0009-0006-8168-9648`).
+**Repo Scope:** `10/10` unit+mut (`5/5` Anti-LARP), `13/13` CS-v3 Release Gates, `825/825` C11 Checks (`0` Fail, `29` `[INDICATOR-ONLY]`, `5` Parity Disclosed), `100/100` Milestones (`First-15 LOCKED_PASS`), `54/54` Pure Lean 4.35.0 Palomar theorems (`N01..N54`), `0 / 1,900` Mega-Atlas retired.
 
-## Unified 7-Repo A-Life Singularity Omega Ecosystem (Clean-Slate v3.0 Complete)
-- **Workspace Root:** `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\` (ReFS Dev Drive; mirror: `I:\A-Life God Plan\A-Life Master Folder Build`)
-- **Total Pure Lean 4 Theorems:** **`240 / 240`** (`42` `autophage v1.3.0` + `62` `cellulogonic-mecha v1.4.0` + `72` `cellular-engine-omega v5.1.0` + `48` `noetic-organism-omega v2.0.0` + `16` `asmodensius-native`) strictly within `{propext, Classical.choice, Quot.sound}`, `0 sorry`, `0 admit`, `0 bv_decide`, `0 warnings`.
-- **Clean-Slate v3.0 Executable Checks:** **`825 / 825` individually executed in native C11 (`0` fail)** — `779` `EXECUTED_PASS`, `29` `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6), `12` `NATIVE_RELEASE_GATE_PASS` (`L7_WSE12`), `5` `PASS_CLASSICAL_PARITY_DISCLOSED` (`F-092`, `N01`, `N02`, `N50`, `LIFE-L040-A5`, Policy P7).
-- **Bottom-Up Milestones:** **`100 / 100` (`M001..M100`, Stages `0..8`, First-15 Playable `LOCKED_PASS`, `0 uq` drift)**.
-- **Substrates & Hybrid Cube:** **`75 / 75` Substrates (`PM01..25`, `MF01..25`, `GW01..25`)** + **`1,000 / 1,000` Hybrid Cube (`661 [OK]`, `274 [ADAPT]`, `20 [OVER]`, `45 [EXCL]`, `935/935` active forward stability)**.
-- **Release & Forensic Gates:** **`13 / 13` Clean-Slate v3.0 Release Gates PASS**, **`35 / 35` Compiled Mutants Caught**, **`18 / 18` Package Forensic Gates PASS (`Z: <-> I:` 0-mismatch SHA-256)**, **`OVBS-52 = 92.05` (`STAGE_5_CONVERGED_SYNTHESIS`)**.
-- **External Boundary:** `Z:\[Vibe Coded (AI)]\CLAUDECODE\Asmodensius-Native` is now actively upgraded, unlocked, verified (`76/76` ctest, `16` Pure Lean 4, both visual worlds `:8794` & `:8796`), and pushed publicly to `https://github.com/0thernes/asmodensius-native`.
-- **PowerShell Rule:** Always use `-LiteralPath` on `Z:\[Vibe Coded (AI)]\...` paths.
+## Quick Verification Commands
+- Windows build & suite: `.\build.ps1`
+- Node verification & property tests: `node scripts/seed_firewall.mjs && node scripts/audit_zero_theater.mjs && node tests/noetic_prop.test.mjs`
+- Lean 4.35.0 audit: `cd lean && lake build && lake build Challenge && lake env lean VerifyAxioms.lean`
+- Paper & citations: `python scripts/check_readme_axioms.py && python scripts/check_citations.py && python scripts/build_paper.py`
+- Build Standard audit: `pwsh -NoProfile -File scripts/Audit-Repo.ps1`
+- PowerShell rule: Always pass `-LiteralPath` for `Z:\[Vibe Coded (AI)]\...` paths.

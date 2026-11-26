@@ -1,0 +1,605 @@
+# Noetic Organism Omega v2.1.0 — Consolidated LLM Context (llms-full.txt)
+
+
+================================================================================
+FILE: README.md
+================================================================================
+
+# Noetic Organism Omega (`v2.1.0`)
+
+Exact-conservation portable C11 whole-organism cognitive engine, full 9-suite 825-check & 100-milestone Clean-Slate v3.0 falsification harness, and 54-theorem 6-kernel Palomar Lean 4.35.0 formal verification suite.
+
+[![Version](https://img.shields.io/badge/version-2.1.0-0284c7.svg)](VERSION)
+[![Status](https://img.shields.io/badge/status-active-059669.svg)](ROADMAP.md)
+[![C11 Checks](https://img.shields.io/badge/C11_checks-825%2F825_0_fail-059669.svg)](results/m8_e2_825_honest_trace_summary.json)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean_4.35.0-54%2F54_6--kernel_Palomar-7c3aed.svg)](lean/NoeticProofs.lean)
+[![License: Code](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSE)
+[![License: Docs](https://img.shields.io/badge/docs%20%26%20paper-CC--BY--4.0-orange.svg)](LICENSE-DOCS)
+
+status: active
+
+![Noetic Organism Omega v2.1.0 Overview](docs/media/social-preview.svg)
+
+- **Author:** Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA (ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
+- **Repository:** <https://github.com/0thernes/noetic-organism-omega>
+- **White Paper Preprint (Not Peer-Reviewed):** [`dist/Donahue_2026_noetic_organism_omega.pdf`](dist/Donahue_2026_noetic_organism_omega.pdf) · LaTeX source [`paper/main.tex`](paper/main.tex)
+- **Epistemic Notice:** All 14 Butlin indicators (`L1_BUTLIN14`), 10 consciousness-framework checks (`L2_FRAMEWORKS10`), and 5 mirrored CQM items (`CQM13, CQM19..22`) are strictly **`[INDICATOR-ONLY]`** computational/architectural proxies. This project makes **zero** claims of subjective qualia, phenomenal consciousness, or sentience, and retires **0 / 1,900** overarching problems in the Unsolved Problems Mega-Atlas (`docs/MEGA_ATLAS_CROSSCHECK.md`).
+
+---
+
+## Verified Results (`v2.1.0` Live Win64 Clang AVX2/VNNI ThinLTO & Lean 4.35.0 Receipts)
+
+| Verification Layer | Result | Honesty & Forensic Safeguards |
+|---|---:|---|
+| **M7 Unit & Anti-LARP Mutants** | **10 / 10 PASS** (`5/5` mutants caught) | Leaky `+1 uq`, cosmetic label, oracle sensor-bypass, frozen plasticity, shuffled stream all caught |
+| **Clean-Slate v3.0 Release Gates** | **13 / 13 PASS** (`GATE-01..13`) | Cryptographic Seed Firewall (`GATE-01`), 10k zero-alloc (`GATE-02`), Antithetic+3-phase fasting `2.43x` (`GATE-05`), XPBD `0.000304%` (`GATE-06`), b1.58 ganglia `84.13%` offload (`GATE-07`), Ring-0 ACL `10/10` + WSE `10/10` (`GATE-09`), Blackiston `87.50%` remap (`GATE-10`), 10k 0-bit Observer Independence (`GATE-11`) |
+| **Suite `L1_BUTLIN14`** | **14 / 14 PASS** | Explicitly tagged `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6; never claims qualia) |
+| **Suite `L2_FRAMEWORKS10`** | **10 / 10 PASS** | Explicitly tagged `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6) |
+| **Suite `L3_CQM25`** | **25 / 25 PASS** (`5/5` Mirrors) | `20` `EXECUTED_PASS` + `5` `EXECUTED_PASS_INDICATOR_ONLY` (`CQM13, CQM19..22`); exact `N=48` locked seeds, 5 arms, Holm FWER |
+| **Suite `L4_FREAK100`** | **100 / 100 (`0` FAIL)** | `99` `EXECUTED_PASS` + `1` `PASS_CLASSICAL_PARITY_DISCLOSED` (`F-092` matched Kuramoto clock) |
+| **Suite `L5_LIFE500`** | **500 / 500 (`0` FAIL)** | `499` `EXECUTED_PASS` + `1` `PASS_CLASSICAL_PARITY_DISCLOSED` (`LIFE-L040-A5`); `0 uq` conservation drift |
+| **Suite `L6_NOVEL100`** | **100 / 100 (`0` FAIL)** | `97` `EXECUTED_PASS` + `3` `PASS_CLASSICAL_PARITY_DISCLOSED` (`N01, N02, N50`) |
+| **Suite `L7_WSE12`** | **12 / 12 PASS** | `NATIVE_RELEASE_GATE_PASS` (`GATE-09`: `10/10` Ring-0 ACL blocked, `10/10` WSE ops, `||W||_2=0.8443 <= 0.99`, `2,464 B < 16 KB` diff, 0-bit rollback) |
+| **Suite `L8_SOFT40`** | **40 / 40 PASS** | `N=48` locked seeds, Holm FWER `m=40`, `0 uq` conservation drift |
+| **Suite `L9_HW24`** | **24 / 24 PASS** | Flat SoA (`6,776 B`), 10k zero-alloc, 5-trit/B b1.58, `Q<=10`, 5-gear `7.52x`, implicit stiff `100x Km`, `exp_det` `2.175e-16` err, 8-tuple Philox isolation, `0 uq` drift |
+| **Total Master Spec Checks** | **825 / 825 EXECUTED (`0` FAIL)** | `779` `EXECUTED_PASS` + `29` `INDICATOR_ONLY` + `5` `PASS_CLASSICAL_PARITY_DISCLOSED` + `12` `NATIVE_RELEASE_GATE_PASS` (`820` unique + `5` mirrors) |
+| **Bottom-Up Acyclic Milestones** | **100 / 100 VERIFIED (`M001..M100`)** | Stages `0..8` live DAG; First-15 Playable (`M001..M015`) = `LOCKED_PASS`; `0 uq` drift |
+| **Pure Lean 4.35.0 Palomar Proofs** | **54 / 54 PROVEN** | `48` core (`N01..N48`) + `6` non-vacuity/refutation witnesses (`N49..N54`); strictly within `{propext, Classical.choice, Quot.sound}`; `0 sorry`, `0 admit`, `0 native_decide`, `0 warnings`; 5 kernels locally (`results/lean4-multi-kernel.txt`) & 6/6 kernels in Linux CI |
+
+---
+
+## Quickstart
+
+### Windows (Win64 Clang + Full 825-Check Battery + 54 Pure Lean 4.35.0 Proofs)
+
+```powershell
+# Full build, 10/10 unit+mutants, 13/13 gates, 825/825 C11 checks, 100/100 milestones, Lean 4.35.0 audit
+.\build.ps1
+node .\scripts\seed_firewall.mjs
+node .\scripts\build_m8_e2_825_trace.mjs
+node .\scripts\audit_zero_theater.mjs
+node .\tests\noetic_prop.test.mjs
+python .\scripts\check_readme_axioms.py
+```
+
+### Linux (GCC C11 + 6-Kernel Palomar Lean 4.35.0)
+
+```bash
+chmod +x build_linux.sh
+./build_linux.sh
+node tests/noetic_prop.test.mjs
+cd lean && lake build && lake build Challenge && lake env lean VerifyAxioms.lean
+lake comparator --config comparator.json --paranoid
+```
+
+---
+
+## Usage Examples
+
+```bash
+# Run the quick intact-vs-lesion structural ablation demo
+node examples/run_quick_demo.mjs
+
+# Run individual C11 engine subcommands
+./bin/noetic_engine_linux test
+./bin/noetic_engine_linux gates results/m9_native_release_gates.json
+./bin/noetic_engine_linux export-lean 5001 lean/NoeticProofs/LiveC11Receipt.lean
+
+# Launch the loopback-only interactive Web Observatory (http://127.0.0.1:8795/)
+node web/server.mjs
+
+# Compile the AMS-LaTeX white paper & verify all live citations
+python scripts/check_citations.py
+python scripts/build_paper.py
+```
+
+---
+
+## Verbatim Lean 4.35.0 `#print axioms` Audit (54 / 54 Theorems)
+
+Generated directly by `cd lean && lake env lean VerifyAxioms.lean` (`results/lean4-noetic-audit.txt`), verified drift-free by `scripts/check_readme_axioms.py`, and re-checked across independent kernels (`leanchecker --fresh`, `leanchecker-paranoid --fresh`, `con-leche --verified`, `con-ron --verified`, `nanoda_bin` locally in `results/lean4-multi-kernel.txt`; plus `lean4lean`, `lake check --paranoid`, and `lake comparator --config comparator.json --paranoid` on Linux CI):
+
+<!-- LEAN_AXIOMS_START -->
+```text
+'NoeticProofs.N01_atp_to_heat_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N02_atp_to_heat_monotone_sink' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N03_atp_to_heat_preserves_nonneg' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N04_patch_to_gut_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N05_workspace_billing_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N06_workspace_billing_monotone_heat' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N07_autopoietic_repair_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N08_solar_inflow_exact_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N09_closed_tick_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N10_leaky_mutant_nonzero_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N11_forked_pci_observer_noninterference' does not depend on any axioms
+'NoeticProofs.N12_master_825_dedup_exact' does not depend on any axioms
+'NoeticProofs.N13_cognitive_49_dedup_exact' does not depend on any axioms
+'NoeticProofs.N14_mirror_exact_parity' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N15_wilcoxon_rank_sum_identity' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N16_wilcoxon_n48_exact' does not depend on any axioms
+'NoeticProofs.N17_holm_bonferroni_inflation_bound' depends on axioms: [propext]
+'NoeticProofs.N18_non_ceiling_strictly_below_max' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N19_sham_noninferiority_symmetric' does not depend on any axioms
+'NoeticProofs.N20_seed_firewall_disjoint' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N21_anti_oracle_separation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N22_ablation_mask_18_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NoeticProofs.N23_ecosystem_186_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N24_live_c11_receipt_verified' does not depend on any axioms
+'NoeticProofs.N25_ring0_acl_blocks_protected_regions' does not depend on any axioms
+'NoeticProofs.N26_wse_rollback_involution' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N27_wse_diff_budget_bounded' does not depend on any axioms
+'NoeticProofs.N28_xpbd_area_constraint_bounded' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N29_packed_b158_2bit_roundtrip' does not depend on any axioms
+'NoeticProofs.N30_fasting_protein_sparing_ratio' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N31_ecosystem_194_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N32_release_gates_live_c11_verified' does not depend on any axioms
+'NoeticProofs.N33_quantum_cap_10_bytes_le_16384' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N34_five_gear_60s_exact_divisors' does not depend on any axioms
+'NoeticProofs.N35_philox_key_domain_distinct' does not depend on any axioms
+'NoeticProofs.N36_carcass_lysis_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N37_yolk_cleavage_exact_conservation' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N38_b158_5trit_radix_fits_u8' does not depend on any axioms
+'NoeticProofs.N39_xls_shard_below_excel_limit' does not depend on any axioms
+'NoeticProofs.N40_suite_825_exact_partition' does not depend on any axioms
+'NoeticProofs.N41_suite_825_minus_5_mirrors' does not depend on any axioms
+'NoeticProofs.N42_milestones_100_stage_partition' does not depend on any axioms
+'NoeticProofs.N43_first15_plus_85_eq_100' does not depend on any axioms
+'NoeticProofs.N44_hybrid_cube_1000_exact' does not depend on any axioms
+'NoeticProofs.N45_substrates_75_exact' does not depend on any axioms
+'NoeticProofs.N46_compiled_mutants_35_exact' does not depend on any axioms
+'NoeticProofs.N47_ecosystem_224_pure_lean_theorems' does not depend on any axioms
+'NoeticProofs.N48_live_c11_full_825_and_100m_verified' does not depend on any axioms
+'NoeticProofs.N49_nonvacuous_closed_tick_witness' does not depend on any axioms
+'NoeticProofs.N50_nonvacuous_ring0_vs_user_boundary' does not depend on any axioms
+'NoeticProofs.N51_refute_ring0_blocks_all_regions' does not depend on any axioms
+'NoeticProofs.N52_refute_quantum_cap_11_fits_16384' does not depend on any axioms
+'NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness' does not depend on any axioms
+'NoeticProofs.N54_refute_leaky_mutant_conserves_sum' does not depend on any axioms
+```
+<!-- LEAN_AXIOMS_END -->
+
+---
+
+## Honest Verification Boundaries & Mega-Atlas Non-Retirement
+
+- **What is kernel-checked (`lean/`):** Discrete 10-pool exact integer conservation & entropy monotonicity, Ring-0 ACL region boundary, WSE rollback involution, packed `b1.58` 2-bit bijection & 5-trit radix, $Q \le 10$ cap, exact Wilcoxon triangular sum & Holm multiplier, seed-firewall disjointness, non-vacuity inhabitants & sharp negative refutations (`N49..N54`), and exported live C11 execution receipts (`N24, N32, N48`).
+- **What is empirically & program-audited (`src/`, `tests/`, `scripts/`):** C11 runtime execution (825/825 checks, 100/100 milestones, 13/13 gates, 5/5 Anti-LARP mutants, 32-trial `prop_check`, ASan/UBSan & `libFuzzer` harness). C11 source code is **not** formally verified in CompCert/VST; see [`docs/statement-fidelity.md`](docs/statement-fidelity.md) and [`LIMITATIONS.md`](LIMITATIONS.md).
+- **Mega-Atlas Cross-Check (`docs/MEGA_ATLAS_CROSSCHECK.md`):** **`0 / 1,900`** overarching open problems in `0thernes/unsolved-problems-mega-atlas` are solved or retired. Eight probed IDs (`NEURO-001`, `NEURO-004`, `NEURO-024`, `SUB-007`, `SYS-009`, `SYS-050`, `AI-001`, `AI-018`) remain strictly **OPEN**.
+- **Licensing:** Dual open license — **Apache-2.0** (`LICENSE`) for code, Lean proofs, tests, and scripts; **CC-BY-4.0** (`LICENSE-DOCS`) for white paper, PDFs, figures, documentation, and result datasets.
+
+
+================================================================================
+FILE: AGENTS.md
+================================================================================
+
+# AGENTS.md — Noetic Organism Omega (`v2.1.0`)
+
+Canonical engineering, formalization, and epistemic instructions for AI coding agents and human contributors working in `noetic-organism-omega`. (`CLAUDE.md`, `GEMINI.md`, and `.cursor/rules/build-standard.mdc` point directly to this file.)
+
+## Repository Identity & Role
+
+- **Project:** `noetic-organism-omega` (`v2.1.0`) — Tier 3/4 whole-organism cognitive, soft-body homeostatic, and full 9-suite 825-check Clean-Slate v3.0 engine + 54-theorem 6-kernel Palomar Lean 4.35.0 suite.
+- **Author:** Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA (ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`). Never attribute an unformed LLC entity.
+- **Dual Open License:** `Apache-2.0` (`LICENSE`) for code, Lean proofs, tests, and scripts; `CC-BY-4.0` (`LICENSE-DOCS`) for white paper, PDFs, documentation, and result datasets.
+- **Verified Baseline (`v2.1.0`):** `10/10` unit+mutants (`5/5` Anti-LARP caught), `13/13` Clean-Slate v3.0 release gates, `825/825` C11 checks (`0` fail, `779` pass, `29` `[INDICATOR-ONLY]`, `12` native gate pass, `5` `PASS_CLASSICAL_PARITY_DISCLOSED`), `100/100` milestones (`First-15 LOCKED_PASS`), `54/54` Pure Lean 4.35.0 theorems (`N01..N54`, 5 local Windows kernels / 6/6 Linux CI kernels), `0` TeX overflows, `22/22` live-verified citations.
+
+## Hard Rules (Build Standard v1.2.0 & Playbook v1.3)
+
+1. **Direct-to-`main` Workflow (R1–R3):** Commit and push directly to `main`. No PRs, no feature branches, no commit/tag signing, no blocking hooks. CI is informational.
+2. **Banned Files (R4):** Never create `.github/dependabot.yml`, `renovate.json`, PR templates, `.github/copilot-instructions.md`, or `FUNDING.yml`.
+3. **Zero Fabrication (R6):** Never invent benchmark numbers, test passes, citations, DOIs, peer review, or sentience claims. Every number must come from a live run of current code.
+4. **Epistemic Boundaries:** Always keep `L1_BUTLIN14`, `L2_FRAMEWORKS10`, and `CQM13/19..22` labeled `EXECUTED_PASS_INDICATOR_ONLY`, keep `F-092`, `N01`, `N02`, `N50`, `LIFE-L040-A5` labeled `PASS_CLASSICAL_PARITY_DISCLOSED`, and affirm `0 / 1,900` Mega-Atlas problems retired.
+5. **10 Finding Classes (R7):** Classify every audit finding into exactly one of: `bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, `blindspot`.
+6. **PowerShell Bracket Safety:** When working under `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\noetic-organism-omega`, always pass `-LiteralPath` to PowerShell file cmdlets.
+
+## Core Commands
+
+- **Build & Verify C11 + Suites + Lean (Windows):** `.\build.ps1`
+- **Build & Verify C11 (Linux):** `./build_linux.sh`
+- **Firewall, 825 Trace, Zero-Theater & Property Tests:**
+  ```bash
+  node scripts/seed_firewall.mjs
+  node scripts/build_m8_e2_825_trace.mjs
+  node scripts/audit_zero_theater.mjs
+  node tests/noetic_prop.test.mjs
+  ```
+- **Lean 4.35.0 Palomar Multi-Kernel Audit:**
+  ```bash
+  cd lean && lake build && lake build Challenge
+  lake env lean VerifyAxioms.lean > ../results/lean4-noetic-audit.txt
+  lake env leanchecker --fresh Solution
+  lake env leanchecker-paranoid --fresh Solution
+  # On Linux with bubblewrap:
+  lake check --paranoid && lake comparator --config comparator.json --paranoid
+  ```
+- **Axioms, Citations, Paper & Repo Self-Audit:**
+  ```bash
+  python scripts/check_readme_axioms.py
+  python scripts/check_citations.py
+  python scripts/build_paper.py
+  pwsh -NoProfile -File scripts/Audit-Repo.ps1
+  ```
+- **Task Runner:** See `justfile` for one-word targets (`just reproduce`, `just test`, `just lean`, `just paper`, `just audit`).
+
+
+================================================================================
+FILE: CLAIMS.md
+================================================================================
+
+# Claims Ledger (`CLAIMS.md`) — Noetic Organism Omega `v2.1.0`
+
+Every substantive claim made by `noetic-organism-omega v2.1.0` is numbered below with its epistemic tier, exact verification command, committed evidence artifact, and **explicit falsification condition (what would prove us wrong)**.
+
+Epistemic tier definitions:
+- `kernel-checked`: Machine-checked in Lean 4.35.0 strictly within `{propext, Classical.choice, Quot.sound}` and re-checked by independent kernels.
+- `program-audited`: Verified deterministically by compiled negative mutants, static source scans, or property-based tests.
+- `empirical`: Measured over locked Philox4x32-10 seeds (`N=48`: `5001..5024` + `5101..5124`) with exact DP Wilcoxon & Holm-Bonferroni FWER.
+- `indicator-only`: Architectural/behavioral proxy per ADR 0018 Rule-4 & Rule-6; **never** a claim of phenomenal consciousness or sentience.
+- `open-conjecture`: Open problem referenced for context only (never claimed solved).
+
+| ID | Claim | Epistemic Tier | Verification Command | Artifact Path | What Would Prove Us Wrong (Falsification Criterion) |
+|---|---|---|---|---|---|
+| **C1** | 11-pool `int64_t` ledger enforces exact `0 uq` First-Law conservation (`sum(pools[0..9]) == E0 + solar_in`), non-negativity, and monotone irreversible heat sinks; any `+1 uq` leak is caught. | `kernel-checked` + `program-audited` | `.\bin\noetic_engine.exe test` & `cd lean && lake env lean VerifyAxioms.lean` | `lean/NoeticProofs.lean` (`N01..N10, N36..N37, N49, N54`), `results/lean4-noetic-audit.txt` | Any valid simulation tick yielding `noetic_ledger_residual != 0`, decreasing `pools[8..9]`, negative pool, or a `+1 uq` leak escaping `MUT-1`. |
+| **C2** | Forked-Snapshot `PCI*` and 10,000-tick periodic observer instrumentation induce **0 bits** of divergence in live world SHA-256 state. | `kernel-checked` + `empirical` | `.\bin\noetic_engine.exe gates results\m9_native_release_gates.json` | `lean/NoeticProofs.lean` (`N11, N24, N32`), `results/m9_native_release_gates.json` (`GATE-11`), `results/m10_hw24_receipt.json` (`HW20`) | Any single bit difference between headless and observed 10,000-tick state SHA-256 hashes or `pci_clean == 0` in `tests/noetic_prop.test.mjs`. |
+| **C3** | Ring-0 Read-Only ACL blocks 10/10 self-edits to protected regions (`region < 4`) with 0-bit immutability; 10 WSE operators satisfy `||W||_2 <= 0.99`, diff `< 16 KiB`, and exact 0-bit rollback involution. | `kernel-checked` + `empirical` | `.\bin\noetic_engine.exe gates` & `cd lean && lake env leanchecker-paranoid --fresh Solution` | `lean/NoeticProofs.lean` (`N25..N27, N32, N50..N51`), `results/m9_native_release_gates.json` (`GATE-09`) | Any protected byte modified by a WSE op, spectral norm `> 0.99`, diff `>= 16,384 B`, or nonzero rollback delta. |
+| **C4** | Packed `b1.58` ternary ganglia achieve lossless 2-bit roundtrip (`0.25 B/syn`), 5-trit/byte `uint8` packing (`3^5 = 243 <= 256`), `84.13%` spike offload, and integer-guarded `Q <= 10` (`<= 16 KiB`) quantum cap. | `kernel-checked` + `empirical` | `.\bin\noetic_engine.exe gates` & `.\bin\noetic_engine.exe hw24` | `lean/NoeticProofs.lean` (`N29, N33, N38, N52`), `results/m9_native_release_gates.json` (`GATE-07`), `results/m10_hw24_receipt.json` (`HW04, HW08`) | Any trit encode/decode mismatch, `Q = 11` accepted by allocator, or ganglia spike offload dropping below `50%`. |
+| **C5** | Exact DP Wilcoxon rank-sum (`N=48` sum `1,176`), Holm-Bonferroni FWER step-down bound, and SHA-256 hash-chained Burn-on-Fail Seed Firewall (`Dev 1001..1099` / `Conf 5001..5024` / `Held 5101..5124`) enforce disjoint evaluation and reject tampering. | `kernel-checked` + `program-audited` | `node scripts/seed_firewall.mjs` & `.\bin\noetic_engine.exe test` (`T05`) | `lean/NoeticProofs.lean` (`N15..N20, N53`), `results/seed_firewall_ledger.json` | Any seed overlap across partitions, mutated ledger entry passing `verifyChain()`, burned seed re-entry, or `T05` deviating from `1/1024`. |
+| **C6** | Zero arm-label score hacking inside `readout_metric()`, zero heap allocation in `noetic_world_step()`, and 5/5 compiled Anti-LARP mutants caught (`MUT-1..5`). | `program-audited` | `node scripts/audit_zero_theater.mjs` & `node tests/noetic_prop.test.mjs` | `scripts/audit_zero_theater.mjs`, `tests/noetic_prop.test.mjs` | Any `w->arm` / `ablation_mask` branch inside `readout_metric()`, any `malloc/calloc/realloc/free` inside `noetic_world_step()`, or any surviving mutant. |
+| **C7** | All `825/825` Clean-Slate v3.0 checks (`779` pass, `29` indicator-only, `12` native gate pass, `5` classical parity disclosed, `0` fail) and `100/100` milestones execute natively in C11 with `0 uq` drift and `196.2k -> 87.9k` org-ticks/s (`N=1..4096`). | `empirical` + `kernel-checked` (receipt) | `.\build.ps1` & `node scripts/build_m8_e2_825_trace.mjs` | `results/m8_e2_825_honest_trace_summary.json`, `results/m10_milestones_100_receipt.json`, `results/m8_e3_scaling_bench.json`, `lean/NoeticProofs.lean` (`N48`) | Any failing check, missing native C11 row, unverified milestone, hidden quantum parity failure, or nonzero conservation drift. |
+| **C8** | All 29 cognitive/consciousness indicator checks (`L1_BUTLIN14`, `L2_FRAMEWORKS10`, `CQM13/19..22`) drop significantly under targeted structural circuit lesions relative to matched sham controls while making **zero** claim of sentience or solving `0/1,900` Mega-Atlas problems. | `indicator-only` | `.\bin\noetic_engine.exe e1 48` & `.\bin\noetic_engine.exe e2 48` | `results/m8_e1_ablation_sweep.json`, `results/m8_e2_cognitive_49.json`, `docs/MEGA_ATLAS_CROSSCHECK.md` | Any of the 18 circuit ablations failing `p_Holm < 0.05` vs matched sham, any sham failing non-inferiority, or any text misrepresenting an indicator as sentience. |
+| **C9** | Overarching open scientific problems (`NEURO-001`, `NEURO-004`, `NEURO-024`, `SUB-007`, `SYS-009`, `SYS-050`, `AI-001`, `AI-018`) remain **OPEN** (`0 / 1,900` retired). | `open-conjecture` | Audit `docs/MEGA_ATLAS_CROSSCHECK.md` | `docs/MEGA_ATLAS_CROSSCHECK.md` | Any claim in this repository asserting retirement or solution of any Mega-Atlas parent problem. |
+
+
+================================================================================
+FILE: LIMITATIONS.md
+================================================================================
+
+# Limitations, Threats to Validity & Real-vs-Metaphor Boundary (`LIMITATIONS.md`)
+
+`noetic-organism-omega v2.1.0` enforces strict epistemic hygiene. Every limitation and boundary below is an explicit constraint on how results may be interpreted.
+
+## 1. Real-vs-Metaphor Boundary (CRITICAL)
+
+- **Zero Consciousness or Sentience Claims:** All 14 Butlin indicator checks (`L1_BUTLIN14`), all 10 consciousness-framework checks (`L2_FRAMEWORKS10`), and 5 mirrored CQM items (`CQM13, CQM19..22`) are strictly **`EXECUTED_PASS_INDICATOR_ONLY`** computational/architectural proxies. Passing these structural lesion tests demonstrates that specific C11 state equations causally drive specific behavioral readouts inside a 6,776-byte simulation struct—**nothing more**. They provide **zero** evidence of subjective qualia, phenomenal experience, sentience, or moral patienthood.
+- **Biological Metaphors Are Compact Toy Equations:** Terms such as *sLTC cortex*, *apical dCaAP XOR binding*, *global workspace ignition*, *REM reality monitoring*, *XPBD hydrostatic coelom*, *Gánti Chemoton*, *Blackiston metamorphosis*, and *autopoietic tissue repair* denote deterministic low-dimensional numerical models (16-unit cortex, 16 patches, 4 peers), not wet-lab neurobiology, real cellular biochemistry, or insect neuroanatomy.
+- **Mega-Atlas Non-Retirement:** **`0 / 1,900`** overarching problems in `0thernes/unsolved-problems-mega-atlas` are solved or retired (`docs/MEGA_ATLAS_CROSSCHECK.md`).
+
+## 2. Formal-to-C11 Verification Boundary
+
+- **Not CompCert / VST Verified:** The 54 Lean 4.35.0 theorems (`lean/NoeticProofs.lean`) formally verify discrete mathematical specifications (`Ledger10`, `ring0ApplyEdit`, `packB158`, `sum1To`, bitmask/memory bounds) and concrete integer/boolean constants exported by a live C11 run (`NoeticProofs/LiveC11Receipt.lean`, audited by `N24`, `N32`, `N48`). Lean does **not** verify the C11 source files (`src/*.c`) or Clang/GCC machine-code emission.
+- **Unbounded `Int` vs. C11 `int64_t`:** Lean's `Ledger10` uses arbitrary-precision `Int`, whereas C11 uses signed 64-bit integers (`int64_t`). Overflow avoidance in C11 relies on bounded initial pool magnitudes ($\sim 10^7~\text{uq} \ll 9.2 \times 10^{18}$) and runtime validation rather than a Lean `Int64` overflow proof.
+- **IEEE-754 Transcendentals:** `noetic_exp_det`, `noetic_log_det`, and `noetic_tanh_det` are verified empirically against IEEE-754 reference values (`max_rel_err = 2.175e-16` in `HW15`), not formally proved in Lean/Flocq.
+
+## 3. Statistical & Experimental Limitations
+
+- **Deterministic Low-Variance $d_z$ Inflation:** In deterministic mechanistic suites (`L8_SOFT40`, `L4_FREAK100`, `L5_LIFE500`), paired intact-vs-knockout differences across locked seeds frequently exhibit near-zero variance, producing very large Cohen's $d_z$ values ($> 50$ or capped at `50.00`). These values indicate clean deterministic separation under controlled software perturbations and must not be compared naively to noisy wet-lab biological effect sizes.
+- **Honest Classical Parity Ties:** Five quantum-inspired checks (`F-092`, `N01`, `N02`, `N50`, `LIFE-L040-A5`) show exact `0.00` lift over matched-parameter classical controls (`p_Holm = 1.00`). No quantum computational advantage is claimed anywhere in this repository.
+- **Single-Host Windows Multi-Kernel Constraint:** Locally on Windows, `lean4lean.exe` cannot parse Windows `.olean` path headers and `lake check` / `lake comparator` require Linux `bubblewrap` (`bwrap`). Full 6/6 kernel execution (adding `lean4lean` + `lake comparator --paranoid`) runs on `ubuntu-latest` in `.github/workflows/ci.yml`.
+- **Single-Author / AI-Assisted Provenance & Peer Review:** This is an independent, AI-assisted research artifact and has **not** undergone external peer review or third-party independent replication yet (`REPLICATION.md`).
+
+
+================================================================================
+FILE: REPLICATION.md
+================================================================================
+
+# Replication Protocol (`REPLICATION.md`)
+
+This document specifies exact clean-clone steps to reproduce every C11 receipt, multi-kernel Lean 4.35.0 proof audit, AMS-LaTeX white paper PDF, and repository compliance score for `noetic-organism-omega v2.1.0`.
+
+## Prerequisites
+
+- **C11 Compiler:** Clang 18+ or GCC 12+ (`-std=c11 -O3 -Wall -Wextra -Werror`)
+- **Node.js:** `>= 20` (zero npm packages required; built-in modules only)
+- **Lean 4 Toolchain:** `elan` with pinned `leanprover/lean4:v4.35.0` (auto-selected by `lean/lean-toolchain`)
+- **Python 3.11+ & Tectonic (`0.15+`):** For `scripts/check_readme_axioms.py`, `scripts/check_citations.py`, and `scripts/build_paper.py`
+- **Linux Only (for 6/6 sandboxed kernels):** `bubblewrap` (`sudo apt-get install -y bubblewrap`)
+
+## Clean-Clone Reproduction Steps
+
+### 1. Clone and Build the Portable C11 Engine
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/0thernes/noetic-organism-omega.git
+cd noetic-organism-omega
+.\build.ps1
+```
+
+**Linux (Bash):**
+```bash
+git clone https://github.com/0thernes/noetic-organism-omega.git
+cd noetic-organism-omega
+chmod +x build_linux.sh
+./build_linux.sh
+```
+
+**Expected Verification Outputs:**
+- `bin/noetic_engine` `test`: `10/10` PASS (`5/5` Anti-LARP mutants caught, `T01` SHA-256 `1fde9fe591dadd326d8a90ba011ead82447150ba227adc16995fe7b1e3a1d1ba`)
+- `gates`: `7/7` native gates PASS (`GATE-11` 10,000-tick SHA-256 `eceedf4debbe1b0676cb98c99063076f989ac561bb1afa5fdf02048a7241bce1`)
+- `hw24`: `24/24` PASS (`0 uq` drift); `soft40`: `40/40` PASS; `freak100`: `99 PASS + 1 PARITY_DISCLOSED (0 FAIL)`; `novel100`: `97 PASS + 3 PARITY_DISCLOSED (0 FAIL)`; `life500`: `499 PASS + 1 PARITY_DISCLOSED (0 FAIL)`; `milestones100`: `100/100 VERIFIED (First-15 LOCKED_PASS)`
+
+### 2. Run Seed Firewall, Zero-Theater Audit & Property-Based Tests
+
+```bash
+node scripts/seed_firewall.mjs
+node scripts/audit_zero_theater.mjs
+node tests/noetic_prop.test.mjs
+node examples/run_quick_demo.mjs
+```
+*(Note: `scripts/build_m8_e2_825_trace.mjs` additionally cross-checks row IDs against `ALife-Framework-v3.0-Master-Spec.json` when the sibling `alife-singularity-omega-package` repo is present; the pre-generated CSV/JSON trace matrix is committed in `results/`.)*
+
+### 3. Replay Multi-Kernel Lean 4.35.0 Proofs
+
+```bash
+cd lean
+lake build
+lake build Challenge
+lake env lean VerifyAxioms.lean > ../results/lean4-noetic-audit.txt
+lake env leanchecker --fresh Solution
+lake env leanchecker-paranoid --fresh Solution
+# On Linux with bubblewrap (all 6/6 kernels + Challenge/Solution comparator):
+lake check --paranoid
+lake comparator --config comparator.json --paranoid
+```
+
+### 4. Verify Axiom Parity, Live Citations, White Paper PDF & Repo Standard
+
+```bash
+python scripts/check_readme_axioms.py
+python scripts/check_citations.py
+python scripts/build_paper.py
+pwsh -NoProfile -File scripts/Audit-Repo.ps1
+```
+
+---
+
+## Replication Log
+
+| Date (UTC) | Replicator | Platform & Toolchain | Scope Verified | Outcome & Hash Anchor |
+|---|---|---|---|---|
+| 2026-11-25 | Alexander Stephen Donahue (Author, self-run) | Windows 11 x64, Clang 23 (`AVX2/VNNI ThinLTO`), Lean 4.35.0, Node v25.8.2, Tectonic 0.17.0 | Full `build.ps1`, 825/825 C11, 100/100 milestones, 13/13 gates, 5/5 mutants, 32-trial `prop_check`, 5 local Lean kernels (`lean4`, `leanchecker`, `leanchecker-paranoid`, `con-leche`, `con-ron`, `nanoda_bin`), 22/22 live citations, Tectonic PDF + clean-room arXiv tarball | **PASS** (`T01=1fde9fe5...d1ba`, `GATE-11=eceedf4d...bce1`, `54/54` Lean theorems) |
+| — | *(Awaiting external third-party replicator)* | Linux / Windows / macOS | Clean-clone reproduction & independent issue report (`replication` label) | **OPEN** — External replication invited via GitHub Issues |
+
+
+================================================================================
+FILE: docs/architecture.md
+================================================================================
+
+# System Architecture (`docs/architecture.md`)
+
+`noetic-organism-omega v2.1.0` is a portable, zero-dependency C11 whole-organism simulation engine coupled with a 54-theorem 6-kernel Palomar Lean 4.35.0 formal verification suite and a loopback-only Node.js Web Observatory.
+
+## 1. Module Map (`src/` and `include/`)
+
+| File | Responsibility |
+|---|---|
+| `include/bare_crt.h` | Bare Win64/POSIX portable C11 types and timing shims |
+| `include/noetic_abi.h` | Canonical `NoeticWorld` (`6,776 B`), `NoeticLedger` (11 pools), 18 `NoeticAblationBit` flags, 5 control arms, 5 Anti-LARP mutants, suite APIs |
+| `src/noetic_rng.c` | Counter-based `Philox4x32-10` 8-tuple domain-isolated PRNG, portable IEEE-754 `exp_det`/`log_det`/`tanh_det`, SHA-256, exact 11-pool `int64_t` ledger |
+| `src/noetic_stats.c` | Exact dynamic-programming Wilcoxon signed-rank test, paired bootstrap `d_z` 95% CIs, Holm-Bonferroni step-down FWER |
+| `src/noetic_organism.c` | Zero-alloc `noetic_world_step()`, 18 ablatable circuits, Forked-Snapshot `PCI*`, 128B AUTOPHAGE & 112-trait Cellulogonic ABI ingestion |
+| `src/noetic_gates_core.c` | Clean-Slate v3.0 native release gates (`GATE-02, 05, 06, 07, 09, 10, 11`): XPBD soft hydrostat, `b1.58` ganglia, Ring-0 ACL + WSE-12, Blackiston metamorphosis |
+| `src/noetic_hw24.c` | `L9_HW24` (24 hardware, arena, CSR, `b1.58`, `Q<=10`, 5-gear, SeqLock, FP64, watchdog checks) |
+| `src/noetic_soft40.c` | `L8_SOFT40` (40 XPBD, Chemoton, wet biochemistry, evo-devo, and carcass lysis checks) |
+| `src/noetic_freak100.c` | `L4_FREAK100` (100 mechanistic checks; `F-092` honest classical parity disclosure) |
+| `src/noetic_novel100.c` | `L6_NOVEL100` (100 frontier checks; `N01, N02, N50` honest classical parity disclosures) |
+| `src/noetic_life500.c` | `L5_LIFE500` (100 biological domains × 5 structural pathways = 500 checks; `LIFE-L040-A5` honest parity disclosure) |
+| `src/noetic_milestones100.c` | `M001..M100` acyclic bottom-up stage-0..8 DAG verifier (`First-15` playable `LOCKED_PASS`) |
+| `src/noetic_eval.c` | M7 unit + 5 Anti-LARP mutants, M8 E1 (18 ablations), E2 (49-item cognitive/CQM), E3 (scaling), and live C11-to-Lean Palomar `module` receipt exporter |
+| `src/main_cli.c` | CLI entrypoint (`test`, `gates`, `hw24`, `soft40`, `freak100`, `novel100`, `life500`, `milestones100`, `e1`, `e2`, `e3`, `export-lean`, `stream`) |
+
+## 2. Formal Proof Architecture (`lean/`)
+
+- `NoeticProofs/LiveC11Receipt.lean`: Live execution receipt emitted by `noetic_engine export-lean 5001` (`module` + `@[expose] public def`).
+- `NoeticProofs/Spec.lean`: Pure shared definitions (`Ledger10`, guarded transfers, `closedTick`, `forkedObserverEval`, `sum1To`, `ring0ApplyEdit`, `packB158`/`unpackB158`) with zero proofs and zero `sorry`.
+- `NoeticProofs.lean`: 54 sorry-free `public theorem` proofs (`N01..N48` core + `N49..N54` non-vacuity and sharp negative refutations).
+- `Challenge.lean` & `Solution.lean` & `comparator.json`: Isolated Palomar statement-vs-solution contract for 6-kernel judging.
+- `VerifyAxioms.lean`: Standalone `#print axioms` audit entrypoint checked against `README.md` by `scripts/check_readme_axioms.py`.
+
+## 3. Loopback Observatory Architecture (`web/`)
+
+`web/server.mjs` spawns `noetic_engine stream` as an isolated child OS worker process off the Node HTTP event loop (`HW13`), exposes `GET /healthz`, `GET /api/*` (read-only receipts & live state), and `POST /api/cmd` strictly on `127.0.0.1:8795` with loopback host/origin/`Sec-Fetch-Site` enforcement, strict CSP headers, and a 16-command queue cap.
+
+
+================================================================================
+FILE: docs/statement-fidelity.md
+================================================================================
+
+# Statement-Fidelity Audit Matrix (`docs/statement-fidelity.md`)
+
+Maps every group of formal Lean 4.35.0 declarations in `lean/NoeticProofs.lean` (`54` theorems: `N01..N48` core + `N49..N54` non-vacuity and sharp negative boundary witnesses) against the C11 implementation (`src/*.c`, `include/noetic_abi.h`) and primary literature definitions, explicitly flagging divergences and out-of-scope boundaries.
+
+| Lean Declaration(s) | Informal / Paper Claim | C11 / Literature Anchor | Fidelity & Non-Vacuity Assessment | Status |
+|---|---|---|---|---|
+| `Ledger10`, `poolSum`, `nonNeg`, `transfer*`, `closedTick`, `N01..N10`, `N36..N37`, `N49`, `N54` | Exact 10-pool First-Law conservation (`0 uq` drift), non-negativity, Second-Law heat-sink monotonicity, and `+1 uq` leaky mutant catch | `NoeticLedger`, `noetic_ledger_transfer()`, `noetic_ledger_residual()` in `src/noetic_rng.c`; `MUT-1` in `src/noetic_eval.c` | Matches 10-pool sum & transfer guards exactly. **Non-vacuity:** `N49` constructs concrete inhabitant `L0` with `poolSum = 10,000,000` and strict heat growth `L0.p8 < L1.p8`; `N54` refutes conservation under `+1 uq` leak. **Scope caveat:** Lean uses unbounded `Int`; C11 uses `int64_t` (bounded below $10^8 \ll 2^{63}-1$). | **Match (unbounded `Int` model)** |
+| `forkedObserverEval`, `N11` | Forked-Snapshot `PCI*` probe leaves live world state bit-identical | `noetic_compute_forked_pci_star()` in `src/noetic_organism.c`; Casali et al. (2013) | Formalizes pure functional projection `(live, forkRun live).1 = live`. C11 enforces this via deep-copy `memcpy` + SHA-256 verification (`T03`, `GATE-11`, `HW20`). | **Match (functional abstraction)** |
+| `N12..N14`, `N23`, `N31`, `N40..N47` | Clean-Slate v3.0 9-suite check partition (`825`), 5 mirror deduplications (`820` unique), 100-milestone stage sum, cube/substrate/mutant counts | `ALife-Framework-v3.0-Master-Spec.json`; `scripts/build_m8_e2_825_trace.mjs` | Exact finite arithmetic identities (`decide`, 0 axioms). Note: `N23`, `N31`, `N47` record historical milestone arithmetic partitions preserved for backward compatibility. | **Match (exact arithmetic)** |
+| `sum1To`, `N15..N21`, `N53` | Wilcoxon rank-sum upper bound (`N=48 => 1,176`), Holm-Bonferroni inflation bound, non-ceiling `< 1000` milli, sham symmetry, disjoint seed partitions, anti-oracle separation | `src/noetic_stats.c`; `scripts/seed_firewall.mjs`; Wilcoxon (1945), Holm (1979) | Proves exact algebraic rank sum $2 \sum_{k=1}^n k = n(n+1)$ and discrete bounds. **Non-vacuity:** `N53` exhibits concrete tuning seed `42` disjoint from `[5001..5024] ∪ [5101..5124]` and concrete Holm bound at `m=49`. **Scope caveat:** Exact DP table implementation in C11 is verified by `T05` (`p = 1/1024`), not extracted from Lean. | **Match (discrete math bounds)** |
+| `N22` | 18 structural ablation bits fit strictly within 18-bit bitmask `< 2^18` | `NOETIC_ABLATION_COUNT = 18`, `ABL_MASK(bit)` in `include/noetic_abi.h` | Proves `(1 <<< bit) < (1 <<< 18)` for `bit < 18` (only theorem using `Classical.choice` via `Nat.one_shiftLeft`). | **Match** |
+| `N24`, `N32`, `N48` | Live C11 execution receipts (`seed=5001`, 7/7 native release gates, `GATE-09` Ring-0 10/10, 5 full suites 0 fail & 0 drift) | `noetic_export_lean_receipt()` (`src/noetic_eval.c`) -> `lean/NoeticProofs/LiveC11Receipt.lean` | Directly audits the concrete exported integer/boolean constants in the Lean kernel (`decide`, 0 axioms). **Scope caveat:** Certifies consistency of the exported receipt snapshot, not C11 operational semantics. | **Match (live receipt snapshot)** |
+| `ring0ApplyEdit`, `N25..N27`, `N50..N51` | Ring-0 Read-Only ACL blocks protected edits (`region < 4`), WSE rollback involution `(w + d) - d = w`, diff budget `2,464 < 16,384` | `GATE-09` in `src/noetic_gates_core.c` | **Non-vacuity & sharpness:** `N50` exhibits `region = 3` blocked vs `region = 4` mutated; `N51` formally refutes the false overclaim that all regions are frozen. | **Match (abstract ACL guard)** |
+| `packB158`, `unpackB158`, `N28..N30`, `N33..N35`, `N38..N39`, `N52` | XPBD area bound, `b1.58` 2-bit bijection & 5-trit/B `uint8` radix (`3^5 = 243 <= 256`), fasting sparing, `Q <= 10` (`<= 16 KiB`), 5-gear divisors, Philox domain key distinctness, Excel shard limit | `src/noetic_gates_core.c`, `src/noetic_hw24.c`, `src/noetic_rng.c`; Macklin (2016), Ma et al. (2024), Salmon et al. (2011) | **Sharpness:** `N52` formally refutes `16 * 2^11 <= 16384`, proving `Q <= 10` in `N33` is tight. | **Match (discrete bounds)** |
+| *(Not formalized in Lean)* | Full C11 memory safety, IEEE-754 `noetic_exp_det`/`log_det`/`tanh_det`, neural dynamics, empirical statistical significance | `src/*.c` compiled by Clang/GCC | Explicitly out of Lean scope; audited by `-Wall -Wextra -Werror`, CI ASan/UBSan, `tests/fuzz_noetic_input.c`, `HW15` (`2.175e-16`), `5/5` Anti-LARP mutants, and `825/825` native checks. | **Out of Lean scope (disclosed)** |
+| *(Not formalized / not claimed)* | Subjective qualia, phenomenal consciousness, sentience | `L1_BUTLIN14`, `L2_FRAMEWORKS10`, `CQM13/19..22` | Explicitly **NOT** claimed; strictly `[INDICATOR-ONLY]` computational proxies. | **Explicitly out of scope** |
+
+
+================================================================================
+FILE: docs/MEGA_ATLAS_CROSSCHECK.md
+================================================================================
+
+# Unsolved Problems Mega-Atlas Non-Retirement Cross-Check (`docs/MEGA_ATLAS_CROSSCHECK.md`)
+
+Cross-mapping `noetic-organism-omega v2.1.0` against the **1,900-entry** Unsolved Problems Mega-Atlas (`0thernes/unsolved-problems-mega-atlas`).
+
+> **Mandatory Honesty Finding:** **`0 / 1,900`** overarching open problems in the Unsolved Problems Mega-Atlas are solved, closed, or retired by `noetic-organism-omega v2.1.0`. Every parent problem probed below remains strictly **OPEN**.
+
+## Probed Mega-Atlas IDs (Discrete Invariants & Toy Sub-Hypothesis Controls Only)
+
+| Atlas ID | Exact Mega-Atlas Title | Superdomain | What `noetic-organism-omega v2.1.0` Actually Constructs | Why Parent Problem Remains OPEN | Parent Status |
+|---|---|---|---|---|---|
+| **`NEURO-001`** | The Hard Problem of Consciousness (Explanatory Gap & Subjective Qualia) | `NEURO` | Implements 29 ablatable computational indicator proxies (`L1_BUTLIN14`, `L2_FRAMEWORKS10`, `CQM13/19..22`) explicitly tagged `EXECUTED_PASS_INDICATOR_ONLY`. | Architectural/behavioral functional proxies inside a C11 simulation struct do not address, explain, or measure subjective phenomenal experience. | **OPEN** |
+| **`NEURO-004`** | Mechanistic Neural Correlates of Consciousness (IIT vs. GNWT vs. Recurrent Processing / COGITATE) | `NEURO` | Implements toy recurrent (`sLTC`), global workspace (`GWT`), higher-order (`HOT`), and Forked-Snapshot `PCI*` circuits with 18 bit-masked structural ablations (`M8 E1/E2`). | Synthetic 16-unit toy circuits cannot resolve empirical neuroimaging disputes over biological human cortex. | **OPEN** |
+| **`NEURO-024`** | Predictive Processing & Free Energy Principle: Exact Cortical Implementation of Prediction Errors | `NEURO` | Implements top-down prediction error subtraction (`PP-1`) and 3-step Expected Free Energy policy scoring (`F3`, `CQM11`) verified by targeted lesion (`ABL_BIT_PRED_CODING`). | Demonstrates a deterministic synthetic controller, not laminar cortical microcircuitry in biological brains. | **OPEN** |
+| **`SUB-007`** | Mathematical Falsifiability & Markov-Blanket Identifiability in the Free Energy Principle | `NEURO` | Constructs explicit falsifiable negative controls (`MUT-1..5`, `SHAM`, `SHUFFLED`, `PASSIVE` arms) and formalizes discrete thermodynamic/statistical bounds in Lean 4.35.0. | Does not resolve Langevin steady-state Markov-blanket uniqueness or sparse-coupling counterexamples in continuous-time Bayesian mechanics. | **OPEN** |
+| **`SYS-009`** | Formal Cybernetic Theory of Multi-Scale Agency, Autopoiesis & Self-Maintaining Systems | `SYS` | Formalizes exact 10-pool `int64` First-Law conservation & Second-Law monotonicity (`N01..N10`, `N49`, `N54`) and tests Gánti Chemoton polymer closure (`SOFT21`) and ATP-paid tissue repair (`CQM15..16`). | Provides a fixed-topology toy model (`6,776 B`), not a general mathematical theory of open-ended multi-scale physical autopoiesis. | **OPEN** |
+| **`SYS-050`** | Unified Foundations of Physical Intelligence: Co-Optimizing Morphology, Material Compliance, Sensing & Control (Embodied Co-Design) | `SYS` | Tests XPBD hydrostatic crevice squeeze (`GATE-06`: `0.000304%` vol error) coupled with packed `b1.58` peripheral ganglia (`GATE-07`: `84.13%` offload) and Blackiston motor remapping (`GATE-10`: `87.50%`). | Evaluates fixed 2D/low-DOF synthetic benchmarks rather than a unified physical co-design theory across real soft-matter materials. | **OPEN** |
+| **`AI-001`** | AI Alignment, Scalable Oversight & Value Specification for Superhuman Agents | `AI` | Formalizes and tests a hardware-style Ring-0 Read-Only ACL boundary (`region < 4` immutable under WSE-12 self-edits: `GATE-09`, `N25`, `N50..N51`). | Memory-access partitioning of 10 bounded C11 operators does not solve value specification, mesa-optimization, or scalable oversight for general frontier AI systems. | **OPEN** |
+| **`AI-018`** | Deceptive Alignment, Alignment Faking & Scheming Detection in Frontier Reasoning Models | `AI` | Implements compiled Anti-LARP negative mutants (`MUT-2` cosmetic label, `MUT-3` oracle sensor-bypass caught via `SHUFFLED` control) and static zero-theater source audits. | Detects deterministic software cheat patterns in a controlled C11 testbench, not strategic deception in large neural reasoning models. | **OPEN** |
+
+## Summary Tally
+
+- **Total Mega-Atlas Problems Cataloged:** `1,900`
+- **Overarching Problems Retired / Solved:** **`0 / 1,900`**
+- **Probed with Bounded Formal Invariants / Toy Controls:** `8` (`NEURO-001`, `NEURO-004`, `NEURO-024`, `SUB-007`, `SYS-009`, `SYS-050`, `AI-001`, `AI-018`) — all **OPEN**.
+
+
+================================================================================
+FILE: docs/AI_DISCLOSURE.md
+================================================================================
+
+# AI-Assistance Disclosure & CRediT Authorship (`docs/AI_DISCLOSURE.md`)
+
+In accordance with White Papers Playbook v1.3 and transparent independent research norms, this document discloses all AI tooling used in creating `noetic-organism-omega v2.1.0`, the human researcher's exact responsibilities, and independent mechanical verification boundaries.
+
+## Human Author & CRediT Roles
+
+- **Sole Human Author:** Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA
+- **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)
+- **Contact:** `0_0@0thernes.art` · <https://0thernes.art>
+- **CRediT Roles:**
+  - **Conceptualization:** Defined the whole-organism thermodynamic conservation constraints, Clean-Slate v3.0 825-check / 100-milestone architecture, Anti-LARP mutant criteria, and epistemic non-overclaiming rules.
+  - **Methodology:** Specified the 5-arm paired experimental protocol, locked Philox seed firewall partitions, Palomar 6-kernel Lean 4.35.0 verification target, and Playbook v1.3 / Build Standard v1.2.0 requirements.
+  - **Supervision & Validation:** Directed iterative AI coding/formalization cycles, removed unformed corporate LLC entity names, verified live C11 builds, multi-kernel Lean replays, Tectonic PDF compilation, live citation checks, and publication artifacts.
+  - **Writing — Review & Editing:** Reviewed, scoped, and approved claims, limitations, errata, and disclosure statements.
+
+## AI Tooling Scope
+
+- **Tools Used:** Frontier LLM agentic coding and formalization assistants (Claude and Gemini workflows).
+- **AI-Assisted Outputs:** Drafting and refactoring portable C11 engine modules (`src/*.c`, `include/*.h`), Node/Python verification harnesses (`scripts/*`, `tests/*`), Lean 4.35.0 formal proof modules (`lean/*.lean`), Build Standard documentation (`docs/*`), and AMS-LaTeX manuscript source (`paper/main.tex`, `paper/refs.bib`).
+- **Mechanical Verification Independence:** No AI assertion is trusted on authority. Every empirical number is generated by compiling and executing the C11 binary (`-Wall -Wextra -Werror`), every formal theorem is checked independently by Lean 4.35.0 + `leanchecker-paranoid` + `con-leche` + `con-ron` + `nanoda_bin` (plus `lean4lean` and `lake comparator` in Linux CI), every citation is verified live against the DOI Handle API / HTTP (`scripts/check_citations.py`), and every PDF build is checked for `0` overflows (`scripts/build_paper.py`).
+
+## Venue & Policy Compliance Notes
+
+- **Peer Review:** Not peer-reviewed; independent technical preprint and open-source software artifact.
+- **Zenodo / Venue Eligibility:** AI tools are never listed as authors or contributors in `CITATION.cff` or `.zenodo.json`. Prior to minting any external repository DOI, the human author evaluates eligibility against each venue's current generative-AI depositor policy without misrepresenting AI assistance.
+- **Palomar Registry:** Palomar explicitly accepts AI-assisted Lean 4.35.0 formalizations accompanied by `Challenge.lean`, `Solution.lean`, `comparator.json`, and `formalization.yaml` with transparent disclosure.
+
+
+================================================================================
+FILE: docs/benchmarks.md
+================================================================================
+
+# Honest Benchmarks & Performance Budgets (`docs/benchmarks.md`)
+
+All timings below are **real, live measurements** captured from `bin/noetic_engine.exe e3` and `bin/noetic_engine.exe hw24` on Windows 11 x64 using Clang 23 (`-std=c11 -O3 -Wall -Wextra -Werror -march=native -mavx2 -mavxvnni -mbmi -mbmi2 -mpopcnt -ffp-contract=off -flto=thin`, `v2.1.0`).
+
+## 1. Single-Thread Scaling & Cache Footprint (`M8 E3`)
+
+Source artifact: [`results/m8_e3_scaling_bench.json`](../results/m8_e3_scaling_bench.json) (`sizeof(NoeticWorld) = 6,776 B`).
+
+| Organisms ($N$) | Ticks ($T$) | Total Footprint | Cache Tier | Wall Time (ms) | Throughput (org-ticks/s) | Latency ($\mu\text{s}$/org-tick) | Max Energy Drift |
+|---:|---:|---:|---|---:|---:|---:|---:|
+| 1 | 2,000 | 6,776 B | `L1D_FIT` | 10.192 | 196,240.04 | 5.0958 | `0 uq` |
+| 16 | 500 | 108,416 B | `L2_FIT` | 42.672 | 187,478.76 | 5.3339 | `0 uq` |
+| 64 | 200 | 433,664 B | `L2_FIT` | 66.887 | 191,366.39 | 5.2256 | `0 uq` |
+| 256 | 80 | 1,734,656 B | `L2_FIT` | 125.516 | 163,166.71 | 6.1287 | `0 uq` |
+| 1,024 | 30 | 6,938,624 B | `L3_FIT` | 282.766 | 108,640.88 | 9.2046 | `0 uq` |
+| 4,096 | 10 | 27,754,496 B | `L3_FIT` | 466.043 | 87,888.92 | 11.3780 | `0 uq` |
+
+### Honest Caveats & Measurement Variance
+- Earlier `v2.0.0` runs on an unloaded host measured `268.7k -> 189.4k` org-ticks/s; the `v2.1.0` run above (`196.2k -> 87.9k` org-ticks/s) ran concurrently alongside sibling repository compilation builds on the same workstation. We report the exact measured `v2.1.0` JSON receipt rather than cherry-picking peak unloaded figures.
+- All runs are single-threaded (`N` organisms stepped sequentially in a flat contiguous array) so results reflect per-core throughput and cache-hierarchy behavior without multi-core synchronization noise.
+
+## 2. Explicit Performance Budgets (Clean-Slate v3.0 `L9_HW24` & `GATE-02..11`)
+
+| Budget Dimension | Target Cap | Measured (`v2.1.0`) | Status |
+|---|---:|---:|---|
+| Per-world static memory (`HW01` / `GATE-02`) | $\le 8{,}192~\text{B}$ | `6,776 B` | PASS |
+| Hot-loop heap allocations over 10k ticks (`GATE-02` / `HW02`) | `0` | `0` | PASS |
+| Single-organism Tier-L step budget (`HW23`) | $\le 16{,}700~\mu\text{s}$ (60 Hz) | `5.04 us` (`HW23`) / `5.10 us` (`E3`) | PASS ($>3{,}200\times$ margin) |
+| Sparse CSR compression vs. dense (`HW03`) | $\le 6.0~\text{B/syn}$ | `5.316 B/syn` (`101.0x` save) | PASS |
+| Packed `b1.58` ganglia synapse size & offload (`GATE-07`) | $\le 0.5~\text{B/syn}$, $\ge 50\%$ | `0.25 B/syn`, `84.13%` offload | PASS |
+| 5-gear multirate scheduler speedup & flux error (`HW10`) | $\ge 5.0\times$, $< 1\%$ err | `7.52x`, `0.0032%` err | PASS |
+| XPBD hydrostatic volume drift (`GATE-06`) | $< 1.0\%$ | `0.000304%` | PASS |
+| WSE-12 serialized diff size & spectral norm (`GATE-09`) | $< 16{,}384~\text{B}$, $\|W\|_2 \le 0.99$ | `2,464 B`, `0.844337` | PASS |
+| Telemetry frame sketch (`HW19`) | $\le 32{,}768~\text{B}$ | `776 B` | PASS |
+| Portable deterministic math (`HW15`) | $< 10^{-10}$ rel err | `2.175e-16` max rel err | PASS |
+
+## 3. Historical Tracking
+
+CI uploads `results/m8_e3_scaling_bench.json` on every push to `main` as a report-only performance artifact (`B27`) so latency regressions are tracked without blocking commits (Build Standard Rule R3).
+
+
+================================================================================
+FILE: lean/formalization.yaml
+================================================================================
+
+schema_version: "0.4"
+project: "noetic-organism-omega"
+version: "2.1.0"
+repository: "https://github.com/0thernes/noetic-organism-omega"
+license: "Apache-2.0"
+documentation_license: "CC-BY-4.0"
+authors:
+  - name: "Alexander Stephen Donahue"
+    orcid: "0009-0006-8168-9648"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
+    email: "0_0@0thernes.art"
+    credit_roles:
+      - Conceptualization
+      - Methodology
+      - Supervision
+      - Validation
+      - Writing - review & editing
+toolchain: "leanprover/lean4:v4.35.0"
+mathlib_dependency: false
+module_system: true
+lean_root: "lean"
+spec_module: "lean/NoeticProofs/Spec.lean"
+live_receipt_module: "lean/NoeticProofs/LiveC11Receipt.lean"
+challenge_module: "lean/Challenge.lean"
+solution_module: "lean/Solution.lean"
+comparator_config: "lean/comparator.json"
+audit_entrypoint: "lean/VerifyAxioms.lean"
+theorem_count: 54
+core_theorem_count: 48
+non_vacuity_and_refutation_count: 6
+permitted_axioms:
+  - propext
+  - Quot.sound
+  - Classical.choice
+forbidden_axioms:
+  - sorryAx
+  - Lean.ofReduceBool
+  - Lean.trustCompiler
+  - _native.bv_decide
+kernels:
+  - name: "Lean 4.35.0 reference kernel"
+    command: "lake build && lake env leanchecker --fresh Solution"
+  - name: "leanchecker-paranoid"
+    command: "lake env leanchecker-paranoid --fresh Solution"
+  - name: "lean4lean"
+    command: "lake check --paranoid"
+  - name: "nanoda_bin (Rust)"
+    command: "lake env nanoda_bin nanoda.json"
+  - name: "con-leche (--verified)"
+    command: "lake env con-leche --verified sol.export"
+  - name: "con-ron (--verified)"
+    command: "lake env con-ron --verified sol.export"
+comparator_command_ci: "cd lean && lake comparator --config comparator.json --paranoid"
+automation_and_ai_disclosure:
+  status: "AI-assisted research under human direction"
+  tools: "Frontier LLM coding and formalization assistants (Claude / Gemini agentic workflows)"
+  human_oversight: "Alexander Stephen Donahue set research goals, invariants, epistemic boundaries, and validated builds, multi-kernel audits, and receipts."
+scope_and_non_formalized_disclaimers:
+  formalized_scope:
+    - "Exact 10-pool integer First-Law conservation, Second-Law sink monotonicity, non-negativity, solar inflow residual, closed-tick composition, and +1 uq leaky mutant detection (N01..N10, N36, N37, N49, N54)."
+    - "Forked-Snapshot PCI* observer non-interference wrapper, Ring-0 read-only ACL immutability for regions < 4, WSE reversible rollback involution, WSE < 16 KB diff bound, XPBD area bound, packed b1.58 2-bit roundtrip & 5-trit/B uint8 radix, Q<=10 memory cap, 5-gear clock divisors, Philox domain key distinctness (N11, N25..N30, N33..N35, N38, N39, N50..N52)."
+    - "Exact Wilcoxon signed-rank sum identity & N=48 finite DP table bound, Holm-Bonferroni inflation bound, non-ceiling guard, sham symmetry, seed firewall disjointness, anti-oracle separation, 18-bit ablation mask isolation, and Clean-Slate v3.0 partition identities (N12..N23, N31, N40..N47, N53)."
+    - "Direct kernel verification of exported live C11 execution receipts from noetic_engine.exe export-lean 5001 (N24, N32, N48)."
+  not_formalized_in_lean:
+    - "The C11 source files themselves (src/*.c) are NOT formally verified via VST/CompCert; bridge fidelity rests on live receipt export (N24/N32/N48), -Wall -Wextra -Werror, ASan/UBSan in CI, 5 compiled Anti-LARP mutants, and 825 native checks."
+    - "Floating-point IEEE-754 transcendental approximations (noetic_exp_det/log_det/tanh_det) are empirically audited (max relative error 2.175e-16), not formally proved in Lean."
+    - "Phenomenal consciousness, subjective qualia, sentience, or moral patienthood are NOT proved or claimed; all 14 Butlin indicators and 10 framework suites are strictly [INDICATOR-ONLY] computational proxies."
+peer_review_status: "Not peer-reviewed; independent technical preprint and open-source artifact."
+statement_fidelity_audit: "docs/statement-fidelity.md"

@@ -845,35 +845,36 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
 
     FILE *f = fopen(lean_out_path, "w");
     if (!f) { free(w); return 1; }
-    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean v2.0)\n");
+    fprintf(f, "module\n\n");
+    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean v2.1.0)\n");
     fprintf(f, "-- Seed: %llu | Ticks: %llu | SHA-256: %s\n", (unsigned long long)seed, (unsigned long long)w->tick, sha);
     fprintf(f, "namespace NoeticLiveReceipt\n\n");
-    fprintf(f, "def c11Seed : Nat := %llu\n", (unsigned long long)seed);
-    fprintf(f, "def c11Ticks : Nat := %llu\n", (unsigned long long)w->tick);
-    fprintf(f, "def c11InitialTotal : Int := %lld\n", (long long)w->ledger.initial_total_uq);
-    fprintf(f, "def c11SolarIn : Int := %lld\n", (long long)w->ledger.pools[NOETIC_POOL_SOLAR_IN]);
+    fprintf(f, "@[expose] public def c11Seed : Nat := %llu\n", (unsigned long long)seed);
+    fprintf(f, "@[expose] public def c11Ticks : Nat := %llu\n", (unsigned long long)w->tick);
+    fprintf(f, "@[expose] public def c11InitialTotal : Int := %lld\n", (long long)w->ledger.initial_total_uq);
+    fprintf(f, "@[expose] public def c11SolarIn : Int := %lld\n", (long long)w->ledger.pools[NOETIC_POOL_SOLAR_IN]);
     for (int i = 0; i < 10; ++i) {
-        fprintf(f, "def c11Pool%d : Int := %lld\n", i, (long long)w->ledger.pools[i]);
+        fprintf(f, "@[expose] public def c11Pool%d : Int := %lld\n", i, (long long)w->ledger.pools[i]);
     }
-    fprintf(f, "def c11HeatFinal : Int := %lld\n", (long long)w->ledger.pools[NOETIC_POOL_HEAT_PHYS]);
-    fprintf(f, "def c11SecondLawViolations : Nat := %llu\n", (unsigned long long)w->ledger.second_law_violations);
-    fprintf(f, "def c11PciNonInterferenceOk : Bool := %s\n", pci_clean ? "true" : "false");
-    fprintf(f, "def c11PciMilli : Nat := %d\n", (int)llround(pci * 1000.0));
-    fprintf(f, "def c11NativeGatesPassed : Nat := %d\n", gr.gates_passed);
-    fprintf(f, "def c11NativeGatesTotal : Nat := %d\n", gr.gates_total);
-    fprintf(f, "def c11Ring0Blocked : Nat := %d\n", gr.g09_ring0_traps_blocked);
-    fprintf(f, "def c11WseOpsExecuted : Nat := %d\n", gr.g09_wse_ops_executed);
-    fprintf(f, "def c11WseDiffBytes : Nat := %d\n", gr.g09_diff_bytes);
-    fprintf(f, "def c11WseZeroBitRollback : Bool := %s\n", gr.g09_zero_bit_rollback ? "true" : "false");
-    fprintf(f, "def c11Observer10kZeroBit : Bool := %s\n", gr.g11_observer_zero_bit_exact ? "true" : "false");
-    fprintf(f, "def c11Hw24Passed : Nat := %d\n", shw.passed);
-    fprintf(f, "def c11Soft40Passed : Nat := %d\n", ssf.passed);
-    fprintf(f, "def c11Freak100Failed : Nat := %d\n", sfr.failed);
-    fprintf(f, "def c11Novel100Failed : Nat := %d\n", snv.failed);
-    fprintf(f, "def c11Life500Failed : Nat := %d\n", slf.failed);
-    fprintf(f, "def c11SuitesMaxDrift : Int := %lld\n",
+    fprintf(f, "@[expose] public def c11HeatFinal : Int := %lld\n", (long long)w->ledger.pools[NOETIC_POOL_HEAT_PHYS]);
+    fprintf(f, "@[expose] public def c11SecondLawViolations : Nat := %llu\n", (unsigned long long)w->ledger.second_law_violations);
+    fprintf(f, "@[expose] public def c11PciNonInterferenceOk : Bool := %s\n", pci_clean ? "true" : "false");
+    fprintf(f, "@[expose] public def c11PciMilli : Nat := %d\n", (int)llround(pci * 1000.0));
+    fprintf(f, "@[expose] public def c11NativeGatesPassed : Nat := %d\n", gr.gates_passed);
+    fprintf(f, "@[expose] public def c11NativeGatesTotal : Nat := %d\n", gr.gates_total);
+    fprintf(f, "@[expose] public def c11Ring0Blocked : Nat := %d\n", gr.g09_ring0_traps_blocked);
+    fprintf(f, "@[expose] public def c11WseOpsExecuted : Nat := %d\n", gr.g09_wse_ops_executed);
+    fprintf(f, "@[expose] public def c11WseDiffBytes : Nat := %d\n", gr.g09_diff_bytes);
+    fprintf(f, "@[expose] public def c11WseZeroBitRollback : Bool := %s\n", gr.g09_zero_bit_rollback ? "true" : "false");
+    fprintf(f, "@[expose] public def c11Observer10kZeroBit : Bool := %s\n", gr.g11_observer_zero_bit_exact ? "true" : "false");
+    fprintf(f, "@[expose] public def c11Hw24Passed : Nat := %d\n", shw.passed);
+    fprintf(f, "@[expose] public def c11Soft40Passed : Nat := %d\n", ssf.passed);
+    fprintf(f, "@[expose] public def c11Freak100Failed : Nat := %d\n", sfr.failed);
+    fprintf(f, "@[expose] public def c11Novel100Failed : Nat := %d\n", snv.failed);
+    fprintf(f, "@[expose] public def c11Life500Failed : Nat := %d\n", slf.failed);
+    fprintf(f, "@[expose] public def c11SuitesMaxDrift : Int := %lld\n",
             (long long)(shw.max_energy_drift_uq + ssf.max_energy_drift_uq + snv.max_energy_drift_uq + slf.max_energy_drift_uq));
-    fprintf(f, "def c11PoolSum : Int :=\n");
+    fprintf(f, "@[expose] public def c11PoolSum : Int :=\n");
     fprintf(f, "  c11Pool0 + c11Pool1 + c11Pool2 + c11Pool3 + c11Pool4 +\n");
     fprintf(f, "  c11Pool5 + c11Pool6 + c11Pool7 + c11Pool8 + c11Pool9\n\n");
     fprintf(f, "end NoeticLiveReceipt\n");

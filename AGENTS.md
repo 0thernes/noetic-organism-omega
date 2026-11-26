@@ -1,14 +1,48 @@
-# noetic-organism-omega (v2.0.0) — Agent Engineering Guide
+# AGENTS.md — Noetic Organism Omega (`v2.1.0`)
 
-**Role:** Tier 3/4 Whole-Organism Cognitive & Full 825-Check Clean-Slate v3.0 Engine
-**Verified Baseline:** 10/10 unit+mut (5/5 Anti-LARP), 13/13 CS-v3 Release Gates, 825/825 C11 Checks (0 Fail, 29 Indicator-Only, 5 Parity Disclosed), 100/100 Milestones (First-15 Playable LOCKED_PASS), 48/48 Pure Lean 4 (N01..N48)
+Canonical engineering, formalization, and epistemic instructions for AI coding agents and human contributors working in `noetic-organism-omega`. (`CLAUDE.md`, `GEMINI.md`, and `.cursor/rules/build-standard.mdc` point directly to this file.)
 
-## Unified 7-Repo A-Life Singularity Omega Ecosystem (Clean-Slate v3.0 Complete)
-- **Workspace Root:** `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\` (ReFS Dev Drive; mirror: `I:\A-Life God Plan\A-Life Master Folder Build`)
-- **Total Pure Lean 4 Theorems:** **`240 / 240`** (`42` `autophage v1.3.0` + `62` `cellulogonic-mecha v1.4.0` + `72` `cellular-engine-omega v5.1.0` + `48` `noetic-organism-omega v2.0.0` + `16` `asmodensius-native`) strictly within `{propext, Classical.choice, Quot.sound}`, `0 sorry`, `0 admit`, `0 bv_decide`, `0 warnings`.
-- **Clean-Slate v3.0 Executable Checks:** **`825 / 825` individually executed in native C11 (`0` fail)** — `779` `EXECUTED_PASS`, `29` `EXECUTED_PASS_INDICATOR_ONLY` (ADR 0018 Rule-4 & Rule-6), `12` `NATIVE_RELEASE_GATE_PASS` (`L7_WSE12`), `5` `PASS_CLASSICAL_PARITY_DISCLOSED` (`F-092`, `N01`, `N02`, `N50`, `LIFE-L040-A5`, Policy P7).
-- **Bottom-Up Milestones:** **`100 / 100` (`M001..M100`, Stages `0..8`, First-15 Playable `LOCKED_PASS`, `0 uq` drift)**.
-- **Substrates & Hybrid Cube:** **`75 / 75` Substrates (`PM01..25`, `MF01..25`, `GW01..25`)** + **`1,000 / 1,000` Hybrid Cube (`661 [OK]`, `274 [ADAPT]`, `20 [OVER]`, `45 [EXCL]`, `935/935` active forward stability)**.
-- **Release & Forensic Gates:** **`13 / 13` Clean-Slate v3.0 Release Gates PASS**, **`35 / 35` Compiled Mutants Caught**, **`18 / 18` Package Forensic Gates PASS (`Z: <-> I:` 0-mismatch SHA-256)**, **`OVBS-52 = 92.05` (`STAGE_5_CONVERGED_SYNTHESIS`)**.
-- **External Boundary:** `Z:\[Vibe Coded (AI)]\CLAUDECODE\Asmodensius-Native` is now actively upgraded, unlocked, verified (`76/76` ctest, `16` Pure Lean 4, both visual worlds `:8794` & `:8796`), and pushed publicly to `https://github.com/0thernes/asmodensius-native`.
-- **PowerShell Rule:** Always use `-LiteralPath` on `Z:\[Vibe Coded (AI)]\...` paths.
+## Repository Identity & Role
+
+- **Project:** `noetic-organism-omega` (`v2.1.0`) — Tier 3/4 whole-organism cognitive, soft-body homeostatic, and full 9-suite 825-check Clean-Slate v3.0 engine + 54-theorem 6-kernel Palomar Lean 4.35.0 suite.
+- **Author:** Alexander Stephen Donahue — Independent Researcher, Spokane, WA, USA (ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`). Never attribute an unformed LLC entity.
+- **Dual Open License:** `Apache-2.0` (`LICENSE`) for code, Lean proofs, tests, and scripts; `CC-BY-4.0` (`LICENSE-DOCS`) for white paper, PDFs, documentation, and result datasets.
+- **Verified Baseline (`v2.1.0`):** `10/10` unit+mutants (`5/5` Anti-LARP caught), `13/13` Clean-Slate v3.0 release gates, `825/825` C11 checks (`0` fail, `779` pass, `29` `[INDICATOR-ONLY]`, `12` native gate pass, `5` `PASS_CLASSICAL_PARITY_DISCLOSED`), `100/100` milestones (`First-15 LOCKED_PASS`), `54/54` Pure Lean 4.35.0 theorems (`N01..N54`, 5 local Windows kernels / 6/6 Linux CI kernels), `0` TeX overflows, `22/22` live-verified citations.
+
+## Hard Rules (Build Standard v1.2.0 & Playbook v1.3)
+
+1. **Direct-to-`main` Workflow (R1–R3):** Commit and push directly to `main`. No PRs, no feature branches, no commit/tag signing, no blocking hooks. CI is informational.
+2. **Banned Files (R4):** Never create `.github/dependabot.yml`, `renovate.json`, PR templates, `.github/copilot-instructions.md`, or `FUNDING.yml`.
+3. **Zero Fabrication (R6):** Never invent benchmark numbers, test passes, citations, DOIs, peer review, or sentience claims. Every number must come from a live run of current code.
+4. **Epistemic Boundaries:** Always keep `L1_BUTLIN14`, `L2_FRAMEWORKS10`, and `CQM13/19..22` labeled `EXECUTED_PASS_INDICATOR_ONLY`, keep `F-092`, `N01`, `N02`, `N50`, `LIFE-L040-A5` labeled `PASS_CLASSICAL_PARITY_DISCLOSED`, and affirm `0 / 1,900` Mega-Atlas problems retired.
+5. **10 Finding Classes (R7):** Classify every audit finding into exactly one of: `bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, `blindspot`.
+6. **PowerShell Bracket Safety:** When working under `Z:\[Vibe Coded (AI)]\ANTIGRAVITY\noetic-organism-omega`, always pass `-LiteralPath` to PowerShell file cmdlets.
+
+## Core Commands
+
+- **Build & Verify C11 + Suites + Lean (Windows):** `.\build.ps1`
+- **Build & Verify C11 (Linux):** `./build_linux.sh`
+- **Firewall, 825 Trace, Zero-Theater & Property Tests:**
+  ```bash
+  node scripts/seed_firewall.mjs
+  node scripts/build_m8_e2_825_trace.mjs
+  node scripts/audit_zero_theater.mjs
+  node tests/noetic_prop.test.mjs
+  ```
+- **Lean 4.35.0 Palomar Multi-Kernel Audit:**
+  ```bash
+  cd lean && lake build && lake build Challenge
+  lake env lean VerifyAxioms.lean > ../results/lean4-noetic-audit.txt
+  lake env leanchecker --fresh Solution
+  lake env leanchecker-paranoid --fresh Solution
+  # On Linux with bubblewrap:
+  lake check --paranoid && lake comparator --config comparator.json --paranoid
+  ```
+- **Axioms, Citations, Paper & Repo Self-Audit:**
+  ```bash
+  python scripts/check_readme_axioms.py
+  python scripts/check_citations.py
+  python scripts/build_paper.py
+  pwsh -NoProfile -File scripts/Audit-Repo.ps1
+  ```
+- **Task Runner:** See `justfile` for one-word targets (`just reproduce`, `just test`, `just lean`, `just paper`, `just audit`).

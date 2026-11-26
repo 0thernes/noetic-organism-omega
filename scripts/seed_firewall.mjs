@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Clean-Slate v3.0 GATE-01: Cryptographic Burn-on-Fail Seed Firewall (v2.0.0)
+ * Clean-Slate v3.0 GATE-01: Cryptographic Burn-on-Fail Seed Firewall (v2.1.0)
  * Enforces strict disjoint seed partitions (Dev 1001..1099 / Confirmatory 5001..5024 /
  * Held-Out 5101..5124), SHA-256 hash-chained append-only ledger binding ALL 9 executable
  * Clean-Slate v3.0 suite receipts + 100-Milestone DAG receipt, burn-on-fail lock,
@@ -68,7 +68,7 @@ const overlapDevHeld = checkDisjoint(DEV_SEEDS, HELDOUT_SEEDS);
 const overlapConfHeld = checkDisjoint(CONFIRMATORY_SEEDS, HELDOUT_SEEDS);
 const allDisjoint = overlapDevConf.length === 0 && overlapDevHeld.length === 0 && overlapConfHeld.length === 0;
 
-// Hash ALL live locked v2.0.0 C11 suite receipts (all 9 suites + 100 milestones + E1 + native gates)
+// Hash ALL live locked v2.1.0 C11 suite receipts (all 9 suites + 100 milestones + E1 + native gates)
 const boundFiles = {
   m8_e1_sha256: path.join(ROOT, "results", "m8_e1_ablation_sweep.json"),
   m8_e2_sha256: path.join(ROOT, "results", "m8_e2_cognitive_49.json"),

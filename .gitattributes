@@ -1,0 +1,20 @@
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.c text eol=lf
+*.h text eol=lf
+*.lean text eol=lf
+*.sh text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.svg text eol=lf
+*.pdf binary
+*.gz binary
+*.exe binary
+bin/noetic_engine_linux binary

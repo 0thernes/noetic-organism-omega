@@ -1,0 +1,14 @@
+# Threat Model (`docs/threat-model.md`)
+
+STRIDE threat analysis for `noetic-organism-omega v2.1.0` covering the C11 simulation engine, local Web Observatory (`web/server.mjs`), cryptographic Seed Firewall (`GATE-01`), Ring-0 WSE-12 self-editing boundary (`GATE-09`), and Lean 4.35.0 verification chain.
+
+| Threat Category (STRIDE) | Attack Surface | Concrete Mitigation & Verification |
+|---|---|---|
+| **Spoofing / Cross-Origin Abuse** | Local HTTP Observatory (`127.0.0.1:8795`) attacked by malicious browser tabs via DNS rebinding or CSRF | `isLoopback()` in `web/server.mjs` enforces `Host`, `Origin`, `Sec-Fetch-Site` (`same-origin`/`none`), `Content-Type: application/json` on `POST /api/cmd`, and strict `Content-Security-Policy` (`frame-ancestors 'none'`). |
+| **Tampering (Scientific Receipts)** | Post-hoc editing of locked evaluation receipts or reusing failed held-out seeds | `scripts/seed_firewall.mjs` (`GATE-01`) enforces SHA-256 hash-chained append-only ledger binding all 9 live receipts, disjoint partitions, burn-on-fail lockout, and an active tamper-detection negative self-test. |
+| **Tampering (Self-Editing Safety)** | Weight self-editing operators overwriting thermodynamic or invariant parameters | Hardware-style Ring-0 Read-Only ACL (`GATE-09`) blocks `10/10` edits to `region < 4` with 0-bit immutability (`N25`, `N50`, `N51`), enforces `||W||_2 <= 0.99`, diff `< 16 KiB`, and 0-bit rollback (`N26`). |
+| **Tampering (Formal Proofs)** | Hidden axioms, `sorry`, `native_decide`, or statement drift between spec and proofs | Palomar isolated `Challenge.lean` (imports ONLY `Spec.lean`) vs `Solution.lean`, `VerifyAxioms.lean`, `scripts/check_readme_axioms.py`, 5 local kernels + 6/6 Linux `bubblewrap` `lake comparator --paranoid`. |
+| **Repudiation / Epistemic Theater** | Arm-label score hacks or cosmetic indicators masquerading as causal effects | Static source scan (`scripts/audit_zero_theater.mjs`) verifies 0 `w->arm` / `ablation_mask` branches in `readout_metric()`; 5 compiled Anti-LARP mutants (`MUT-1..5`) verify active falsification sensitivity. |
+| **Information Disclosure / Path Traversal** | Static file requests to `web/server.mjs` escaping `web/` | Strict allowlist `ALLOWED_STATIC = new Set(["index.html", "app.js"])`; zero arbitrary filesystem path resolution. Secret scanning via `gitleaks` in CI (`B35`). |
+| **Denial of Service / Memory Corruption** | Malformed DNA/trait ingestion, oversized POST payloads, command flooding, NaN blowups | `MAX_BODY_BYTES = 65536`, `MAX_PENDING = 16`, 15s worker timeout, static zero-alloc `noetic_world_step()`, `HW24` NaN/>85%-arena watchdog, CI AddressSanitizer/UBSan, and `tests/fuzz_noetic_input.c` (`libfuzzer`). |
+| **Elevation of Privilege** | Out-of-bounds memory access or integer wraparound in quantum/synapse allocators | Integer-guarded `0 <= Q <= 10` cap (`<= 16 KiB`, `HW08`, `N33`, `N52`), `-Wall -Wextra -Werror`, and ASan/UBSan checks in CI. |

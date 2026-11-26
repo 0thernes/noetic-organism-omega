@@ -1,0 +1,35 @@
+name: Bug or Falsification Report
+description: Report a C11 defect, invariant violation, Lean mismatch, or claim falsification.
+labels: ["bug", "triage"]
+body:
+  - type: dropdown
+    id: class
+    attributes:
+      label: Finding Class
+      options:
+        - bug
+        - error
+        - issue
+        - problem
+        - concern
+        - dilemma
+        - conflict
+        - gap
+        - hole
+        - blindspot
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary & Affected Claim/Module
+      placeholder: Which C11 module, Lean theorem, or CLAIMS.md ID is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Exact Reproduction Steps
+      placeholder: OS, compiler/Lean version, exact commands, and observed vs expected output.
+    validations:
+      required: true
