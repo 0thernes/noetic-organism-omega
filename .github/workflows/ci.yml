@@ -72,10 +72,15 @@ jobs:
             src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c src/noetic_novel100.c `
             src/noetic_life500.c src/noetic_milestones100.c src/noetic_eval.c src/main_cli.c `
             -o bin/noetic_engine.exe -lm
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           .\bin\noetic_engine.exe test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           .\bin\noetic_engine.exe gates results/m9_native_release_gates.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node tests/noetic_prop.test.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node examples/run_quick_demo.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
   lean4-6kernel-palomar:
     name: Pure Lean 4.35.0 — 54 Theorems & 6-Kernel Palomar Comparator

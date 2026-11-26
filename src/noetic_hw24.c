@@ -7,11 +7,18 @@
  * ============================================================================ */
 
 static double hw_now_ms(void) {
-#if defined(_WIN32)
+#if defined(_WIN32) && defined(NOETIC_BARE_WIN64)
     int64_t c = 0, f = 1;
     QueryPerformanceCounter(&c);
     QueryPerformanceFrequency(&f);
     return (double)c * 1000.0 / (double)f;
+#elif defined(_WIN32)
+    LARGE_INTEGER c, f;
+    c.QuadPart = 0;
+    f.QuadPart = 1;
+    QueryPerformanceCounter(&c);
+    QueryPerformanceFrequency(&f);
+    return (double)c.QuadPart * 1000.0 / (double)f.QuadPart;
 #else
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
