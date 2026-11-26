@@ -3,6 +3,11 @@
 All notable changes to `noetic-organism-omega` are documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [Unreleased] - 2026-11-26
+
+### Changed
+- **Claims corrected to match the 2026-11-26 statement audit** (documentation only; no Lean, C11, paper or data changes): Lean results now describe a 10-field unbounded-`Int` model of the ledger, not the 11-slot `int64_t` C11 ledger; the 54-theorem count states that 18 are closed numeral identities and 3 are receipt constant checks; `CLAIMS.md` rows C1-C5 and C7 split Lean-model clauses (`kernel-checked`) from C11 runtime clauses (`program-audited` / `empirical`); "Second-Law" and "Hardware Ring-0" labels are described as integer facts; the platform-dependent receipt hash is disclosed. Paper and Lean-comment errors are listed in `ERRATA.md`.
+
 ## [2.1.0] - 2026-11-25
 
 ### Added

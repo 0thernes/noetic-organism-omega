@@ -57,10 +57,10 @@ automation_and_ai_disclosure:
   human_oversight: "Alexander Stephen Donahue set research goals, invariants, epistemic boundaries, and validated builds, multi-kernel audits, and receipts."
 scope_and_non_formalized_disclaimers:
   formalized_scope:
-    - "Exact 10-pool integer First-Law conservation, Second-Law sink monotonicity, non-negativity, solar inflow residual, closed-tick composition, and +1 uq leaky mutant detection (N01..N10, N36, N37, N49, N54)."
-    - "Forked-Snapshot PCI* observer non-interference wrapper, Ring-0 read-only ACL immutability for regions < 4, WSE reversible rollback involution, WSE < 16 KB diff bound, XPBD area bound, packed b1.58 2-bit roundtrip & 5-trit/B uint8 radix, Q<=10 memory cap, 5-gear clock divisors, Philox domain key distinctness (N11, N25..N30, N33..N35, N38, N39, N50..N52)."
-    - "Exact Wilcoxon signed-rank sum identity & N=48 finite DP table bound, Holm-Bonferroni inflation bound, non-ceiling guard, sham symmetry, seed firewall disjointness, anti-oracle separation, 18-bit ablation mask isolation, and Clean-Slate v3.0 partition identities (N12..N23, N31, N40..N47, N53)."
-    - "Direct kernel verification of exported live C11 execution receipts from noetic_engine.exe export-lean 5001 (N24, N32, N48)."
+    - "Field-sum conservation for guarded transfers on a 10-field unbounded-Int Lean model (Ledger10, not the 11-slot int64 C11 ledger), heat-field non-decrease, non-negativity preservation, solar inflow residual, closed-tick composition, and +1 leak detection (N01..N10, N36, N37, N49, N54)."
+    - "Pair-projection identity for the forked observer, one-line region<4 edit-guard identity (not a hardware ACL proof), (w + d) - d = w, the numeral identity 2464 < 16384, XPBD area bound, packed b1.58 2-bit roundtrip & 5-trit/B uint8 radix, Q<=10 memory cap, 5-gear clock divisors, Philox domain key distinctness (N11, N25..N30, N33..N35, N38, N39, N50..N52)."
+    - "Triangular-sum identity 2*sum1To n = n(n+1) and sum1To 48 = 1176, Holm-Bonferroni inflation bound, non-ceiling guard, sham symmetry, literal seed-range disjointness, anti-oracle separation, 18-bit ablation mask bound, and closed numeral identities recording Clean-Slate v3.0 counts (N12..N23, N31, N40..N47, N53). 18 of the 54 theorems are closed numeral identities that certify nothing about the engine."
+    - "decide-checks of hard-coded constants exported by one C11 run (export-lean 5001); not a proof about C11 behaviour (N24, N32, N48)."
   not_formalized_in_lean:
     - "The C11 source files themselves (src/*.c) are NOT formally verified via VST/CompCert; bridge fidelity rests on live receipt export (N24/N32/N48), -Wall -Wextra -Werror, ASan/UBSan in CI, 5 compiled Anti-LARP mutants, and 825 native checks."
     - "Floating-point IEEE-754 transcendental approximations (noetic_exp_det/log_det/tanh_det) are empirically audited (max relative error 2.175e-16), not formally proved in Lean."

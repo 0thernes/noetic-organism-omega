@@ -11,3 +11,38 @@ All substantive corrections to published versions, documentation, proofs, or cla
 | **E-03** | `gap` | Repository lacked a dual open license (`LICENSE` Apache-2.0 / `LICENSE-DOCS` CC-BY-4.0), AMS-LaTeX white paper, live citation checker, and Build Standard v1.2.0 compliance scaffolding. | Added Apache-2.0 / CC-BY-4.0 dual licenses, zero-overflow Tectonic AMS-LaTeX white paper (`paper/` & `dist/`), 22 live-verified citations, and 100.0% Build Standard v1.2.0 scaffolding. |
 | **E-04** | `hole` | `README.md` summarized Lean axiom status in prose rather than pasting verbatim `#print axioms` lines with an automated drift check. | Embedded verbatim 54-line `#print axioms` block in `README.md` guarded by `scripts/check_readme_axioms.py`. |
 | **E-05** | `error` | Initial draft of `paper/refs.bib` assigned unregistered DOI `10.2307/4615733` to Holm (1979), and initial `paper/main.tex` miscounted zero-axiom theorems as 32 instead of 31. | Caught by `scripts/check_citations.py` and line-by-line audit of `results/lean4-noetic-audit.txt`; updated `holm1979` to live-verified HTTP 200 JSTOR URL `https://www.jstor.org/stable/4615733` and corrected theorem counts (`31` zero-axiom + `22` `[propext/Quot.sound]` + `1` `[propext, Classical.choice, Quot.sound]` = `54`). |
+
+## 2026-11-26 statement audit
+
+An independent statement audit of commit `c4301d9` found that several public statements claimed more than the Lean code proves. The audit log is at <https://github.com/0thernes/0thernes-research-archive/blob/main/docs/reviews/2026-11-26-statement-audit.md>. The Lean suite itself builds, has no `sorry` outside the statement-only `Challenge.lean`, and uses only `propext`, `Quot.sound` and (in `N22`) `Classical.choice`.
+
+### Corrected in this pass (documentation only)
+
+| Ref | Where | What was wrong | Correction |
+|---|---|---|---|
+| **E-06** | `README.md`, `CLAIMS.md` (C1), `CITATION.cff`, `lean/formalization.yaml`, `docs/MEGA_ATLAS_CROSSCHECK.md` | Wording implied that Lean verifies 11-pool `int64` conservation. Lean's `Ledger10` has 10 unbounded `Int` fields; the C11 ledger has 11 `int64_t` slots, and no theorem covers the C source or overflow. | Lean statements now name the 10-field `Int` model; "11-slot `int64`" is used only for the C11 runtime tests. |
+| **E-07** | `README.md`, `LIMITATIONS.md`, `docs/statement-fidelity.md`, `lean/formalization.yaml` | The 54 theorems were presented as certified invariants. 18 are closed numeral identities (`N12`, `N13`, `N16`, `N23`, `N27`, `N31`, `N34`, `N38..N47`, `N52`) and 3 (`N24`, `N32`, `N48`) `decide`-check constants exported by one C11 run. | The breakdown is stated; the numeral identities are described as bookkeeping arithmetic that certifies nothing about the engine. |
+| **E-08** | `CLAIMS.md` rows C1, C2, C3, C4, C5, C7 | Rows tagged C11 runtime behaviour `kernel-checked`. C3's spectral-norm clause (`0.99`) has no Lean theorem; C7's `N48` only checks six exported constants. | Each row is split into a Lean-model clause (`kernel-checked`) and a C11 clause (`program-audited` or `empirical`). C7 is `empirical` only. |
+| **E-09** | `README.md`, `LIMITATIONS.md`, `docs/statement-fidelity.md`, `docs/threat-model.md`, `docs/glossary.md` | "Second-Law" and "Hardware Ring-0 ACL" labels were attached to integer facts (`N02`, `N06`, `N25`). | Described as heat-field non-decrease under a non-negative guard and a one-line region-guard identity. |
+| **E-10** | `LIMITATIONS.md`, `README.md` | Not disclosed: CI regenerates the receipt on Linux, and the world-state SHA-256 printed by CI run `45752970555` (`20378b2c...4ebd`) differs from the committed Windows receipt (`1fde9fe5...d1ba`, seed 5001, 180 ticks). | Disclosed as a limitation. Whether the Linux pool constants match the committed ones is unverified. |
+
+### Errors in the frozen paper (`paper/main.tex` and `dist/Donahue_2026_noetic_organism_omega.pdf`; not changed in this pass)
+
+| Where | What is wrong | Correction | Affects a theorem statement? |
+|---|---|---|---|
+| `paper/main.tex` line 86, Table "Claims Ledger", row C1 | "Exact 11-pool `int64` First-Law ... & Second-Law sink monotonicity" is tagged kernel-checked. Lean covers a 10-field `Int` model only. | Split as in `CLAIMS.md` C1: Lean model kernel-checked; 11-slot `int64` behaviour program-audited. | No |
+| `paper/main.tex` line 88, Table "Claims Ledger", row C3 | Tagged kernel-checked, but the falsification column includes the spectral norm `0.99`, which no Lean theorem covers. | Kernel-checked only for the region-guard identity and `(w + d) - d = w`; the spectral norm is empirical. | No |
+| `paper/main.tex` line 165, Section "Formal Verification and Statement-Fidelity Audit" | "48 core invariants and receipt checks (`N01..N48`)": 18 of the 54 theorems are closed numeral identities. | "48 core theorems (`N01..N48`), of which 17 are closed numeral identities and 3 are receipt constant checks; with `N52`, 18 of the 54 are numeral identities". | No |
+| `paper/main.tex` line 298, Section "Unsolved Problems Mega-Atlas Cross-Check", row `SYS-009` | "Exact 10-pool `int64` ledger + Lean `N01--N09`": Lean has no `int64`. | "10-field unbounded-`Int` Lean model; 11-slot `int64` C11 ledger tested". | No |
+| `paper/main.tex` line 300, same table, row `AI-001` | "Hardware-style Ring-0 ACL immutability (`N25`, `N50--N51`)": `N25` unfolds a one-line `if` expression. | "Software read-only region (runtime test); Lean proves the abstract region-guard identity". | No |
+| `paper/main.tex` line 155, Section "Deterministic Portable Math, Philox RNG, and Exact Statistics" | States that the deterministic math removes cross-platform drift between Win64 Clang and Linux GCC, but the Linux CI receipt hash for seed 5001 differs from the committed Windows hash. | Add that the world-state hash differs across platforms in CI run `45752970555`; the cause is not yet identified. | No |
+
+### Known issues in the formal code (not yet fixed)
+
+| Where | What is wrong | Correction | Affects a theorem statement? |
+|---|---|---|---|
+| `lean/NoeticProofs.lean` line 25 (`N02`) and line 61 (`N06`) | Comments say "Exact Second-Law monotonicity"; the theorems prove `L.p8 <= (transfer ...).p8` for integer fields. | Rename the comments to "heat field is non-decreasing under the guarded transfer". | No (comment only) |
+| `lean/NoeticProofs.lean` line 201 (`N25`) | Comment says "Hardware Ring-0 Read-Only ACL immutability theorem"; `ring0ApplyEdit` is a one-line `if region < 4` expression. | "Region-guard identity: edits to regions 0..3 return the input value". | No (comment only) |
+| `lean/NoeticProofs.lean` line 230 (`N30`) | Comment claims `loss_ablated / loss_intact >= 1.6 <=> 5 * loss_ablated >= 8 * loss_intact`, but the conclusion is only `loss_intact <= loss_ablated`. | Correct the comment to state the actual conclusion. | No (statement is correct; comment overstates it) |
+| `lean/NoeticProofs.lean` lines 181, 237, 330 (`N23`, `N31`, `N47`) | Names `ecosystem_*_pure_lean_theorems` suggest a fact about theorems; each is a closed sum of literals. | Rename or document as historical count arithmetic. | No |
+| `.github/workflows/ci.yml`, job `lean4-6kernel-palomar` | CI overwrites `lean/NoeticProofs/LiveC11Receipt.lean` with a fresh Linux export before `lake build` and never compares it with the committed receipt. | Diff the regenerated receipt against the committed one, or record both platform receipts. | No |
