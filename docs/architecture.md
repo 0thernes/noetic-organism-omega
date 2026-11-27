@@ -1,6 +1,6 @@
 # System Architecture (`docs/architecture.md`)
 
-`noetic-organism-omega v2.1.0` is a portable, zero-dependency C11 whole-organism simulation engine coupled with a 54-theorem 6-kernel Palomar Lean 4.35.0 formal verification suite and a loopback-only Node.js Web Observatory.
+`noetic-organism-omega v2.2.0` is a portable, zero-dependency C11 whole-organism simulation engine coupled with a 68-declaration 6-kernel Palomar Lean 4.35.0 formal verification suite (`N01..N60` + `AdversarialTests.lean` `A01..A08`), 0-bit cross-OS determinism across Win64 Clang & Linux GCC, and a loopback-only Node.js Web Observatory.
 
 ## 1. Module Map (`src/` and `include/`)
 
@@ -24,8 +24,8 @@
 ## 2. Formal Proof Architecture (`lean/`)
 
 - `NoeticProofs/LiveC11Receipt.lean`: Live execution receipt emitted by `noetic_engine export-lean 5001` (`module` + `@[expose] public def`).
-- `NoeticProofs/Spec.lean`: Pure shared definitions (`Ledger10`, guarded transfers, `closedTick`, `forkedObserverEval`, `sum1To`, `ring0ApplyEdit`, `packB158`/`unpackB158`) with zero proofs and zero `sorry`.
-- `NoeticProofs.lean`: 54 sorry-free `public theorem` proofs (`N01..N48` core + `N49..N54` non-vacuity and sharp negative refutations).
+- `NoeticProofs/Spec.lean`: Pure shared definitions (`Ledger10`, `Ledger11`, guarded transfers, `closedTick`, `openTick11`, `forkedObserverEval`, `sum1To`, `ring0ApplyEdit`, `packB158`/`unpackB158`) with zero proofs and zero `sorry`.
+- `NoeticProofs.lean` & `AdversarialTests.lean`: 68 sorry-free `public theorem` proofs (`N01..N48` core, `N49..N54` non-vacuity/refutation, `N55..N60` `Ledger11` & fasting bounds, plus `A01..A08` zero-axiom adversarial refutations).
 - `Challenge.lean` & `Solution.lean` & `comparator.json`: Isolated Palomar statement-vs-solution contract for 6-kernel judging.
 - `VerifyAxioms.lean`: Standalone `#print axioms` audit entrypoint checked against `README.md` by `scripts/check_readme_axioms.py`.
 

@@ -15,7 +15,7 @@ jobs:
     name: Build Release Artifacts, SHA256SUMS & SLSA Attestation (${{ github.ref_name }})
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -42,7 +42,7 @@ jobs:
           cat SHA256SUMS
 
       - name: Attest Build Provenance (SLSA / Sigstore Rekor)
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: |
             dist/Donahue_2026_noetic_organism_omega.pdf

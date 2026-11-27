@@ -20,10 +20,17 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
+
+      - name: Verify SHA-256 Integrity Manifests (CHECKSUMS.sha256 & data/MANIFEST.sha256)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          set -euo pipefail
+          sha256sum -c CHECKSUMS.sha256
+          sha256sum -c data/MANIFEST.sha256
 
       - name: Build & Verify on Linux (GCC -ffp-contract=off -Werror + 825 Checks + 100 Milestones + 0-Byte Receipt Diff + ASan/UBSan)
         if: matrix.os == 'ubuntu-latest'
@@ -58,7 +65,7 @@ jobs:
 
       - name: Upload M8 E3 Scaling Benchmark Receipt (report-only tracking)
         if: matrix.os == 'ubuntu-latest'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: noetic-benchmarks-json
           path: results/m8_e3_scaling_bench.json
@@ -95,7 +102,7 @@ jobs:
     name: Pure Lean 4.35.0 — 68 Theorems, Cross-OS Receipt Diff, Negative/Tamper Gates & 6-Kernel Palomar Comparator
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install bubblewrap for Palomar multi-kernel sandbox
         run: sudo apt-get update && sudo apt-get install -y bubblewrap
       - name: Install elan & pinned Lean 4.35.0 toolchain
@@ -136,7 +143,7 @@ jobs:
     name: AMS-LaTeX White Paper, Blueprint, Timestamps, SHA256SUMS & SLSA Provenance
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Tectonic
         run: |
           curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
@@ -152,7 +159,7 @@ jobs:
           sha256sum dist/Donahue_2026_noetic_organism_omega.pdf dist/arxiv_submission.tar.gz results/lean4-noetic-audit.txt results/lean4-multi-kernel.txt results/citation-audit.json CHECKSUMS.sha256 CHECKSUMS.sha256.tsr CHECKSUMS.sha256.ots > SHA256SUMS
           cat SHA256SUMS
       - name: Attest build provenance (SLSA)
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         continue-on-error: true
         with:
           subject-path: |
@@ -164,7 +171,7 @@ jobs:
     name: Build Standard v1.2.0 Audit & Report-Only Security Scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Build Standard v1.2.0 self-audit (report-only)

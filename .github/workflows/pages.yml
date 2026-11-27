@@ -19,10 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verify WCAG 2.2 AA Strict-CSP Zero-CDN Blueprint & Landing Site
         run: python3 scripts/check_blueprint.py
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - name: Assemble static site (Landing + Interactive 68-Theorem Lean 4 Blueprint + Paper PDF + FAIR Metadata)
         run: |
           mkdir -p _site/dist _site/results
@@ -34,7 +34,7 @@ jobs:
           cp results/lean4-noetic-audit.txt results/citation-audit.json _site/results/
           cp llms.txt llms-full.txt croissant.json ro-crate-metadata.json codemeta.json _site/
           touch _site/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
@@ -46,4 +46,4 @@ jobs:
     needs: build
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
