@@ -1,0 +1,61 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "https://github.com/0thernes/noetic-organism-omega",
+  "name": "Noetic Organism Omega",
+  "version": "2.2.0",
+  "datePublished": "2026-11-26",
+  "dateModified": "2026-11-26",
+  "description": "Zero-dependency portable C11 whole-organism cognitive and homeostatic simulation engine (6,776 B/world) with 8 portable IEEE-754 deterministic math functions yielding 0-bit cross-OS SHA-256 identity across Win64 Clang and Linux GCC, executing 825/825 Clean-Slate v3.0 checks, 100/100 milestones, 13/13 release gates, and 5/5 Anti-LARP mutants with 0 uq integer First-Law drift, paired with 68 pure Lean 4.35.0 Palomar theorems across 6 independent proof kernels.",
+  "codeRepository": "https://github.com/0thernes/noetic-organism-omega",
+  "url": "https://0thernes.github.io/noetic-organism-omega/",
+  "issueTracker": "https://github.com/0thernes/noetic-organism-omega/issues",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "programmingLanguage": [
+    "C",
+    "Lean",
+    "JavaScript",
+    "Python",
+    "TeX"
+  ],
+  "operatingSystem": [
+    "Windows",
+    "Linux"
+  ],
+  "softwareRequirements": [
+    "C11 compiler (Clang or GCC)",
+    "Lean 4.35.0 (elan/lake)",
+    "Node.js 22+",
+    "Python 3.11+"
+  ],
+  "keywords": [
+    "artificial-life",
+    "c11",
+    "lean4",
+    "formal-verification",
+    "palomar",
+    "thermodynamic-conservation",
+    "xpbd",
+    "bitnet-b158",
+    "philox",
+    "cross-os-determinism",
+    "falsification"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0006-8168-9648",
+      "givenName": "Alexander Stephen",
+      "familyName": "Donahue",
+      "email": "0_0@0thernes.art",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Independent Researcher, Spokane, WA, USA"
+      }
+    }
+  ],
+  "developmentStatus": "active",
+  "referencePublication": "dist/Donahue_2026_noetic_organism_omega.pdf",
+  "isAccessibleForFree": true,
+  "sameAs": "https://archive.softwareheritage.org/swh:1:snp:b6ab6984080956100c967e802c6fb44e0da7ff52"
+}

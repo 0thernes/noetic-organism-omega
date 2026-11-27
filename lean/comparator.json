@@ -55,7 +55,21 @@
     "NoeticProofs.N51_refute_ring0_blocks_all_regions",
     "NoeticProofs.N52_refute_quantum_cap_11_fits_16384",
     "NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness",
-    "NoeticProofs.N54_refute_leaky_mutant_conserves_sum"
+    "NoeticProofs.N54_refute_leaky_mutant_conserves_sum",
+    "NoeticProofs.N55_ledger11_solar_inflow_preserves_residual",
+    "NoeticProofs.N56_ledger11_open_tick_preserves_residual",
+    "NoeticProofs.N57_ledger11_open_tick_monotone_heat",
+    "NoeticProofs.N58_ledger11_open_tick_preserves_nonneg",
+    "NoeticProofs.N59_ledger11_live_receipt_zero_residual",
+    "NoeticProofs.N60_fasting_ratio_equivalence_and_strict",
+    "NoeticProofs.A01_refute_unguarded_transfer_monotone_heat",
+    "NoeticProofs.A02_refute_unguarded_transfer_nonneg",
+    "NoeticProofs.A03_refute_region4_immutable",
+    "NoeticProofs.A04_refute_unrestricted_b158_roundtrip",
+    "NoeticProofs.A05_refute_bad_ledger11_transfer_conserves",
+    "NoeticProofs.A06_refute_zero_seed_valid",
+    "NoeticProofs.A07_refute_solar_without_p10_preserves_residual",
+    "NoeticProofs.A08_refute_negative_score_nonneg"
   ],
   "definition_names": [],
   "permitted_axioms": [

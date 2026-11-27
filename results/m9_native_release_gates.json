@@ -7,5 +7,5 @@
   "GATE-07": {"passed": true, "bytes_per_syn": 0.2500, "offload_pct": 84.13, "decerebrate_survived": true, "pack_exact": true},
   "GATE-09": {"passed": true, "wse_ops": 10, "ring0_blocked": 10, "ring0_attempted": 10, "spectral_norm": 0.844337, "diff_bytes": 2464, "zero_bit_rollback": true, "ring0_immutable": true},
   "GATE-10": {"passed": true, "motor_remap_pct": 87.50, "adult_retention_acc": 1.0000, "ablated_control_acc": 0.5000, "drift_uq": 0},
-  "GATE-11": {"passed": true, "ticks": 10000, "observer_reads": 200, "zero_bit_exact": true, "sha256": "eceedf4debbe1b0676cb98c99063076f989ac561bb1afa5fdf02048a7241bce1"}
+  "GATE-11": {"passed": true, "ticks": 10000, "observer_reads": 200, "zero_bit_exact": true, "sha256": "c7a53fd557c4a08bbeeff960a77efe04069849455e479d1fad97111bb18d3f75"}
 }

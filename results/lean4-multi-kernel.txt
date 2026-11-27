@@ -1,19 +1,21 @@
-﻿# NOETIC ORGANISM OMEGA v2.1.0 — Multi-Kernel Lean 4.35.0 Verification Transcript
-Date: 2026-11-25T18:46:06Z
+# NOETIC ORGANISM OMEGA v2.2.0 — Multi-Kernel Lean 4.35.0 Verification Transcript
+Date: 2026-11-26T23:54:41Z
 Toolchain: Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
-Theorems: 54 (N01..N48 core + N49..N54 non-vacuity & sharp negative refutations)
+Theorems: 68 (N01..N48 core + N49..N54 witnesses + N55..N60 Ledger11/ratio + A01..A08 AdversarialTests)
 
 [1/6] lake env leanchecker --fresh Solution
-PASS (exit 0) 
+PASS (exit 0)
 [2/6] lake env leanchecker-paranoid --fresh Solution
-PASS (exit 0) 
-[3/6] lake env leanexport Solution -- <54 theorems>
-PASS (exit 0, exported 5501394 bytes)
+PASS (exit 0)
+[3/6] lake env leanexport Solution -- <68 theorems>
+PASS (exit 0, exported 6211828 bytes)
 [4/6] lake env con-leche --verified
-PASS (exit 0) con-leche: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul con-leche: accepted 1617 declarations (--verified)
+PASS (exit 0) con-leche: accepted 1679 declarations (--verified)
+ con-leche: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul
 [5/6] lake env con-ron --verified
-PASS (exit 0) con-ron: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul con-ron: accepted 1617 declarations (--verified)
+PASS (exit 0) con-ron: accepted 1679 declarations (--verified)
+ con-ron: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul
 [6/6] lake env nanoda_bin (unpermitted_axiom_hard_error=true)
-PASS (exit 0) 
+PASS (exit 0)
 
-Platform note: On Windows, lean4lean.exe and bwrap-sandboxed lake check / lake comparator require Linux bubblewrap; all 6/6 kernels (lean4, leanchecker-paranoid, lean4lean, nanoda_bin, con-leche, con-ron + lake check --paranoid + lake comparator --config comparator.json --paranoid) are wired in .github/workflows/ci.yml on ubuntu-latest.
+Platform note: On Windows, lean4lean.exe and bwrap-sandboxed lake check / lake comparator require Linux bubblewrap; all 6/6 kernels (lean4, leanchecker-paranoid, lean4lean, nanoda_bin, con-leche, con-ron + lake check --paranoid + lake comparator --config comparator.json --paranoid) execute in .github/workflows/ci.yml on ubuntu-latest.

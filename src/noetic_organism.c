@@ -11,7 +11,7 @@ static inline double clampd(double x, double lo, double hi) {
 static inline double sigmoid(double x) {
     if (x > 20.0) return 1.0;
     if (x < -20.0) return 0.0;
-    return 1.0 / (1.0 + exp(-x));
+    return 1.0 / (1.0 + noetic_exp_det(-x));
 }
 
 static inline double wrap_delta(double d, double size) {
@@ -141,10 +141,10 @@ void noetic_world_init(NoeticWorld *w, uint64_t seed, NoeticControlArm arm, uint
         double cy = 10.0 + 44.0 * noetic_philox_uniform(seed, 104, (uint64_t)(i * 3 + 1));
         double ang = M_PI * noetic_philox_uniform(seed, 104, (uint64_t)(i * 3 + 2));
         double len = 4.5;
-        w->walls[i].x0 = cx - 0.5 * len * cos(ang);
-        w->walls[i].y0 = cy - 0.5 * len * sin(ang);
-        w->walls[i].x1 = cx + 0.5 * len * cos(ang);
-        w->walls[i].y1 = cy + 0.5 * len * sin(ang);
+        w->walls[i].x0 = cx - 0.5 * len * noetic_cos_det(ang);
+        w->walls[i].y0 = cy - 0.5 * len * noetic_sin_det(ang);
+        w->walls[i].x1 = cx + 0.5 * len * noetic_cos_det(ang);
+        w->walls[i].y1 = cy + 0.5 * len * noetic_sin_det(ang);
     }
 
     /* Spawn conspecific peers with gaze rays pointing toward target patches */
@@ -155,9 +155,9 @@ void noetic_world_init(NoeticWorld *w, uint64_t seed, NoeticControlArm arm, uint
         pr->target_patch = (i * 4) % NOETIC_PATCH_COUNT;
         double dx = wrap_delta(w->patches[pr->target_patch].x - pr->x, w->world_size);
         double dy = wrap_delta(w->patches[pr->target_patch].y - pr->y, w->world_size);
-        pr->gaze_angle = atan2(dy, dx);
-        pr->vx = 0.25 * cos(pr->gaze_angle);
-        pr->vy = 0.25 * sin(pr->gaze_angle);
+        pr->gaze_angle = noetic_atan2_det(dy, dx);
+        pr->vx = 0.25 * noetic_cos_det(pr->gaze_angle);
+        pr->vy = 0.25 * noetic_sin_det(pr->gaze_angle);
         pr->alerted = 0;
     }
 
@@ -167,8 +167,8 @@ void noetic_world_init(NoeticWorld *w, uint64_t seed, NoeticControlArm arm, uint
         hz->x = 6.0 + 52.0 * noetic_philox_uniform(seed, 106, (uint64_t)(i * 4));
         hz->y = 6.0 + 52.0 * noetic_philox_uniform(seed, 106, (uint64_t)(i * 4 + 1));
         double ang = 2.0 * M_PI * noetic_philox_uniform(seed, 106, (uint64_t)(i * 4 + 2));
-        hz->vx = 0.42 * cos(ang);
-        hz->vy = 0.42 * sin(ang);
+        hz->vx = 0.42 * noetic_cos_det(ang);
+        hz->vy = 0.42 * noetic_sin_det(ang);
         hz->radius = 2.0;
     }
 
@@ -295,7 +295,7 @@ double noetic_compute_forked_pci_star(NoeticWorld *w, bool *live_unchanged_out) 
     }
 
     /* Drive thalamocortical excitability strictly from real embodied state (speed + cortical activity), zero arm-label checks! */
-    double live_speed = hypot(fk->org.vx, fk->org.vy);
+    double live_speed = noetic_hypot_det(fk->org.vx, fk->org.vy);
     double live_pred_match = (fk->org.acc_pred_n > 0) ? (fk->org.acc_pred_err_sum / (double)fk->org.acc_pred_n) : 0.6;
     double wake_gain = clampd(0.20 + 0.45 * clampd(live_speed / 0.65, 0.0, 1.0) + 0.45 * live_pred_match, 0.15, 1.05);
 
@@ -313,29 +313,29 @@ double noetic_compute_forked_pci_star(NoeticWorld *w, bool *live_unchanged_out) 
                 int j2 = (i + 5) % NOETIC_CORTEX_UNITS;
                 int j3 = (i + 11) % NOETIC_CORTEX_UNITS;
                 double w1 = 0.42 * wake_gain * (((i + t) & 1) ? 1.0 : -0.75);
-                double w2 = 0.34 * wake_gain * (0.5 + 0.5 * sin(fk_ph[j2] - fk_ph[i]));
-                double w3 = -0.29 * wake_gain * cos(0.7 * (double)i + 0.3 * (double)t);
-                tc_sum_fk = w1 * tanh(fk_x[j1]) + w2 * tanh(fk_x[j2]) + w3 * tanh(fk_x[j3]);
-                double w2b = 0.34 * wake_gain * (0.5 + 0.5 * sin(base_ph[j2] - base_ph[i]));
-                tc_sum_base = w1 * tanh(base_x[j1]) + w2b * tanh(base_x[j2]) + w3 * tanh(base_x[j3]);
+                double w2 = 0.34 * wake_gain * (0.5 + 0.5 * noetic_sin_det(fk_ph[j2] - fk_ph[i]));
+                double w3 = -0.29 * wake_gain * noetic_cos_det(0.7 * (double)i + 0.3 * (double)t);
+                tc_sum_fk = w1 * noetic_tanh_det(fk_x[j1]) + w2 * noetic_tanh_det(fk_x[j2]) + w3 * noetic_tanh_det(fk_x[j3]);
+                double w2b = 0.34 * wake_gain * (0.5 + 0.5 * noetic_sin_det(base_ph[j2] - base_ph[i]));
+                tc_sum_base = w1 * noetic_tanh_det(base_x[j1]) + w2b * noetic_tanh_det(base_x[j2]) + w3 * noetic_tanh_det(base_x[j3]);
                 if (!wave_ablated) {
-                    ph_c_fk = 0.28 * wake_gain * (sin(fk_ph[j1] - fk_ph[i]) + sin(fk_ph[j2] - fk_ph[i]));
-                    ph_c_base = 0.28 * wake_gain * (sin(base_ph[j1] - base_ph[i]) + sin(base_ph[j2] - base_ph[i]));
+                    ph_c_fk = 0.28 * wake_gain * (noetic_sin_det(fk_ph[j1] - fk_ph[i]) + noetic_sin_det(fk_ph[j2] - fk_ph[i]));
+                    ph_c_base = 0.28 * wake_gain * (noetic_sin_det(base_ph[j1] - base_ph[i]) + noetic_sin_det(base_ph[j2] - base_ph[i]));
                 }
             }
             double tau = fk->org.sltc_tau[i];
-            double decay = exp(-1.0 / (tau > 1.0 ? tau : 1.0));
+            double decay = noetic_exp_det(-1.0 / (tau > 1.0 ? tau : 1.0));
             n_fk[i] = decay * fk_x[i] * (0.45 + rec) + tc_sum_fk;
             n_base[i] = decay * base_x[i] * (0.45 + rec) + tc_sum_base;
-            np_fk[i] = fk_ph[i] + fk->org.osc_omega[i] + ph_c_fk + 0.25 * tanh(n_fk[i]);
-            np_base[i] = base_ph[i] + base->org.osc_omega[i] + ph_c_base + 0.25 * tanh(n_base[i]);
+            np_fk[i] = fk_ph[i] + fk->org.osc_omega[i] + ph_c_fk + 0.25 * noetic_tanh_det(n_fk[i]);
+            np_base[i] = base_ph[i] + base->org.osc_omega[i] + ph_c_base + 0.25 * noetic_tanh_det(n_base[i]);
         }
         for (int i = 0; i < NOETIC_CORTEX_UNITS; ++i) {
             fk_x[i] = n_fk[i];
             base_x[i] = n_base[i];
             fk_ph[i] = np_fk[i];
             base_ph[i] = np_base[i];
-            double diff = fabs(fk_x[i] - base_x[i]) + 0.25 * fabs(sin(fk_ph[i] - base_ph[i]));
+            double diff = fabs(fk_x[i] - base_x[i]) + 0.25 * fabs(noetic_sin_det(fk_ph[i] - base_ph[i]));
             uint8_t b = (diff > 0.045) ? 1u : 0u;
             bits[t * NOETIC_CORTEX_UNITS + i] = b;
             ones += b;
@@ -346,9 +346,9 @@ double noetic_compute_forked_pci_star(NoeticWorld *w, bool *live_unchanged_out) 
     double pci = 0.0;
     if (ones > 4 && ones < L - 4) {
         double p = (double)ones / (double)L;
-        double H = -(p * log2(p) + (1.0 - p) * log2(1.0 - p));
+        double H = -(p * noetic_log2_det(p) + (1.0 - p) * noetic_log2_det(1.0 - p));
         int c_lz = lz76_complexity(bits, L);
-        double norm = ((double)L * H) / log2((double)L);
+        double norm = ((double)L * H) / noetic_log2_det((double)L);
         if (norm > 1e-9) {
             pci = (double)c_lz / norm;
         }
@@ -381,14 +381,15 @@ void noetic_world_step(NoeticWorld *w) {
     if (w->arm == NOETIC_ARM_SHAM) {
         double acc = o->sham_scratch;
         for (int k = 0; k < 8; ++k) {
-            acc = 0.99 * acc + 0.01 * sin((double)(t + (uint64_t)k) * 0.17);
+            acc = 0.99 * acc + 0.01 * noetic_sin_det((double)(t + (uint64_t)k) * 0.17);
         }
         o->sham_scratch = acc;
     }
 
     /* 1. Environmental dynamics: solar inflow, circadian phase, dynamic patch devaluation, peers & hazards */
-    w->circadian_phase = fmod(w->circadian_phase + (2.0 * M_PI / 120.0), 2.0 * M_PI);
-    int64_t solar_tick = (int64_t)(800.0 + 400.0 * sin(w->circadian_phase));
+    w->circadian_phase += (2.0 * M_PI / 120.0);
+    if (w->circadian_phase >= 2.0 * M_PI) w->circadian_phase -= 2.0 * M_PI;
+    int64_t solar_tick = (int64_t)(800.0 + 400.0 * noetic_sin_det(w->circadian_phase));
     noetic_ledger_solar_in(&w->ledger, NOETIC_POOL_PATCH, solar_tick);
     w->patches[t % NOETIC_PATCH_COUNT].energy_uq += solar_tick;
 
@@ -412,13 +413,13 @@ void noetic_world_step(NoeticWorld *w) {
         NoeticPatch *tp = &w->patches[pr->target_patch];
         double dx = wrap_delta(tp->x - pr->x, w->world_size);
         double dy = wrap_delta(tp->y - pr->y, w->world_size);
-        double dist = hypot(dx, dy);
+        double dist = noetic_hypot_det(dx, dy);
         if (dist < 2.2) {
             pr->target_patch = (pr->target_patch + 3) % NOETIC_PATCH_COUNT;
         } else {
-            pr->gaze_angle = atan2(dy, dx);
-            pr->vx = 0.28 * cos(pr->gaze_angle);
-            pr->vy = 0.28 * sin(pr->gaze_angle);
+            pr->gaze_angle = noetic_atan2_det(dy, dx);
+            pr->vx = 0.28 * noetic_cos_det(pr->gaze_angle);
+            pr->vy = 0.28 * noetic_sin_det(pr->gaze_angle);
             pr->x = wrap_pos(pr->x + pr->vx, w->world_size);
             pr->y = wrap_pos(pr->y + pr->vy, w->world_size);
         }
@@ -426,9 +427,9 @@ void noetic_world_step(NoeticWorld *w) {
     for (int i = 0; i < NOETIC_HAZARD_COUNT; ++i) {
         NoeticHazard *hz = &w->hazards[i];
         double jitter = 0.14 * noetic_philox_normal(s, 201, t * 8u + (uint64_t)i);
-        double ang = atan2(hz->vy, hz->vx) + jitter;
-        hz->vx = 0.44 * cos(ang);
-        hz->vy = 0.44 * sin(ang);
+        double ang = noetic_atan2_det(hz->vy, hz->vx) + jitter;
+        hz->vx = 0.44 * noetic_cos_det(ang);
+        hz->vy = 0.44 * noetic_sin_det(ang);
         hz->x = wrap_pos(hz->x + hz->vx, w->world_size);
         hz->y = wrap_pos(hz->y + hz->vy, w->world_size);
     }
@@ -443,7 +444,7 @@ void noetic_world_step(NoeticWorld *w) {
         /* Controlled lipolysis mobilization from long-term stores under fasting */
         noetic_ledger_transfer(&w->ledger, NOETIC_POOL_STORES, NOETIC_POOL_ATP, 480);
     }
-    int64_t basal_cost = 320 + (int64_t)(160.0 * (0.5 + 0.5 * sin(w->circadian_phase * 2.0)));
+    int64_t basal_cost = 320 + (int64_t)(160.0 * (0.5 + 0.5 * noetic_sin_det(w->circadian_phase * 2.0)));
     if (w->ledger.pools[NOETIC_POOL_ATP] >= basal_cost) {
         noetic_ledger_transfer(&w->ledger, NOETIC_POOL_ATP, NOETIC_POOL_HEAT_PHYS, basal_cost);
     } else {
@@ -469,7 +470,7 @@ void noetic_world_step(NoeticWorld *w) {
     for (int i = 0; i < NOETIC_PATCH_COUNT; ++i) {
         double dx = wrap_delta(w->patches[i].x - o->x, w->world_size);
         double dy = wrap_delta(w->patches[i].y - o->y, w->world_size);
-        double d = hypot(dx, dy);
+        double d = noetic_hypot_det(dx, dy);
         if (d < best_p_dist) { best_p_dist = d; nearest_p = i; }
         if (!w->patches[i].is_toxic && w->patches[i].energy_uq > 5000 && d < best_safe_dist) {
             best_safe_dist = d; nearest_safe = i;
@@ -480,7 +481,7 @@ void noetic_world_step(NoeticWorld *w) {
     for (int i = 0; i < NOETIC_HAZARD_COUNT; ++i) {
         double dx = wrap_delta(w->hazards[i].x - o->x, w->world_size);
         double dy = wrap_delta(w->hazards[i].y - o->y, w->world_size);
-        double d = hypot(dx, dy);
+        double d = noetic_hypot_det(dx, dy);
         if (d < best_h_dist) { best_h_dist = d; nearest_h = i; }
     }
 
@@ -491,13 +492,13 @@ void noetic_world_step(NoeticWorld *w) {
 
     double raw_sense[8];
     double s_noise = 0.06 * noetic_philox_normal(s, 202, t * 4u);
-    raw_sense[0] = clampd(exp(-best_p_dist / 16.0) + s_noise, 0.0, 1.0);          /* Chemo intensity */
-    raw_sense[1] = atan2(true_dy_p, true_dx_p);                                    /* Visual bearing to patch */
-    raw_sense[2] = clampd(exp(-best_h_dist / 10.0) + 0.04 * s_noise, 0.0, 1.0);    /* Threat proximity */
+    raw_sense[0] = clampd(noetic_exp_det(-best_p_dist / 16.0) + s_noise, 0.0, 1.0);          /* Chemo intensity */
+    raw_sense[1] = noetic_atan2_det(true_dy_p, true_dx_p);                                    /* Visual bearing to patch */
+    raw_sense[2] = clampd(noetic_exp_det(-best_h_dist / 10.0) + 0.04 * s_noise, 0.0, 1.0);    /* Threat proximity */
     raw_sense[3] = clampd((double)w->ledger.pools[NOETIC_POOL_ATP] / 600000.0, 0.0, 1.0); /* Interoceptive ATP */
     raw_sense[4] = w->patches[nearest_p].odor_a;
     raw_sense[5] = w->patches[nearest_p].odor_b;
-    raw_sense[6] = atan2(true_dy_h, true_dx_h);
+    raw_sense[6] = noetic_atan2_det(true_dy_h, true_dx_h);
     raw_sense[7] = (double)(nearest_p);
 
     /* Store in sensory ring buffer */
@@ -524,8 +525,8 @@ void noetic_world_step(NoeticWorld *w) {
     if (w->mutant_mode == NOETIC_MUTANT_ORACLE) {
         double odx = wrap_delta(w->patches[nearest_safe].x - o->x, w->world_size);
         double ody = wrap_delta(w->patches[nearest_safe].y - o->y, w->world_size);
-        sense[0] = clampd(exp(-best_safe_dist / 16.0), 0.0, 1.0);
-        sense[1] = atan2(ody, odx);
+        sense[0] = clampd(noetic_exp_det(-best_safe_dist / 16.0), 0.0, 1.0);
+        sense[1] = noetic_atan2_det(ody, odx);
         sense[4] = 0.05;
         sense[5] = 0.05;
     }
@@ -543,7 +544,7 @@ void noetic_world_step(NoeticWorld *w) {
     for (int i = 0; i < NOETIC_CORTEX_UNITS; ++i) {
         double rec_w = has_abl(w, ABL_BIT_RECURRENT) ? 0.0 : o->w_rec[i];
         double tau = has_abl(w, ABL_BIT_RECURRENT) ? 1.45 : (o->sltc_tau[i] * 2.6);
-        double decay = exp(-1.0 / tau);
+        double decay = noetic_exp_det(-1.0 / tau);
         double ext = (i < 4) ? drive_in : (0.3 * sense[i % 4] + gap_noise);
         double self_drive = decay * o->sltc_state[i] * (0.28 + 0.82 * rec_w);
         o->sltc_state[i] = clampd(self_drive + (1.0 - decay) * ext * 2.2, -2.0, 2.0);
@@ -566,7 +567,7 @@ void noetic_world_step(NoeticWorld *w) {
     /* Apical dendritic plateau activates selectively in the middle window (XOR!) */
     double apical_win = has_abl(w, ABL_BIT_APICAL_BIND)
         ? 0.0
-        : exp(-((basal_sum - 1.0) * (basal_sum - 1.0)) / 0.16);
+        : noetic_exp_det(-((basal_sum - 1.0) * (basal_sum - 1.0)) / 0.16);
     double dcaap_toxic_prob = has_abl(w, ABL_BIT_APICAL_BIND)
         ? sigmoid(2.2 * (basal_sum - 1.0))   /* Linear neuron fails XOR! */
         : sigmoid(4.8 * (apical_win - 0.42)); /* Dendritic dCaAP solves XOR cleanly */
@@ -593,7 +594,7 @@ void noetic_world_step(NoeticWorld *w) {
     double ideal_gain0 = 0.25 + 0.55 * urgency;
     o->acc_ttc_urgency_align += clampd(1.0 - fabs(o->attn_gain[0] - ideal_gain0) * 2.2, 0.0, 1.0);
 
-    double raw_mod[4] = { sense[0], 0.5 + 0.5 * cos(sense[1] - o->heading), sense[2], 1.0 - sense[3] };
+    double raw_mod[4] = { sense[0], 0.5 + 0.5 * noetic_cos_det(sense[1] - o->heading), sense[2], 1.0 - sense[3] };
     if (has_abl(w, ABL_BIT_SPECIALISTS)) {
         /* Ablated specialists collapse into undifferentiated pooled average */
         double avg = 0.25 * (raw_mod[0] + raw_mod[1] + raw_mod[2] + raw_mod[3]);
@@ -646,7 +647,7 @@ void noetic_world_step(NoeticWorld *w) {
         o->acc_rsvp_n++;
     }
     /* Check broadcast fidelity against true world modality vector (zero arm-label branch!) */
-    double true_mod[4] = { raw_sense[0], 0.5 + 0.5 * cos(raw_sense[1] - o->heading), raw_sense[2], 1.0 - raw_sense[3] };
+    double true_mod[4] = { raw_sense[0], 0.5 + 0.5 * noetic_cos_det(raw_sense[1] - o->heading), raw_sense[2], 1.0 - raw_sense[3] };
     int true_top = 0;
     for (int m = 1; m < 4; ++m) if (true_mod[m] > true_mod[true_top]) true_top = m;
     double ws_fidelity = (o->ws_broadcast[win0] > 0.10)
@@ -722,12 +723,13 @@ void noetic_world_step(NoeticWorld *w) {
         if (has_abl(w, ABL_BIT_QUALITY_SMOOTH)) {
             /* Scrambled non-topographic representation destroys smoothness */
             int perm_i = (i * 7 + 3) & 15;
-            o->quality_map[i] = exp(-12.0 * pow(((double)perm_i / 15.0) - ref_pos, 2.0))
+            double dp = ((double)perm_i / 15.0) - ref_pos;
+            o->quality_map[i] = noetic_exp_det(-12.0 * dp * dp)
                               + 0.18 * noetic_philox_normal(s, 213, t * 16u + (uint64_t)i);
         } else {
             /* Smooth lateral Mexican-hat topographic bump */
             double d = p - ref_pos;
-            o->quality_map[i] = exp(-10.0 * d * d) - 0.15 * exp(-2.5 * d * d)
+            o->quality_map[i] = noetic_exp_det(-10.0 * d * d) - 0.15 * noetic_exp_det(-2.5 * d * d)
                               + 0.04 * noetic_philox_normal(s, 213, t * 16u + (uint64_t)i);
         }
         rep_dist[i] = fabs(o->quality_map[i] - o->quality_map[(int)(ref_pos * 15.0)]);
@@ -759,16 +761,16 @@ void noetic_world_step(NoeticWorld *w) {
         o->schema_y = wrap_pos(0.75 * target_y + 0.25 * o->schema_y + 0.28 * exo_pull_y, w->world_size);
         NoeticPeer *p0 = &w->peers[0];
         double ray_dist = is_shuffled ? 0.5 : 8.0;
-        o->schema_peer_pred_x = wrap_pos(p0->x + ray_dist * cos(p0->gaze_angle), w->world_size);
-        o->schema_peer_pred_y = wrap_pos(p0->y + ray_dist * sin(p0->gaze_angle), w->world_size);
+        o->schema_peer_pred_x = wrap_pos(p0->x + ray_dist * noetic_cos_det(p0->gaze_angle), w->world_size);
+        o->schema_peer_pred_y = wrap_pos(p0->y + ray_dist * noetic_sin_det(p0->gaze_angle), w->world_size);
     }
-    double sp_err = hypot(wrap_delta(o->schema_x - target_x, w->world_size),
+    double sp_err = noetic_hypot_det(wrap_delta(o->schema_x - target_x, w->world_size),
                           wrap_delta(o->schema_y - target_y, w->world_size));
     NoeticPatch *peer_tp = &w->patches[w->peers[0].target_patch];
-    double peer_err = hypot(wrap_delta(o->schema_peer_pred_x - peer_tp->x, w->world_size),
+    double peer_err = noetic_hypot_det(wrap_delta(o->schema_peer_pred_x - peer_tp->x, w->world_size),
                             wrap_delta(o->schema_peer_pred_y - peer_tp->y, w->world_size));
-    o->acc_schema_err_sum += exp(-sp_err / 3.8);
-    o->acc_peer_pred_err_sum += exp(-peer_err / 18.0);
+    o->acc_schema_err_sum += noetic_exp_det(-sp_err / 3.8);
+    o->acc_peer_pred_err_sum += noetic_exp_det(-peer_err / 18.0);
     o->acc_schema_n++;
 
     /* ========================================================================
@@ -787,7 +789,7 @@ void noetic_world_step(NoeticWorld *w) {
         }
         pe_norm += fabs(o->pred_error[m]);
     }
-    o->acc_pred_err_sum += exp(-1.6 * pe_norm);
+    o->acc_pred_err_sum += noetic_exp_det(-1.6 * pe_norm);
     o->acc_pred_n++;
 
     /* 3-step Expected Free Energy policy evaluation (4 candidate headings) */
@@ -800,15 +802,15 @@ void noetic_world_step(NoeticWorld *w) {
         double efe = 0.0;
         if (has_abl(w, ABL_BIT_PRED_CODING)) {
             /* Myopic reflex without multi-step rollout */
-            efe = 0.25 * cos(cand_ang - o->heading) + 0.15 * noetic_philox_normal(s, 216, t * 4u + (uint64_t)a);
+            efe = 0.25 * noetic_cos_det(cand_ang - o->heading) + 0.15 * noetic_philox_normal(s, 216, t * 4u + (uint64_t)a);
         } else {
             /* 3-step trajectory rollout balancing pragmatic safe-patch approach & hazard avoidance + epistemic gain */
             double px = o->x, py = o->y;
             for (int step = 1; step <= 3; ++step) {
-                px = wrap_pos(px + 0.7 * cos(cand_ang), w->world_size);
-                py = wrap_pos(py + 0.7 * sin(cand_ang), w->world_size);
-                double pragmatic = cos(cand_ang - food_dir) * (0.95 + 0.85 * urgency);
-                double safety = -1.1 * sense[2] * cos(cand_ang - haz_dir);
+                px = wrap_pos(px + 0.7 * noetic_cos_det(cand_ang), w->world_size);
+                py = wrap_pos(py + 0.7 * noetic_sin_det(cand_ang), w->world_size);
+                double pragmatic = noetic_cos_det(cand_ang - food_dir) * (0.95 + 0.85 * urgency);
+                double safety = -1.1 * sense[2] * noetic_cos_det(cand_ang - haz_dir);
                 double epistemic = 0.28 * (1.0 - urgency) * (1.0 - sense[0]);
                 efe += (pragmatic + safety + epistemic) / (double)step;
             }
@@ -817,9 +819,9 @@ void noetic_world_step(NoeticWorld *w) {
         if (efe > best_efe) { best_efe = efe; best_heading = cand_ang; }
     }
     /* Evaluate true trajectory alignment of selected heading against safe-food / hazard-avoidance objective */
-    double true_safe_ang = atan2(wrap_delta(w->patches[nearest_safe].y - o->y, w->world_size),
+    double true_safe_ang = noetic_atan2_det(wrap_delta(w->patches[nearest_safe].y - o->y, w->world_size),
                                  wrap_delta(w->patches[nearest_safe].x - o->x, w->world_size));
-    double plan_align = 0.55 * sigmoid(best_efe) + 0.45 * (0.5 + 0.5 * cos(best_heading - true_safe_ang));
+    double plan_align = 0.55 * sigmoid(best_efe) + 0.45 * (0.5 + 0.5 * noetic_cos_det(best_heading - true_safe_ang));
     o->acc_planning_gain += plan_align;
 
     /* ========================================================================
@@ -841,8 +843,8 @@ void noetic_world_step(NoeticWorld *w) {
     /* ========================================================================
      * CIRCUIT 12 (ABL_BIT_EFFERENCE_COPY): Motor Forward Reafference Cancellation (AE-2, F7)
      * ======================================================================== */
-    double cmd_vx = (w->arm == NOETIC_ARM_PASSIVE) ? 0.0 : (0.65 * cos(best_heading) + 0.06 * noetic_philox_normal(s, 221, t * 2u));
-    double cmd_vy = (w->arm == NOETIC_ARM_PASSIVE) ? 0.0 : (0.65 * sin(best_heading) + 0.06 * noetic_philox_normal(s, 221, t * 2u + 1u));
+    double cmd_vx = (w->arm == NOETIC_ARM_PASSIVE) ? 0.0 : (0.65 * noetic_cos_det(best_heading) + 0.06 * noetic_philox_normal(s, 221, t * 2u));
+    double cmd_vy = (w->arm == NOETIC_ARM_PASSIVE) ? 0.0 : (0.65 * noetic_sin_det(best_heading) + 0.06 * noetic_philox_normal(s, 221, t * 2u + 1u));
     double ext_flow_x = w->hazards[nearest_h].vx * sense[2];
     double ext_flow_y = w->hazards[nearest_h].vy * sense[2];
     double total_optic_x = (is_shuffled ? -cmd_vx : cmd_vx) + ext_flow_x + 0.04 * noetic_philox_normal(s, 222, t * 2u);
@@ -856,10 +858,10 @@ void noetic_world_step(NoeticWorld *w) {
     }
     double resid_x = total_optic_x - o->efference_pred_vx;
     double resid_y = total_optic_y - o->efference_pred_vy;
-    double err_ext = hypot(resid_x - ext_flow_x, resid_y - ext_flow_y);
-    double motor_activity = clampd(hypot(cmd_vx, cmd_vy) / 0.65, 0.0, 1.0);
-    o->exafference_signal = hypot(resid_x, resid_y);
-    o->acc_reaff_snr_sum += (0.20 + 0.80 * motor_activity) * exp(-2.4 * err_ext);
+    double err_ext = noetic_hypot_det(resid_x - ext_flow_x, resid_y - ext_flow_y);
+    double motor_activity = clampd(noetic_hypot_det(cmd_vx, cmd_vy) / 0.65, 0.0, 1.0);
+    o->exafference_signal = noetic_hypot_det(resid_x, resid_y);
+    o->acc_reaff_snr_sum += (0.20 + 0.80 * motor_activity) * noetic_exp_det(-2.4 * err_ext);
     o->acc_reaff_n++;
 
     /* ========================================================================
@@ -870,21 +872,21 @@ void noetic_world_step(NoeticWorld *w) {
     for (int i = 0; i < NOETIC_WALL_COUNT; ++i) {
         double wx = 0.5 * (w->walls[i].x0 + w->walls[i].x1);
         double wy = 0.5 * (w->walls[i].y0 + w->walls[i].y1);
-        double d = hypot(wrap_delta(wx - o->x, w->world_size), wrap_delta(wy - o->y, w->world_size));
+        double d = noetic_hypot_det(wrap_delta(wx - o->x, w->world_size), wrap_delta(wy - o->y, w->world_size));
         if (d < min_wall_d) min_wall_d = d;
     }
     if (min_wall_d < 6.0 || (t % 16 == 0)) {
         double trap_ang = o->heading + M_PI * 0.85;
         if (has_abl(w, ABL_BIT_THALER_NOISE)) {
             o->thaler_perturbation = 0.0;
-            o->thaler_critic_best = cos(trap_ang - food_dir) * (pred_toxic ? -0.4 : 0.8) - 0.5 * cos(trap_ang - haz_dir);
+            o->thaler_critic_best = noetic_cos_det(trap_ang - food_dir) * (pred_toxic ? -0.4 : 0.8) - 0.5 * noetic_cos_det(trap_ang - haz_dir);
         } else {
             double best_score = -1e9;
             double best_delta = 0.0;
             for (int k = 0; k < 6; ++k) {
                 double d_ang = noetic_philox_normal(s, 217, t * 8u + (uint64_t)k) * 1.1;
                 double cand = trap_ang + d_ang;
-                double critic = cos(cand - food_dir) * (pred_toxic ? -0.4 : 0.8) - 0.5 * cos(cand - haz_dir);
+                double critic = noetic_cos_det(cand - food_dir) * (pred_toxic ? -0.4 : 0.8) - 0.5 * noetic_cos_det(cand - haz_dir);
                 if (critic > best_score) { best_score = critic; best_delta = d_ang; }
             }
             o->thaler_perturbation = best_delta;
@@ -901,14 +903,14 @@ void noetic_world_step(NoeticWorld *w) {
     double K_coup = has_abl(w, ABL_BIT_WAVE_PHASE) ? 0.0 : 0.38;
     double sin_sum = 0.0, cos_sum = 0.0;
     for (int i = 0; i < NOETIC_CORTEX_UNITS; ++i) {
-        sin_sum += sin(o->osc_phase[i]);
-        cos_sum += cos(o->osc_phase[i]);
+        sin_sum += noetic_sin_det(o->osc_phase[i]);
+        cos_sum += noetic_cos_det(o->osc_phase[i]);
     }
-    double mean_psi = atan2(sin_sum, cos_sum);
-    double R_coh = hypot(sin_sum, cos_sum) / (double)NOETIC_CORTEX_UNITS;
+    double mean_psi = noetic_atan2_det(sin_sum, cos_sum);
+    double R_coh = noetic_hypot_det(sin_sum, cos_sum) / (double)NOETIC_CORTEX_UNITS;
     for (int i = 0; i < NOETIC_CORTEX_UNITS; ++i) {
         double phase_noise = 0.08 * noetic_philox_normal(s, 218, t * 16u + (uint64_t)i);
-        o->osc_phase[i] += o->osc_omega[i] + K_coup * R_coh * sin(mean_psi - o->osc_phase[i]) + phase_noise;
+        o->osc_phase[i] += o->osc_omega[i] + K_coup * R_coh * noetic_sin_det(mean_psi - o->osc_phase[i]) + phase_noise;
     }
     o->acc_wave_coherence_sum += R_coh;
     o->acc_wave_n++;
@@ -978,9 +980,9 @@ void noetic_world_step(NoeticWorld *w) {
         double val = 0.0;
         if (has_abl(w, ABL_BIT_EGOCENTRIC_MAP)) {
             /* Allocentrically unrotated / flat map loses egocentric obstacle projection */
-            val = 0.1 * cos(bin_ang) + 0.15 * noetic_philox_normal(s, 220, t * 16u + (uint64_t)b);
+            val = 0.1 * noetic_cos_det(bin_ang) + 0.15 * noetic_philox_normal(s, 220, t * 16u + (uint64_t)b);
         } else {
-            double goal_align = cos(bin_ang - rel_goal_ang);
+            double goal_align = noetic_cos_det(bin_ang - rel_goal_ang);
             double wall_pen = (min_wall_d < 4.5 && fabs(bin_ang) < 0.45) ? -0.95 : 0.0;
             val = goal_align + wall_pen;
         }
@@ -989,7 +991,7 @@ void noetic_world_step(NoeticWorld *w) {
     }
     double ego_steer = ((double)best_ego_bin / 16.0) * 2.0 * M_PI - M_PI;
     double ideal_detour = (min_wall_d < 4.5) ? (rel_goal_ang + 0.9) : rel_goal_ang;
-    o->acc_ego_detour_progress += 0.5 * (1.0 + cos(ego_steer - ideal_detour));
+    o->acc_ego_detour_progress += 0.5 * (1.0 + noetic_cos_det(ego_steer - ideal_detour));
     o->acc_ego_n++;
 
     /* ========================================================================
@@ -997,7 +999,7 @@ void noetic_world_step(NoeticWorld *w) {
      * ======================================================================== */
     /* Passive thermal & oxidative wear + active homeostasis/repair (Circuit 18) */
     o->body_integrity = clampd(o->body_integrity - 0.0045, 0.05, 1.0);
-    double amb_temp = 37.0 + 4.5 * sin(w->circadian_phase);
+    double amb_temp = 37.0 + 4.5 * noetic_sin_det(w->circadian_phase);
     double hunger = clampd(1.0 - (double)w->ledger.pools[NOETIC_POOL_ATP] / 500000.0, 0.0, 1.0);
     double damage = 1.0 - o->body_integrity;
     double thermal_dev = fabs(o->temp_c - 37.0) / 5.0;
@@ -1032,9 +1034,9 @@ void noetic_world_step(NoeticWorld *w) {
         }
     }
     double true_deficit = 0.45 * hunger + 0.35 * damage + 0.20 * thermal_dev + 0.30 * o->malaise;
-    o->acc_homeo_error_sum += exp(-0.9 * fabs(o->temp_c - 37.0)) * o->body_integrity;
+    o->acc_homeo_error_sum += noetic_exp_det(-0.9 * fabs(o->temp_c - 37.0)) * o->body_integrity;
     o->acc_homeo_n++;
-    o->acc_valence_align += exp(-3.2 * fabs(-o->valence_common - true_deficit));
+    o->acc_valence_align += noetic_exp_det(-3.2 * fabs(-o->valence_common - true_deficit));
 
     /* ========================================================================
      * 4. Embodied Motor Execution, Patch Foraging, Hazard Collisions & Fission
@@ -1048,8 +1050,8 @@ void noetic_world_step(NoeticWorld *w) {
         double speed = 0.72 * (0.5 + 0.5 * o->body_integrity);
         if (w->ledger.pools[NOETIC_POOL_ATP] >= 60) {
             noetic_ledger_transfer(&w->ledger, NOETIC_POOL_ATP, NOETIC_POOL_HEAT_PHYS, 60);
-            o->vx = speed * cos(o->heading);
-            o->vy = speed * sin(o->heading);
+            o->vx = speed * noetic_cos_det(o->heading);
+            o->vy = speed * noetic_sin_det(o->heading);
         } else {
             o->vx *= 0.6; o->vy *= 0.6;
         }
@@ -1060,7 +1062,7 @@ void noetic_world_step(NoeticWorld *w) {
     /* Foraging ingestion (exact integer transfer PATCH -> GUT) */
     for (int i = 0; i < NOETIC_PATCH_COUNT; ++i) {
         NoeticPatch *p = &w->patches[i];
-        double d = hypot(wrap_delta(p->x - o->x, w->world_size), wrap_delta(p->y - o->y, w->world_size));
+        double d = noetic_hypot_det(wrap_delta(p->x - o->x, w->world_size), wrap_delta(p->y - o->y, w->world_size));
         if (d < p->radius + 0.8 && p->energy_uq >= 1800) {
             int64_t bite = 1800;
             if (noetic_ledger_transfer(&w->ledger, NOETIC_POOL_PATCH, NOETIC_POOL_GUT, bite)) {
@@ -1086,7 +1088,7 @@ void noetic_world_step(NoeticWorld *w) {
 
     /* Hazard collision damage */
     for (int i = 0; i < NOETIC_HAZARD_COUNT; ++i) {
-        double d = hypot(wrap_delta(w->hazards[i].x - o->x, w->world_size),
+        double d = noetic_hypot_det(wrap_delta(w->hazards[i].x - o->x, w->world_size),
                          wrap_delta(w->hazards[i].y - o->y, w->world_size));
         if (d < w->hazards[i].radius) {
             o->body_integrity = clampd(o->body_integrity - 0.06, 0.05, 1.0);

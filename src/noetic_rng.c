@@ -97,8 +97,13 @@ double noetic_log_det(double x) {
     double t = (m - 1.0) / (m + 1.0);
     double t2 = t * t;
     double poly = t * (2.0 + t2 * (2.0/3.0 + t2 * (2.0/5.0 + t2 * (2.0/7.0 +
-                  t2 * (2.0/9.0 + t2 * (2.0/11.0 + t2 * (2.0/13.0 + t2 * (2.0/15.0))))))));
+                  t2 * (2.0/9.0 + t2 * (2.0/11.0 + t2 * (2.0/13.0 + t2 * (2.0/15.0 +
+                  t2 * (2.0/17.0 + t2 * (2.0/19.0))))))))));
     return (double)e * 0.69314718055994530942 + poly;
+}
+
+double noetic_log2_det(double x) {
+    return noetic_log_det(x) * 1.44269504088896340736;
 }
 
 double noetic_tanh_det(double x) {
@@ -106,6 +111,95 @@ double noetic_tanh_det(double x) {
     if (x < -20.0) return -1.0;
     double e2 = noetic_exp_det(2.0 * x);
     return (e2 - 1.0) / (e2 + 1.0);
+}
+
+static void noetic_sincos_reduce(double x, int64_t *q_out, double *s_out, double *c_out) {
+    const double INV_PI_2 = 0.636619772367581343075535053490057448;
+    const double PIO2_1   = 1.57079632673412561417e+00; /* 33-bit exact split of pi/2 */
+    const double PIO2_2   = 6.07710050650619224932e-11;
+    const double PIO2_3   = 2.02226624879595063154e-21;
+    int64_t k = (int64_t)(x * INV_PI_2 + (x >= 0.0 ? 0.5 : -0.5));
+    double dk = (double)k;
+    double r  = ((x - dk * PIO2_1) - dk * PIO2_2) - dk * PIO2_3;
+    double r2 = r * r;
+    /* Degree-15 sin(r) and degree-16 cos(r) Horner polynomials on [-pi/4, pi/4] (< 1e-16 err) */
+    double s = r * (1.0 + r2 * (-1.0/6.0 + r2 * (1.0/120.0 + r2 * (-1.0/5040.0 +
+               r2 * (1.0/362880.0 + r2 * (-1.0/39916800.0 +
+               r2 * (1.0/6227020800.0 + r2 * (-1.0/1307674368000.0))))))));
+    double c = 1.0 + r2 * (-0.5 + r2 * (1.0/24.0 + r2 * (-1.0/720.0 +
+               r2 * (1.0/40320.0 + r2 * (-1.0/3628800.0 +
+               r2 * (1.0/479001600.0 + r2 * (-1.0/87178291200.0 +
+               r2 * (1.0/20922789888000.0))))))));
+    *q_out = k;
+    *s_out = s;
+    *c_out = c;
+}
+
+double noetic_sin_det(double x) {
+    if (!isfinite(x)) return 0.0;
+    int64_t k = 0;
+    double s = 0.0, c = 1.0;
+    noetic_sincos_reduce(x, &k, &s, &c);
+    switch ((uint64_t)k & 3u) {
+        case 0u: return  s;
+        case 1u: return  c;
+        case 2u: return -s;
+        default: return -c;
+    }
+}
+
+double noetic_cos_det(double x) {
+    if (!isfinite(x)) return 1.0;
+    int64_t k = 0;
+    double s = 0.0, c = 1.0;
+    noetic_sincos_reduce(x, &k, &s, &c);
+    switch ((uint64_t)k & 3u) {
+        case 0u: return  c;
+        case 1u: return -s;
+        case 2u: return -c;
+        default: return  s;
+    }
+}
+
+static double noetic_atan_unit_det(double z) {
+    /* z in [0, 1]; reduce to |u| <= tan(pi/12) = 2 - sqrt(3) ~= 0.26795 */
+    const double TAN_PI_12 = 0.26794919243112270647;
+    const double SQRT3     = 1.73205080756887729353;
+    const double PI_6      = 0.52359877559829887308;
+    double u = z;
+    double base = 0.0;
+    if (z > TAN_PI_12) {
+        u = (SQRT3 * z - 1.0) / (z + SQRT3);
+        base = PI_6;
+    }
+    double u2 = u * u;
+    double poly = u * (1.0 + u2 * (-1.0/3.0 + u2 * (1.0/5.0 + u2 * (-1.0/7.0 +
+                  u2 * (1.0/9.0 + u2 * (-1.0/11.0 + u2 * (1.0/13.0 + u2 * (-1.0/15.0 +
+                  u2 * (1.0/17.0 + u2 * (-1.0/19.0 + u2 * (1.0/21.0 + u2 * (-1.0/23.0 +
+                  u2 * (1.0/25.0)))))))))))));
+    return base + poly;
+}
+
+double noetic_atan2_det(double y, double x) {
+    const double PI   = 3.14159265358979323846;
+    const double PI_2 = 1.57079632679489661923;
+    if (x == 0.0 && y == 0.0) return 0.0;
+    if (x == 0.0) return (y > 0.0) ? PI_2 : -PI_2;
+    double ax = x < 0.0 ? -x : x;
+    double ay = y < 0.0 ? -y : y;
+    double a = (ay <= ax) ? noetic_atan_unit_det(ay / ax)
+                          : (PI_2 - noetic_atan_unit_det(ax / ay));
+    if (x < 0.0) a = PI - a;
+    return (y < 0.0) ? -a : a;
+}
+
+double noetic_hypot_det(double x, double y) {
+    double ax = x < 0.0 ? -x : x;
+    double ay = y < 0.0 ? -y : y;
+    if (ax < ay) { double tmp = ax; ax = ay; ay = tmp; }
+    if (ax == 0.0) return 0.0;
+    double r = ay / ax;
+    return ax * sqrt(1.0 + r * r);
 }
 
 double noetic_philox_uniform(uint64_t seed, uint64_t domain, uint64_t counter) {
@@ -117,7 +211,7 @@ double noetic_philox_normal(uint64_t seed, uint64_t domain, uint64_t counter) {
     double u1 = noetic_philox_uniform(seed, domain, counter * 2u);
     double u2 = noetic_philox_uniform(seed, domain, counter * 2u + 1u);
     if (u1 < 1e-12) u1 = 1e-12;
-    return sqrt(-2.0 * log(u1)) * cos(6.28318530717958647692 * u2);
+    return sqrt(-2.0 * noetic_log_det(u1)) * noetic_cos_det(6.28318530717958647692 * u2);
 }
 
 /* ============================================================================

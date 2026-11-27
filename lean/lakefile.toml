@@ -1,6 +1,6 @@
 name = "NoeticProofs"
-version = "2.1.0"
-defaultTargets = ["NoeticProofs", "Solution"]
+version = "2.2.0"
+defaultTargets = ["NoeticProofs", "AdversarialTests", "Solution"]
 
 [leanOptions]
 autoImplicit = false
@@ -10,6 +10,9 @@ linter.deprecated = true
 
 [[lean_lib]]
 name = "NoeticProofs"
+
+[[lean_lib]]
+name = "AdversarialTests"
 
 [[lean_lib]]
 name = "Challenge"

@@ -256,7 +256,7 @@ static double readout_metric(NoeticWorld *w, int32_t code) {
             return clampd(safe_div(o->acc_thaler_escape_sum, (double)o->acc_thaler_n, 0.0) * 0.92, 0.0, 0.94);
         case MC_CQM03_ECOLOGY: {
             double net_f = o->acc_food_harvested_uq - 1.5 * o->acc_toxin_ingested_uq;
-            return clampd(0.5 * (1.0 + tanh(net_f / 45000.0)) * 0.55 +
+            return clampd(0.5 * (1.0 + noetic_tanh_det(net_f / 45000.0)) * 0.55 +
                           0.45 * safe_div(o->acc_planning_gain, ticks, 0.0), 0.0, 0.94);
         }
         case MC_CQM04_MORPHOLOGY:
@@ -843,10 +843,10 @@ int noetic_export_lean_receipt(uint64_t seed, const char *lean_out_path) {
     (void)noetic_run_novel100_suite(48, &snv, NULL);
     (void)noetic_run_life500_suite(48, &slf, NULL);
 
-    FILE *f = fopen(lean_out_path, "w");
+    FILE *f = fopen(lean_out_path, "wb");
     if (!f) { free(w); return 1; }
     fprintf(f, "module\n\n");
-    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine.exe export-lean v2.1.0)\n");
+    fprintf(f, "-- AUTO-GENERATED LIVE C11 EXECUTION RECEIPT (noetic_engine export-lean v%s)\n", NOETIC_VERSION_STR);
     fprintf(f, "-- Seed: %llu | Ticks: %llu | SHA-256: %s\n", (unsigned long long)seed, (unsigned long long)w->tick, sha);
     fprintf(f, "namespace NoeticLiveReceipt\n\n");
     fprintf(f, "@[expose] public def c11Seed : Nat := %llu\n", (unsigned long long)seed);

@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+name: Deploy Interactive Proof Blueprint & Documentation Site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify WCAG 2.2 AA Strict-CSP Zero-CDN Blueprint & Landing Site
+        run: python3 scripts/check_blueprint.py
+      - uses: actions/configure-pages@v5
+      - name: Assemble static site (Landing + Interactive 68-Theorem Lean 4 Blueprint + Paper PDF + FAIR Metadata)
+        run: |
+          mkdir -p _site/dist _site/results
+          cp docs/index.html _site/index.html
+          cp docs/blueprint.html _site/blueprint.html
+          cp docs/blueprint.js _site/blueprint.js
+          cp docs/media/social-preview.svg _site/social-preview.svg
+          cp dist/Donahue_2026_noetic_organism_omega.pdf _site/dist/
+          cp results/lean4-noetic-audit.txt results/citation-audit.json _site/results/
+          cp llms.txt llms-full.txt croissant.json ro-crate-metadata.json codemeta.json _site/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

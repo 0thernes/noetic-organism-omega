@@ -3,9 +3,9 @@ module
 public import Solution
 
 /-!
-# NOETIC ORGANISM OMEGA v2.1.0 — Standalone Axiom Audit Script (`VerifyAxioms.lean`)
+# NOETIC ORGANISM OMEGA v2.2.0 — Standalone Axiom Audit Script (`VerifyAxioms.lean`)
 
-Runs `#print axioms` on all 54 machine-checked theorems (`N01..N54`).
+Runs `#print axioms` on all 68 machine-checked theorems (`N01..N60` + `A01..A08`).
 Every theorem MUST depend strictly on `[propext, Classical.choice, Quot.sound]`
 (or zero axioms) with ZERO `sorryAx`, `Lean.ofReduceBool`, `Lean.trustCompiler`,
 `_native`, or custom axioms.
@@ -65,3 +65,17 @@ Every theorem MUST depend strictly on `[propext, Classical.choice, Quot.sound]`
 #print axioms NoeticProofs.N52_refute_quantum_cap_11_fits_16384
 #print axioms NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness
 #print axioms NoeticProofs.N54_refute_leaky_mutant_conserves_sum
+#print axioms NoeticProofs.N55_ledger11_solar_inflow_preserves_residual
+#print axioms NoeticProofs.N56_ledger11_open_tick_preserves_residual
+#print axioms NoeticProofs.N57_ledger11_open_tick_monotone_heat
+#print axioms NoeticProofs.N58_ledger11_open_tick_preserves_nonneg
+#print axioms NoeticProofs.N59_ledger11_live_receipt_zero_residual
+#print axioms NoeticProofs.N60_fasting_ratio_equivalence_and_strict
+#print axioms NoeticProofs.A01_refute_unguarded_transfer_monotone_heat
+#print axioms NoeticProofs.A02_refute_unguarded_transfer_nonneg
+#print axioms NoeticProofs.A03_refute_region4_immutable
+#print axioms NoeticProofs.A04_refute_unrestricted_b158_roundtrip
+#print axioms NoeticProofs.A05_refute_bad_ledger11_transfer_conserves
+#print axioms NoeticProofs.A06_refute_zero_seed_valid
+#print axioms NoeticProofs.A07_refute_solar_without_p10_preserves_residual
+#print axioms NoeticProofs.A08_refute_negative_score_nonneg

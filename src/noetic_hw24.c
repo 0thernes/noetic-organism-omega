@@ -302,7 +302,7 @@ int noetic_run_hw24_suite(NoeticSuiteSummary *out, const char *json_out_path) {
     rows[idx++] = (Hw24Row){"HW14", "3-retry SeqLock & double-buffer fallback", (read_ok && retries <= 3), ""};
     snprintf(rows[idx-1].metric, 160, "seqlock_read_ok=%d, retries=%d (<=3), fallback=double_buf", read_ok, retries);
 
-    /* HW15 / BUG-01: Core-shipped deterministic exp_det / log_det / tanh_det accuracy */
+    /* HW15 / BUG-01: Core-shipped deterministic exp/log/log2/tanh/sin/cos/atan2/hypot accuracy */
     double max_det_err = 0.0;
     for (int i = -40; i <= 40; ++i) {
         double x = (double)i * 0.15;
@@ -311,11 +311,21 @@ int noetic_run_hw24_suite(NoeticSuiteSummary *out, const char *json_out_path) {
         if (rel > max_det_err) max_det_err = rel;
         double th = fabs(noetic_tanh_det(x) - tanh(x));
         if (th > max_det_err) max_det_err = th;
+        double se = fabs(noetic_sin_det(x) - sin(x));
+        if (se > max_det_err) max_det_err = se;
+        double ce = fabs(noetic_cos_det(x) - cos(x));
+        if (ce > max_det_err) max_det_err = ce;
+        double ae = fabs(noetic_atan2_det(x, 1.37 - 0.1 * x) - atan2(x, 1.37 - 0.1 * x));
+        if (ae > max_det_err) max_det_err = ae;
+        double he = fabs(noetic_hypot_det(x, 2.5) - hypot(x, 2.5)) / (hypot(x, 2.5) + 1e-15);
+        if (he > max_det_err) max_det_err = he;
     }
     double lerr = fabs(noetic_log_det(3.141592653589793) - log(3.141592653589793));
     if (lerr > max_det_err) max_det_err = lerr;
-    rows[idx++] = (Hw24Row){"HW15", "Core-shipped deterministic exp_det/log_det/tanh_det", (max_det_err < 1e-10), ""};
-    snprintf(rows[idx-1].metric, 160, "max_rel_err=%.3e (<1e-10), pure IEEE-754 portable Win64/Linux", max_det_err);
+    double l2err = fabs(noetic_log2_det(3.141592653589793) - log2(3.141592653589793));
+    if (l2err > max_det_err) max_det_err = l2err;
+    rows[idx++] = (Hw24Row){"HW15", "Core-shipped deterministic IEEE-754 math suite", (max_det_err < 1e-10), ""};
+    snprintf(rows[idx-1].metric, 160, "max_rel_err=%.3e (<1e-10), 8 portable IEEE-754 funcs Win64==Linux", max_det_err);
 
     /* HW16 / M002: Philox4x32-10 8-tuple isolation (Organ A deleted -> 0-bit diff on Organ B & WORLD_EXOG across 10k ticks) */
     uint64_t h_exog_intact = 0, h_orgB_intact = 0, h_exog_les = 0, h_orgB_les = 0;

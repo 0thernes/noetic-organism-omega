@@ -3,10 +3,20 @@
 All notable changes to `noetic-organism-omega` are documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
-## [Unreleased] - 2026-11-26
+## [2.2.0] - 2026-11-26
+
+### Fixed
+- **Cross-OS 0-Bit Receipt Determinism (`ERRATA.md` E-10 & CI Hole):** Diagnosed and eliminated Win64 Clang vs Linux GCC world-state SHA-256 drift by adding 5 portable IEEE-754 functions (`noetic_log2_det`, `noetic_sin_det`, `noetic_cos_det`, `noetic_atan2_det`, `noetic_hypot_det`; `max_rel_err = 2.274e-16` across all 8 functions in `HW15`), removing all 89 raw `libm` calls from `src/noetic_organism.c` and `noetic_philox_normal()`, adding `-ffp-contract=off` across Linux GCC & Windows MinGW builds, switching `export-lean` to binary LF output (`"wb"`), and adding a hard `diff -u` cross-OS receipt parity check in `.github/workflows/ci.yml`. Win64 Clang 23 and Linux GCC 13.3 now produce 0-bit identical SHA-256 world states (`6c0ca90e4090aac8...ed56d2c` at 180 ticks; `c7a53fd5...3f75` at 10,000 ticks) and 0-byte `diff` on `LiveC11Receipt.lean`.
+- **Win64 Clang Sysroot Isolation:** Added `--sysroot=$root` and `-B$root\lib` in `build.ps1` so Lean's bundled Clang links its own `crt2.o` rather than picking up a third-party MinGW installation on `PATH`.
+- **Formal Code Comments & Paper Errata (`ERRATA.md`):** Corrected all inaccurate Lean comments (`N02`, `N06`, `N25`, `N30`, bookkeeping counts) and all 6 frozen paper items in `paper/main.tex` (added `\usepackage[obeyspaces]{url}`, split C1–C5 Lean-model vs C11-runtime rows, honest `SYS-009` & `AI-001` rows, accurate 68-theorem breakdown, cross-OS hash disclosure, SWHID, SLSA/Rekor, dual timestamps).
+
+### Added
+- **11-Slot `Ledger11` Formalization & Adversarial Refutations (`68` Lean 4.35.0 Theorems):** Added `Ledger11`, `poolSum11`, `residual11`, `nonNeg11`, `solarIn11`, `openTick11`, `unguardedAtpToHeat`, and `isValidSeed` in `lean/NoeticProofs/Spec.lean`, 6 new theorems (`N55..N60`, closing the 10-vs-11 ledger gap and proving strict `1.6x` fasting ratio equivalence), 8 zero-axiom false-variant refutations in `lean/AdversarialTests.lean` (`A01..A08`), and live negative elaboration + `sorry`-tamper `lake comparator` rejection in `scripts/test_lean_negative.py`.
+- **Live Crossref/arXiv Citation Alignment Audit:** Upgraded `scripts/check_citations.py` to check both live reachability and Crossref/arXiv title + author alignment across all 22 references (`results/citation-audit.json`).
+- **Interactive Proof Blueprint, GitHub Pages, FAIR Metadata, REUSE & Dual Timestamps:** Added WCAG 2.2 AA strict-CSP zero-CDN `docs/blueprint.html` + `docs/index.html`, `scripts/check_blueprint.py`, `.github/workflows/pages.yml`, `.github/workflows/release.yml`, `croissant.json`, `ro-crate-metadata.json`, `codemeta.json`, `docs/DATASHEET.md`, `SUBMISSION_READINESS.md`, `REUSE.toml`, `LICENSES/{Apache-2.0,CC-BY-4.0}.txt`, and `scripts/stamp_timestamps.py` minting real DigiCert RFC 3161 (`CHECKSUMS.sha256.tsr`) + 3-calendar Bitcoin OpenTimestamps (`CHECKSUMS.sha256.ots`) proofs.
 
 ### Changed
-- **Claims corrected to match the 2026-11-26 statement audit** (documentation only; no Lean, C11, paper or data changes): Lean results now describe a 10-field unbounded-`Int` model of the ledger, not the 11-slot `int64_t` C11 ledger; the 54-theorem count states that 18 are closed numeral identities and 3 are receipt constant checks; `CLAIMS.md` rows C1-C5 and C7 split Lean-model clauses (`kernel-checked`) from C11 runtime clauses (`program-audited` / `empirical`); "Second-Law" and "Hardware Ring-0" labels are described as integer facts; the platform-dependent receipt hash is disclosed. Paper and Lean-comment errors are listed in `ERRATA.md`.
+- **Claims corrected to match the 2026-11-26 statement audit** (preserved from commit `95c0ec6` and extended to `v2.2.0`): Lean theorems report exact breakdown (`46` parametric/adversarial + `18` closed numeral bookkeeping identities + `4` live C11 receipt constant checks = `68`), split Lean-model (`kernel-checked`) from C11 runtime (`program-audited`/`empirical`), and retain `0 / 1,900` Mega-Atlas non-retirement and `[INDICATOR-ONLY]` tagging.
 
 ## [2.1.0] - 2026-11-25
 

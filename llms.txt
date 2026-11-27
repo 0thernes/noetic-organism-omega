@@ -1,22 +1,28 @@
-# Noetic Organism Omega (v2.1.0)
+# Noetic Organism Omega (v2.2.0)
 
-> Exact-conservation portable C11 whole-organism cognitive engine (6,776 B/world), 825-check & 100-milestone Clean-Slate v3.0 falsification harness, and 54-theorem 6-kernel Palomar Lean 4.35.0 proof suite.
+> Cross-OS bit-identical portable C11 whole-organism cognitive engine (6,776 B/world), 825-check & 100-milestone Clean-Slate v3.0 falsification harness, and 68-theorem 6-kernel Palomar Lean 4.35.0 proof suite (`Ledger10` + 11-slot `Ledger11` + `AdversarialTests.lean`).
 
 Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID 0009-0006-8168-9648)
-License: Apache-2.0 (code/proofs) | CC-BY-4.0 (paper/docs/receipts)
-Epistemic Notice: Not peer-reviewed; 29 cognitive checks are strictly [INDICATOR-ONLY]; 0/1,900 Mega-Atlas problems retired.
+License: Apache-2.0 (code/proofs) | CC-BY-4.0 (paper/docs/receipts) | REUSE.toml SPDX annotated
+Pages & Interactive Blueprint: https://0thernes.github.io/noetic-organism-omega/ · https://0thernes.github.io/noetic-organism-omega/blueprint.html
+SWHID: swh:1:snp:b6ab6984080956100c967e802c6fb44e0da7ff52
+Timestamps: DigiCert RFC 3161 (CHECKSUMS.sha256.tsr) + 3-calendar Bitcoin OpenTimestamps (CHECKSUMS.sha256.ots)
+Epistemic Notice: Not peer-reviewed; AI-assisted under human direction; 29 cognitive checks are strictly [INDICATOR-ONLY]; 0/1,900 Mega-Atlas problems retired; 18 of 68 Lean theorems are explicitly labeled bookkeeping numeral identities.
 
 ## Key Entry Points
 
-- [README.md](README.md): Executive summary, verified results, quickstart, and verbatim 54-theorem Lean `#print axioms` audit.
+- [README.md](README.md): Executive summary, verified cross-OS 0-bit results, quickstart, AI disclosure/CRediT, and verbatim 68-theorem Lean `#print axioms` audit.
 - [AGENTS.md](AGENTS.md): Canonical engineering and verification instructions.
-- [CLAIMS.md](CLAIMS.md): Numbered claims ledger (`C1..C8`) with epistemic tags and explicit falsification conditions.
+- [CLAIMS.md](CLAIMS.md): Numbered claims ledger (`C1..C9`) splitting Lean-model (`kernel-checked`) from C11-runtime (`program-audited`/`empirical`) clauses.
 - [LIMITATIONS.md](LIMITATIONS.md): Threats to validity and real-vs-metaphor boundaries.
+- [ERRATA.md](ERRATA.md): Chronological errata including the 2026-11-26 statement audit and `v2.2.0` resolutions.
 - [REPLICATION.md](REPLICATION.md): Clean-clone replication protocol and dated verification log.
-- [paper/main.tex](paper/main.tex) & [dist/Donahue_2026_noetic_organism_omega.pdf](dist/Donahue_2026_noetic_organism_omega.pdf): AMS-LaTeX white paper preprint.
-- [lean/NoeticProofs.lean](lean/NoeticProofs.lean), [lean/Challenge.lean](lean/Challenge.lean), [lean/Solution.lean](lean/Solution.lean), [lean/formalization.yaml](lean/formalization.yaml): 54-theorem 6-kernel Palomar Lean 4.35.0 suite.
+- [SUBMISSION_READINESS.md](SUBMISSION_READINESS.md): Venue readiness & Playbook v1.3 verification checklist.
+- [paper/main.tex](paper/main.tex) & [dist/Donahue_2026_noetic_organism_omega.pdf](dist/Donahue_2026_noetic_organism_omega.pdf): 11-page AMS-LaTeX white paper preprint (22/22 live Crossref/arXiv aligned citations in `results/citation-audit.json`).
+- [lean/NoeticProofs.lean](lean/NoeticProofs.lean), [lean/AdversarialTests.lean](lean/AdversarialTests.lean), [lean/Challenge.lean](lean/Challenge.lean), [lean/Solution.lean](lean/Solution.lean), [lean/formalization.yaml](lean/formalization.yaml): 68-theorem 6-kernel Palomar Lean 4.35.0 suite.
+- [docs/blueprint.html](docs/blueprint.html) & [docs/index.html](docs/index.html): WCAG 2.2 AA strict-CSP zero-CDN Interactive Proof Blueprint & GitHub Pages landing site.
 - [docs/statement-fidelity.md](docs/statement-fidelity.md): C11/equation-to-Lean fidelity audit matrix.
-- [docs/MEGA_ATLAS_CROSSCHECK.md](docs/MEGA_ATLAS_CROSSCHECK.md): Non-retirement cross-check against `0thernes/unsolved-problems-mega-atlas`.
+- [docs/MEGA_ATLAS_CROSSCHECK.md](docs/MEGA_ATLAS_CROSSCHECK.md): Non-retirement cross-check against `0thernes/unsolved-problems-mega-atlas` (`0/1,900`).
+- [docs/DATASHEET.md](docs/DATASHEET.md), [croissant.json](croissant.json), [ro-crate-metadata.json](ro-crate-metadata.json), [codemeta.json](codemeta.json): FAIR dataset & software metadata.
 - [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md): Tool-by-tool AI-assistance disclosure and CRediT authorship.
 - [docs/benchmarks.md](docs/benchmarks.md): Measured `M8 E3` scaling and performance budgets.
-- [docs/reviews/2026-11-25-10-pass-red-team-audit.md](docs/reviews/2026-11-25-10-pass-red-team-audit.md): 10-pass red-team review and 3-cycle hardening record.

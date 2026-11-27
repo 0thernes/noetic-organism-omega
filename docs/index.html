@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Noetic Organism Omega v2.2.0 — Cross-OS Bit-Identical C11 Engine &amp; 68-Theorem Lean 4.35.0 Proofs</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-2: #0b1222;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-strong: #0284c7;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --violet: #c084fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      z-index: 1000;
+    }
+    .skip-link:focus { left: 0.5rem; top: 0.5rem; }
+    a { color: var(--accent); text-underline-offset: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+    header {
+      background: linear-gradient(135deg, #0b1222 0%, #1e293b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    nav[aria-label="Primary"] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .nav-btn {
+      display: inline-block;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .nav-btn.primary { background: var(--accent-strong); border-color: var(--accent); color: #ffffff; }
+    .nav-btn:hover { border-color: var(--accent); }
+    h1 { margin: 0 0 0.5rem; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.2; }
+    .subtitle { margin: 0 0 1rem; color: var(--muted); max-width: 82ch; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .b-green { color: var(--green); border-color: #065f46; }
+    .b-blue { color: var(--accent); border-color: #075985; }
+    .b-violet { color: var(--violet); border-color: #6b21a8; }
+    .b-amber { color: var(--amber); border-color: #92400e; }
+    main { padding: 2rem 1.25rem 3rem; }
+    .notice {
+      background: #172554;
+      border-left: 4px solid var(--amber);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.15rem 1.25rem;
+    }
+    .card h2, .card h3 { margin: 0 0 0.45rem; font-size: 1.08rem; }
+    .metric { font-size: 1.6rem; font-weight: 800; color: var(--green); margin: 0.15rem 0 0.4rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+    section { margin-bottom: 2.25rem; }
+    h2 { font-size: 1.35rem; margin: 0 0 0.85rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
+    th { background: var(--surface-2); color: var(--text); font-weight: 700; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--surface-2);
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+      color: #e2e8f0;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem 2.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Primary">
+        <a class="nav-btn primary" href="blueprint.html">Interactive 68-Theorem Lean 4 Blueprint</a>
+        <a class="nav-btn" href="dist/Donahue_2026_noetic_organism_omega.pdf">White Paper PDF (11 pp.)</a>
+        <a class="nav-btn" href="https://github.com/0thernes/noetic-organism-omega">GitHub Repository</a>
+        <a class="nav-btn" href="results/lean4-noetic-audit.txt">Verbatim #print axioms</a>
+        <a class="nav-btn" href="results/citation-audit.json">22/22 Citation Audit JSON</a>
+      </nav>
+      <h1>Noetic Organism Omega <code>v2.2.0</code></h1>
+      <p class="subtitle">
+        Cross-OS bit-identical portable C11 whole-organism simulation engine (<code>6,776 B/world</code>),
+        825-check &amp; 100-milestone Clean-Slate v3.0 falsification harness, and 68-theorem 6-kernel
+        Palomar Lean 4.35.0 formal proof suite (<code>Ledger10</code>, 11-slot <code>Ledger11</code>,
+        and 8 adversarial false-variant refutations).
+      </p>
+      <div class="badges" role="list" aria-label="Verification Summary Badges">
+        <span class="badge b-blue" role="listitem">Win64 Clang == Linux GCC: 0-Bit SHA-256 Parity</span>
+        <span class="badge b-green" role="listitem">825/825 C11 Checks (0 Fail)</span>
+        <span class="badge b-violet" role="listitem">68/68 Lean 4.35.0 (6 Kernels)</span>
+        <span class="badge b-green" role="listitem">22/22 Crossref/arXiv Citations</span>
+        <span class="badge b-amber" role="listitem">0/1,900 Mega-Atlas Retired</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <div class="notice" role="region" aria-label="Epistemic Scope Notice">
+      <strong>Epistemic Honesty &amp; Non-Peer-Reviewed Notice:</strong>
+      Independent, AI-assisted technical research artifact by <strong>Alexander Stephen Donahue</strong>
+      (Independent Researcher, Spokane, WA, USA; ORCID
+      <a href="https://orcid.org/0009-0006-8168-9648">0009-0006-8168-9648</a>); <strong>not peer-reviewed</strong>.
+      All 29 cognitive/consciousness checks are strictly <code>[INDICATOR-ONLY]</code> computational proxies with
+      <strong>zero</strong> claims of subjective qualia or sentience, and <strong>0 / 1,900</strong> overarching
+      Mega-Atlas problems are retired. Lean 4.35.0 verifies unbounded-<code>Int</code> models and exported receipt
+      constants (18 of 68 theorems are explicitly labeled closed numeral bookkeeping identities); the C11 source is
+      tested via <code>-Werror</code>, ASan/UBSan, fuzzing, mutants, and 825 checks rather than formally proved.
+    </div>
+
+    <section aria-labelledby="kpi-heading">
+      <h2 id="kpi-heading">Verified Pillars (<code>v2.2.0</code>)</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Cross-OS 0-Bit Receipt Parity</h3>
+          <div class="metric">0 B diff</div>
+          <p>8 portable IEEE-754 math funcs (<code>max_rel_err = 2.274e-16</code>) + <code>-ffp-contract=off</code>
+             yield identical SHA-256 <code>6c0ca90e...6d2c</code> (180t) &amp; <code>c7a53fd5...3f75</code> (10k ticks)
+             across Win64 Clang &amp; Linux GCC.</p>
+        </article>
+        <article class="card">
+          <h3>68 Pure Lean 4.35.0 Theorems</h3>
+          <div class="metric">6 / 6 Kernels</div>
+          <p>46 parametric/adversarial (<code>Ledger10</code>, 11-slot <code>Ledger11</code>, <code>AdversarialTests.lean</code>),
+             18 bookkeeping numeral identities, 4 receipt constant checks; 40 zero-axiom, 27 <code>[propext/Quot.sound]</code>,
+             1 <code>Classical.choice</code>.</p>
+        </article>
+        <article class="card">
+          <h3>Clean-Slate v3.0 C11 Harness</h3>
+          <div class="metric">825 / 825</div>
+          <p>779 pass + 29 <code>INDICATOR_ONLY</code> + 12 gate pass + 5 honest classical parity disclosures (0 fail),
+             100/100 milestones, 13/13 gates, 5/5 caught Anti-LARP mutants, <code>0 uq</code> drift.</p>
+        </article>
+        <article class="card">
+          <h3>Provenance &amp; FAIR Metadata</h3>
+          <div class="metric">Dual TSA + OTS</div>
+          <p>Software Heritage snapshot, SLSA/Rekor build attestations, DigiCert RFC 3161 (<code>.tsr</code>) +
+             3-calendar Bitcoin OpenTimestamps (<code>.ots</code>), Croissant, RO-Crate, CodeMeta, and REUSE/SPDX.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="fair-heading">
+      <h2 id="fair-heading">FAIR Artifacts &amp; Machine-Readable Endpoints</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Artifact</th>
+            <th scope="col">Format</th>
+            <th scope="col">Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="blueprint.html"><code>blueprint.html</code></a></td>
+            <td>WCAG 2.2 AA HTML + SVG</td>
+            <td>Interactive dependency DAG &amp; searchable table of all 68 Lean 4.35.0 theorems</td>
+          </tr>
+          <tr>
+            <td><a href="dist/Donahue_2026_noetic_organism_omega.pdf"><code>Donahue_2026_noetic_organism_omega.pdf</code></a></td>
+            <td>PDF (11 pages)</td>
+            <td>Zero-overflow AMS-LaTeX white paper preprint with 22 verified citations</td>
+          </tr>
+          <tr>
+            <td><a href="croissant.json"><code>croissant.json</code></a></td>
+            <td>MLCommons Croissant 1.0</td>
+            <td>FAIR schema &amp; distribution metadata for C11 verification receipts</td>
+          </tr>
+          <tr>
+            <td><a href="ro-crate-metadata.json"><code>ro-crate-metadata.json</code></a></td>
+            <td>RO-Crate 1.1 JSON-LD</td>
+            <td>Research object graph linking code, proofs, paper, receipts &amp; timestamps</td>
+          </tr>
+          <tr>
+            <td><a href="codemeta.json"><code>codemeta.json</code></a></td>
+            <td>CodeMeta 2.0 JSON-LD</td>
+            <td>Machine-readable scientific software metadata</td>
+          </tr>
+          <tr>
+            <td><a href="llms.txt"><code>llms.txt</code></a> · <a href="llms-full.txt"><code>llms-full.txt</code></a></td>
+            <td>Plain text</td>
+            <td>LLM-ready repository index &amp; full technical digest</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>
+        Author: <strong>Alexander Stephen Donahue</strong> (Independent Researcher, Spokane, WA, USA;
+        ORCID <a href="https://orcid.org/0009-0006-8168-9648">0009-0006-8168-9648</a>) ·
+        SWHID: <code>swh:1:snp:b6ab6984080956100c967e802c6fb44e0da7ff52</code> ·
+        Dual Open License: <strong>Apache-2.0</strong> (code/proofs) &amp; <strong>CC-BY-4.0</strong> (paper/docs/data).
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

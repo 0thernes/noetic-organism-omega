@@ -1,4 +1,4 @@
-﻿'NoeticProofs.N01_atp_to_heat_conserves_sum' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N01_atp_to_heat_conserves_sum' depends on axioms: [propext, Quot.sound]
 'NoeticProofs.N02_atp_to_heat_monotone_sink' depends on axioms: [propext, Quot.sound]
 'NoeticProofs.N03_atp_to_heat_preserves_nonneg' depends on axioms: [propext, Quot.sound]
 'NoeticProofs.N04_patch_to_gut_conserves_sum' depends on axioms: [propext, Quot.sound]
@@ -52,3 +52,17 @@
 'NoeticProofs.N52_refute_quantum_cap_11_fits_16384' does not depend on any axioms
 'NoeticProofs.N53_nonvacuous_seed_firewall_and_holm_witness' does not depend on any axioms
 'NoeticProofs.N54_refute_leaky_mutant_conserves_sum' does not depend on any axioms
+'NoeticProofs.N55_ledger11_solar_inflow_preserves_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N56_ledger11_open_tick_preserves_residual' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N57_ledger11_open_tick_monotone_heat' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N58_ledger11_open_tick_preserves_nonneg' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.N59_ledger11_live_receipt_zero_residual' does not depend on any axioms
+'NoeticProofs.N60_fasting_ratio_equivalence_and_strict' depends on axioms: [propext, Quot.sound]
+'NoeticProofs.A01_refute_unguarded_transfer_monotone_heat' does not depend on any axioms
+'NoeticProofs.A02_refute_unguarded_transfer_nonneg' does not depend on any axioms
+'NoeticProofs.A03_refute_region4_immutable' does not depend on any axioms
+'NoeticProofs.A04_refute_unrestricted_b158_roundtrip' does not depend on any axioms
+'NoeticProofs.A05_refute_bad_ledger11_transfer_conserves' does not depend on any axioms
+'NoeticProofs.A06_refute_zero_seed_valid' does not depend on any axioms
+'NoeticProofs.A07_refute_solar_without_p10_preserves_residual' does not depend on any axioms
+'NoeticProofs.A08_refute_negative_score_nonneg' does not depend on any axioms

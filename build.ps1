@@ -37,6 +37,8 @@ $cflags = @(
     "-march=native", "-mavx2", "-mavxvnni", "-mbmi", "-mbmi2", "-mpopcnt",
     "-ffp-contract=off", "-flto=thin",
     "--target=x86_64-w64-windows-gnu",
+    "--sysroot=$root",
+    "-B$root\lib",
     "-DNOETIC_BARE_WIN64",
     "-I$proj\include",
     "-isystem", "$root\include\clang"
@@ -44,7 +46,7 @@ $cflags = @(
 $ldflags = @("-L$root\lib", "-fuse-ld=lld")
 $libs = @("-lkernel32", "-lucrtbase", "-lm", "-lmingw32", "-lmingwex")
 
-Write-Host "[1/7] Building bin\noetic_engine.exe v2.1.0 (12 C11 modules, AVX2/VNNI + ThinLTO, -Wall -Wextra -Werror) ..."
+Write-Host "[1/7] Building bin\noetic_engine.exe v2.2.0 (12 C11 modules, AVX2/VNNI + ThinLTO, -ffp-contract=off, -Wall -Wextra -Werror) ..."
 & $clang @cflags @core -o "$proj\bin\noetic_engine.exe" @ldflags @libs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
@@ -85,7 +87,7 @@ Write-Host "[6/7] Exporting Live C11 -> Lean 4 Receipt (seed 5001) ..."
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
-    Write-Host "[7/7] Verifying 54 Pure-Kernel Lean 4.35.0 Proofs (Lake Palomar + strict axiom allowlist) ..."
+    Write-Host "[7/7] Verifying 68 Pure-Kernel Lean 4.35.0 Proofs (Lake Palomar + strict axiom allowlist) ..."
     $env:PATH = "$root\bin;$env:USERPROFILE\.elan\bin;$env:PATH"
     Push-Location -LiteralPath "$proj\lean"
     & "$root\bin\lake.exe" build
@@ -122,8 +124,8 @@ if (-not $SkipLean -and (Test-Path -LiteralPath $lean)) {
             }
         }
     }
-    if ($audited -lt 54) {
-        throw "Expected at least 54 audited Lean theorems, found $audited"
+    if ($audited -lt 68) {
+        throw "Expected at least 68 audited Lean theorems, found $audited"
     }
-    Write-Host "PURE LEAN 4.35.0 AUDIT PASSED: $audited / 54 theorems strictly within {propext, Classical.choice, Quot.sound}!"
+    Write-Host "PURE LEAN 4.35.0 AUDIT PASSED: $audited / 68 theorems strictly within {propext, Classical.choice, Quot.sound}!"
 }

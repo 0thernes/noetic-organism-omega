@@ -3,8 +3,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p bin results lean/NoeticProofs
 
-echo "[1/6] Building bin/noetic_engine_linux v2.1.0 (GCC C11 -Wall -Wextra -Werror) ..."
-gcc -std=c11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter \
+echo "[1/6] Building bin/noetic_engine_linux v2.2.0 (GCC C11 -ffp-contract=off -Wall -Wextra -Werror) ..."
+gcc -std=c11 -O3 -ffp-contract=off -Wall -Wextra -Werror -Wno-unused-parameter \
   -Iinclude \
   src/noetic_rng.c src/noetic_stats.c src/noetic_organism.c src/noetic_gates_core.c \
   src/noetic_hw24.c src/noetic_soft40.c src/noetic_freak100.c src/noetic_novel100.c \

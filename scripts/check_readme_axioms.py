@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """Verify that README.md reproduces the exact verbatim Lean 4.35.0 `#print axioms`
-output from `results/lean4-noetic-audit.txt` with zero drift, and that all 54 theorems
+output from `results/lean4-noetic-audit.txt` with zero drift, and that all 68 theorems
 depend strictly on `{propext, Classical.choice, Quot.sound}` (or zero axioms)."""
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ AXIOMS_PATH = ROOT / "results" / "lean4-noetic-audit.txt"
 README_PATH = ROOT / "README.md"
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 FORBIDDEN = ("sorryAx", "Lean.ofReduceBool", "Lean.trustCompiler", "_native", "warning:")
-EXPECTED_COUNT = 54
+EXPECTED_COUNT = 68
 
 
 def main() -> None:

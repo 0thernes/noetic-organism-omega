@@ -1,0 +1,53 @@
+version = 1
+SPDX-PackageName = "noetic-organism-omega"
+SPDX-PackageSupplier = "Alexander Stephen Donahue <0_0@0thernes.art>"
+SPDX-PackageDownloadLocation = "https://github.com/0thernes/noetic-organism-omega"
+
+[[annotations]]
+path = [
+  "src/**",
+  "include/**",
+  "lean/**",
+  "tests/**",
+  "scripts/**",
+  "examples/**",
+  "web/**",
+  ".github/**",
+  "build.ps1",
+  "build_linux.sh",
+  "justfile",
+  "repo.yaml",
+  "repo-standard.schema.json",
+  "REUSE.toml",
+  ".editorconfig",
+  ".env.example",
+  ".gitattributes",
+  ".gitignore",
+  ".cursor/**"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Alexander Stephen Donahue"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = [
+  "paper/**",
+  "dist/**",
+  "docs/**",
+  "data/**",
+  "results/**",
+  "*.md",
+  "llms*.txt",
+  "VERSION",
+  "NOTICE",
+  "CITATION.cff",
+  "CITATION.bib",
+  ".zenodo.json",
+  "codemeta.json",
+  "croissant.json",
+  "ro-crate-metadata.json",
+  "CHECKSUMS.sha256*"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Alexander Stephen Donahue"
+SPDX-License-Identifier = "CC-BY-4.0"

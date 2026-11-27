@@ -1,0 +1,366 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Noetic Organism Omega (v2.2.0)",
+      "version": "2.2.0",
+      "datePublished": "2026-11-26",
+      "description": "Cross-OS bit-identical portable C11 whole-organism cognitive engine (825/825 checks, 100/100 milestones, 13/13 gates, 5/5 caught mutants) paired with 68 pure Lean 4.35.0 Palomar theorems across 6 independent proof kernels, 11-page AMS-LaTeX white paper, interactive proof blueprint, and dual cryptographic timestamps.",
+      "url": "https://0thernes.github.io/noetic-organism-omega/",
+      "identifier": "https://github.com/0thernes/noetic-organism-omega",
+      "sameAs": "https://archive.softwareheritage.org/swh:1:snp:b6ab6984080956100c967e802c6fb44e0da7ff52",
+      "license": {
+        "@id": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "author": {
+        "@id": "https://orcid.org/0009-0006-8168-9648"
+      },
+      "hasPart": [
+        {
+          "@id": "dist/Donahue_2026_noetic_organism_omega.pdf"
+        },
+        {
+          "@id": "dist/arxiv_submission.tar.gz"
+        },
+        {
+          "@id": "docs/index.html"
+        },
+        {
+          "@id": "docs/blueprint.html"
+        },
+        {
+          "@id": "docs/DATASHEET.md"
+        },
+        {
+          "@id": "docs/statement-fidelity.md"
+        },
+        {
+          "@id": "docs/MEGA_ATLAS_CROSSCHECK.md"
+        },
+        {
+          "@id": "CLAIMS.md"
+        },
+        {
+          "@id": "ERRATA.md"
+        },
+        {
+          "@id": "SUBMISSION_READINESS.md"
+        },
+        {
+          "@id": "lean/NoeticProofs/Spec.lean"
+        },
+        {
+          "@id": "lean/NoeticProofs/LiveC11Receipt.lean"
+        },
+        {
+          "@id": "lean/NoeticProofs.lean"
+        },
+        {
+          "@id": "lean/AdversarialTests.lean"
+        },
+        {
+          "@id": "results/lean4-noetic-audit.txt"
+        },
+        {
+          "@id": "results/lean4-multi-kernel.txt"
+        },
+        {
+          "@id": "results/citation-audit.json"
+        },
+        {
+          "@id": "results/m8_e2_825_honest_trace_matrix.csv"
+        },
+        {
+          "@id": "results/m8_e2_825_honest_trace_summary.json"
+        },
+        {
+          "@id": "results/m9_native_release_gates.json"
+        },
+        {
+          "@id": "results/seed_firewall_ledger.json"
+        },
+        {
+          "@id": "croissant.json"
+        },
+        {
+          "@id": "codemeta.json"
+        },
+        {
+          "@id": "REUSE.toml"
+        },
+        {
+          "@id": "CHECKSUMS.sha256"
+        },
+        {
+          "@id": "CHECKSUMS.sha256.tsr"
+        },
+        {
+          "@id": "CHECKSUMS.sha256.ots"
+        }
+      ]
+    },
+    {
+      "@id": "https://orcid.org/0009-0006-8168-9648",
+      "@type": "Person",
+      "name": "Alexander Stephen Donahue",
+      "email": "0_0@0thernes.art",
+      "affiliation": "Independent Researcher, Spokane, WA, USA",
+      "url": "https://0thernes.art"
+    },
+    {
+      "@id": "https://creativecommons.org/licenses/by/4.0/",
+      "@type": "CreativeWork",
+      "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "@id": "dist/Donahue_2026_noetic_organism_omega.pdf",
+      "@type": "File",
+      "name": "Donahue_2026_noetic_organism_omega.pdf",
+      "description": "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)",
+      "encodingFormat": "application/pdf",
+      "sha256": "4860f8c0a677d74c125a8eed1f455177a2fb6e8ac663b0dafb5f2d3fb35b4dc9",
+      "contentSize": 166406
+    },
+    {
+      "@id": "dist/arxiv_submission.tar.gz",
+      "@type": "File",
+      "name": "arxiv_submission.tar.gz",
+      "description": "Deterministic clean-room arXiv source tarball",
+      "encodingFormat": "application/gzip",
+      "sha256": "3f0d34632d8bd1b5d796215484954aad4524bf1573bbc76c3f3c39b8cf2afbb5",
+      "contentSize": 20580
+    },
+    {
+      "@id": "docs/index.html",
+      "@type": "File",
+      "name": "index.html",
+      "description": "WCAG 2.2 AA strict-CSP GitHub Pages landing page",
+      "encodingFormat": "text/html",
+      "sha256": "224dd62843a1bde6c59fb478863be4bc8d8f7f4d30193b751e5e904ee8cab512",
+      "contentSize": 11554
+    },
+    {
+      "@id": "docs/blueprint.html",
+      "@type": "File",
+      "name": "blueprint.html",
+      "description": "Interactive 68-theorem Lean 4.35.0 Proof Blueprint SVG DAG",
+      "encodingFormat": "text/html",
+      "sha256": "4680d0b45df65fa0adf816d8e94be5564d7def83defb73e5a7731fbb19beb7ec",
+      "contentSize": 44471
+    },
+    {
+      "@id": "docs/DATASHEET.md",
+      "@type": "File",
+      "name": "DATASHEET.md",
+      "description": "Gebru et al. Datasheet for Datasets & Verification Receipts",
+      "encodingFormat": "text/markdown",
+      "sha256": "c6930d88ada85266c3ccff8fc1332be199ba430a47100b73b40a729043a48bad",
+      "contentSize": 5074
+    },
+    {
+      "@id": "docs/statement-fidelity.md",
+      "@type": "File",
+      "name": "statement-fidelity.md",
+      "description": "Statement-fidelity audit matrix (68 Lean theorems vs C11)",
+      "encodingFormat": "text/markdown",
+      "sha256": "ae255ce189ee606fa23d094b736698893d8deb0a3a0c62dd7b10b9254f94731e",
+      "contentSize": 6451
+    },
+    {
+      "@id": "docs/MEGA_ATLAS_CROSSCHECK.md",
+      "@type": "File",
+      "name": "MEGA_ATLAS_CROSSCHECK.md",
+      "description": "Non-retirement cross-check against 1,900 Mega-Atlas problems (0/1,900)",
+      "encodingFormat": "text/markdown",
+      "sha256": "5bcdfab6577def424fe5d2481d7a4ada01dc28852f1323bccfeefb745a4dac8d",
+      "contentSize": 4908
+    },
+    {
+      "@id": "CLAIMS.md",
+      "@type": "File",
+      "name": "CLAIMS.md",
+      "description": "Falsifiable Claims Ledger (C1..C9)",
+      "encodingFormat": "text/markdown",
+      "sha256": "bd14aa54a8ce87d8f44a772d3777a48db3ce48429081a43ca5d8da97be043a5e",
+      "contentSize": 8502
+    },
+    {
+      "@id": "ERRATA.md",
+      "@type": "File",
+      "name": "ERRATA.md",
+      "description": "Chronological errata including 2026-11-26 audit and v2.2.0 resolutions",
+      "encodingFormat": "text/markdown",
+      "sha256": "9e1d5d0e46ca36d866195bd1937900727abd4c21d15c88c838d1de497217fe3f",
+      "contentSize": 12082
+    },
+    {
+      "@id": "SUBMISSION_READINESS.md",
+      "@type": "File",
+      "name": "SUBMISSION_READINESS.md",
+      "description": "Venue readiness & verification checklist",
+      "encodingFormat": "text/markdown",
+      "sha256": "1823998aab06575d4b1d0faee6c1fed33695846f2c390a8dbb3807c09f6e6a06",
+      "contentSize": 4647
+    },
+    {
+      "@id": "lean/NoeticProofs/Spec.lean",
+      "@type": "File",
+      "name": "Spec.lean",
+      "description": "Pure shared Lean 4.35.0 definitions (Ledger10, Ledger11, Guards)",
+      "encodingFormat": "text/plain",
+      "sha256": "f5c56c2096cfd9479aedb8084bb27fcee894e0345260bd2660f4a1519dbfd406",
+      "contentSize": 8665
+    },
+    {
+      "@id": "lean/NoeticProofs/LiveC11Receipt.lean",
+      "@type": "File",
+      "name": "LiveC11Receipt.lean",
+      "description": "Cross-OS 0-bit identical C11 execution receipt (seed 5001)",
+      "encodingFormat": "text/plain",
+      "sha256": "7d487452ad3d109d41e229da7b6747042e83b287628fc38a713ddd96aca1242b",
+      "contentSize": 1912
+    },
+    {
+      "@id": "lean/NoeticProofs.lean",
+      "@type": "File",
+      "name": "NoeticProofs.lean",
+      "description": "60 Lean 4.35.0 theorems (N01..N60)",
+      "encodingFormat": "text/plain",
+      "sha256": "c5924ce3e7ca64c95663c8c98598fb6bbc2ee47a856c96249d4605520fa58a32",
+      "contentSize": 26583
+    },
+    {
+      "@id": "lean/AdversarialTests.lean",
+      "@type": "File",
+      "name": "AdversarialTests.lean",
+      "description": "8 zero-axiom adversarial false-variant refutations (A01..A08)",
+      "encodingFormat": "text/plain",
+      "sha256": "8be8b640fa7405fd0ccd03b8ee14983048e3b356447f78971546cf0fe4ba9d3f",
+      "contentSize": 3819
+    },
+    {
+      "@id": "results/lean4-noetic-audit.txt",
+      "@type": "File",
+      "name": "lean4-noetic-audit.txt",
+      "description": "Verbatim 68-theorem #print axioms audit",
+      "encodingFormat": "text/plain",
+      "sha256": "45a35ada2f5f013a6382e869349c477d53243f8c4104e4868ab322d44aed5590",
+      "contentSize": 5689
+    },
+    {
+      "@id": "results/lean4-multi-kernel.txt",
+      "@type": "File",
+      "name": "lean4-multi-kernel.txt",
+      "description": "Independent multi-kernel Lean 4.35.0 replay transcript",
+      "encodingFormat": "text/plain",
+      "sha256": "21f7f7a49de094b5ef90b94d014e50ba87ddf0f4b7fdbce9115dc685986c3324",
+      "contentSize": 1362
+    },
+    {
+      "@id": "results/citation-audit.json",
+      "@type": "File",
+      "name": "citation-audit.json",
+      "description": "22/22 live Crossref/arXiv citation reachability & title/author alignment audit",
+      "encodingFormat": "application/json",
+      "sha256": "3881e6cc3112714d153d9e575035217d40db9727b9d39c88ec1f883300035aa5",
+      "contentSize": 11997
+    },
+    {
+      "@id": "results/m8_e2_825_honest_trace_matrix.csv",
+      "@type": "File",
+      "name": "m8_e2_825_honest_trace_matrix.csv",
+      "description": "825-check Clean-Slate v3.0 native C11 trace matrix",
+      "encodingFormat": "text/csv",
+      "sha256": "1d0065db2d7d76c24780546b49875903174f843cac4f7de4e5e63fd01238356d",
+      "contentSize": 188065
+    },
+    {
+      "@id": "results/m8_e2_825_honest_trace_summary.json",
+      "@type": "File",
+      "name": "m8_e2_825_honest_trace_summary.json",
+      "description": "825-check native C11 summary",
+      "encodingFormat": "application/json",
+      "sha256": "f2850999d0b712f480a46b5b60145eedbf58295217bfa76df922d8c621d0a72f",
+      "contentSize": 3285
+    },
+    {
+      "@id": "results/m9_native_release_gates.json",
+      "@type": "File",
+      "name": "m9_native_release_gates.json",
+      "description": "Native release gates receipt (7/7 PASS, GATE-11 10k 0-bit)",
+      "encodingFormat": "application/json",
+      "sha256": "b5a412d906f1f94a243289c5518f28099ba2678e0b5848126b5eac9f9124e98a",
+      "contentSize": 1065
+    },
+    {
+      "@id": "results/seed_firewall_ledger.json",
+      "@type": "File",
+      "name": "seed_firewall_ledger.json",
+      "description": "SHA-256 hash-chained Burn-on-Fail Seed Firewall ledger",
+      "encodingFormat": "application/json",
+      "sha256": "a7a42a25837443b304e4d992cc51bc1f4968148335ddac8b5c9109e1b1971b4f",
+      "contentSize": 2778
+    },
+    {
+      "@id": "croissant.json",
+      "@type": "File",
+      "name": "croissant.json",
+      "description": "MLCommons Croissant 1.0 dataset metadata",
+      "encodingFormat": "application/ld+json",
+      "sha256": "9a7f4a14869fa8ad1f44c7bf83d15f6339f5e189e2c977bbafccc6e57b5bd34a",
+      "contentSize": 9259
+    },
+    {
+      "@id": "codemeta.json",
+      "@type": "File",
+      "name": "codemeta.json",
+      "description": "CodeMeta 2.0 scientific software metadata",
+      "encodingFormat": "application/ld+json",
+      "sha256": "e351692fcc3ad1daaa0bf1e2dbaae032fa79f725818d360973686eea07ab15b7",
+      "contentSize": 2140
+    },
+    {
+      "@id": "REUSE.toml",
+      "@type": "File",
+      "name": "REUSE.toml",
+      "description": "SPDX REUSE dual-license manifest",
+      "encodingFormat": "text/plain",
+      "sha256": "1e72039239fc0f14492d6ea62acb45adec2a4df3788230c1902e452295553716",
+      "contentSize": 1084
+    },
+    {
+      "@id": "CHECKSUMS.sha256",
+      "@type": "File",
+      "name": "CHECKSUMS.sha256",
+      "description": "LF-normalized SHA-256 manifest",
+      "encodingFormat": "text/plain"
+    },
+    {
+      "@id": "CHECKSUMS.sha256.tsr",
+      "@type": "File",
+      "name": "CHECKSUMS.sha256.tsr",
+      "description": "DigiCert RFC 3161 Trusted Timestamp token",
+      "encodingFormat": "application/timestamp-reply"
+    },
+    {
+      "@id": "CHECKSUMS.sha256.ots",
+      "@type": "File",
+      "name": "CHECKSUMS.sha256.ots",
+      "description": "3-calendar Bitcoin OpenTimestamps proof",
+      "encodingFormat": "application/octet-stream"
+    }
+  ]
+}

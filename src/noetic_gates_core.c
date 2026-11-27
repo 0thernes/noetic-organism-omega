@@ -128,11 +128,11 @@ static bool simulate_xpbd_crevice(bool catch_softening_enabled, double *max_vol_
 
     for (int i = 0; i < XPBD_N; ++i) {
         double a = (2.0 * M_PI * (double)i) / (double)XPBD_N;
-        x[i] = R * cos(a);
-        y[i] = R * sin(a);
+        x[i] = R * noetic_cos_det(a);
+        y[i] = R * noetic_sin_det(a);
         vx[i] = 0.0; vy[i] = 0.0;
     }
-    const double rest_edge = 2.0 * R * sin(M_PI / (double)XPBD_N);
+    const double rest_edge = 2.0 * R * noetic_sin_det(M_PI / (double)XPBD_N);
     const double rest_diam = 2.0 * R;
     const double rest_area = polygon_area(x, y);
     const double dt = 0.02;
@@ -165,7 +165,7 @@ static bool simulate_xpbd_crevice(bool catch_softening_enabled, double *max_vol_
             for (int i = 0; i < XPBD_N; ++i) {
                 int j = (i + 1) % XPBD_N;
                 double dx = x[j] - x[i], dy = y[j] - y[i];
-                double d = hypot(dx, dy);
+                double d = noetic_hypot_det(dx, dy);
                 if (d > 1e-9) {
                     double C = d - rest_edge;
                     double denom = 2.0 + edge_alpha / (dt * dt);
@@ -179,7 +179,7 @@ static bool simulate_xpbd_crevice(bool catch_softening_enabled, double *max_vol_
             for (int i = 0; i < XPBD_N / 2; ++i) {
                 int j = i + XPBD_N / 2;
                 double dx = x[j] - x[i], dy = y[j] - y[i];
-                double d = hypot(dx, dy);
+                double d = noetic_hypot_det(dx, dy);
                 if (d > 1e-9) {
                     double C = d - rest_diam;
                     double corr = 0.5 * shape_stiff * C;
@@ -301,11 +301,11 @@ static bool run_gate07_packed_ganglia(NoeticReleaseGatesReceipt *rec) {
         int32_t acc = 0;
         for (int i = 0; i < 16; ++i) {
             int8_t w = unpack_b158_code((packed[i >> 4] >> ((i & 15) * 2)) & 3u);
-            int32_t inp = ((i & 1) == 0) ? (sin(phase) > 0.0 ? 1 : -1) : (wall_touch ? 1 : 0);
+            int32_t inp = ((i & 1) == 0) ? (noetic_sin_det(phase) > 0.0 ? 1 : -1) : (wall_touch ? 1 : 0);
             acc += (int32_t)w * inp;
         }
         /* Decerebrate peripheral survival check */
-        double periph_stride = 0.25 + 0.15 * fabs(sin(phase)) + (acc != 0 ? 0.05 : 0.02);
+        double periph_stride = 0.25 + 0.15 * fabs(noetic_sin_det(phase)) + (acc != 0 ? 0.05 : 0.02);
         decerebrate_dist += periph_stride;
         if (wall_touch) decerebrate_recoil += 1.0;
 
@@ -441,7 +441,7 @@ static bool run_gate09_wse12_ring0(NoeticReleaseGatesReceipt *rec) {
         st.W[0][7] = 0.14; st.W[7][0] = -0.11;
         ops_ok++;
         /* WSE-05 LOWRANK */
-        for (int i = 0; i < 16; ++i) for (int j = 0; j < 16; ++j) st.W[i][j] += 0.015 * sin((double)i) * cos((double)j);
+        for (int i = 0; i < 16; ++i) for (int j = 0; j < 16; ++j) st.W[i][j] += 0.015 * noetic_sin_det((double)i) * noetic_cos_det((double)j);
         ops_ok++;
         /* WSE-06 PHASE */
         for (int i = 0; i < 16; ++i) st.phase[i] += 0.05;

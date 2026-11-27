@@ -37,12 +37,18 @@ const stepSlice = orgSrc.split("int noetic_world_step(")[1] || "";
 const heapInStep = /\b(malloc|calloc|realloc|free)\s*\(/.test(stepSlice);
 check("GATE-02 static zero-alloc hot loop inside noetic_world_step()", !heapInStep, heapInStep ? "FOUND heap alloc!" : "0 malloc/calloc/realloc/free");
 
-// 2. Lean 4 zero sorry/admit/axiom/bv_decide scan
-const leanSrc = fs.readFileSync(path.join(ROOT, "lean", "NoeticProofs.lean"), "utf8")
-  .replace(/\/-[\s\S]*?-\//g, "")
-  .replace(/--.*$/gm, "");
-const leanBad = /\b(sorry|admit|axiom)\b|bv_decide|native_decide/.test(leanSrc);
-check("Pure Lean 4.35.0 source (54 theorems) free of sorry/admit/axiom/bv_decide", !leanBad, leanBad ? "FOUND forbidden token!" : "clean");
+// 2. Lean 4 zero sorry/admit/axiom/bv_decide scan across NoeticProofs + AdversarialTests + Spec
+const leanFiles = ["NoeticProofs.lean", "AdversarialTests.lean", "NoeticProofs/Spec.lean", "Solution.lean"];
+const leanBadHits = [];
+for (const lf of leanFiles) {
+  const leanSrc = fs.readFileSync(path.join(ROOT, "lean", lf), "utf8")
+    .replace(/\/-[\s\S]*?-\//g, "")
+    .replace(/--.*$/gm, "");
+  if (/\b(sorry|admit|axiom)\b|bv_decide|native_decide/.test(leanSrc)) {
+    leanBadHits.push(lf);
+  }
+}
+check("Pure Lean 4.35.0 sources (68 theorems) free of sorry/admit/axiom/bv_decide", leanBadHits.length === 0, leanBadHits.length ? `FOUND in ${leanBadHits.join(", ")}` : "clean across 4 modules");
 
 // 3. Verify M8 E1/E2/E3 empirical JSON receipts exist and have 0 energy drift
 const e1 = JSON.parse(fs.readFileSync(path.join(ROOT, "results", "m8_e1_ablation_sweep.json"), "utf8"));

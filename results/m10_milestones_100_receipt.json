@@ -4,7 +4,7 @@
   "total": 100,
   "first15_playable_passed": true,
   "max_energy_drift_uq": 0,
-  "sha256": "02394fac9c7910931fbb2abfcbc2568af364faa6a4e0545e2b138e553247da73",
+  "sha256": "409071ed0e8f38f072e974aee581504436bb417332914756db96ae202165bda0",
   "stages": [true,true,true,true,true,true,true,true,true],
   "milestones": [
     {"id":"M001","stage":0,"layer":"L0_Arena","first15":true,"status":"VERIFIED"},

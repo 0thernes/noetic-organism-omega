@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use or audit Noetic Organism Omega, please cite it using this metadata."
-title: "Noetic Organism Omega: Exact-Conservation Portable C11 Whole-Organism Cognitive Engine, 825-Check Falsification Harness, and 6-Kernel Lean 4.35.0 Proofs"
-version: "2.1.0"
-date-released: "2026-11-25"
+title: "Noetic Organism Omega: Cross-OS Bit-Identical Portable C11 Whole-Organism Cognitive Engine, 825-Check Falsification Harness, and 68-Theorem 6-Kernel Lean 4.35.0 Proofs"
+version: "2.2.0"
+date-released: "2026-11-26"
 type: software
 license: "Apache-2.0"
 repository-code: "https://github.com/0thernes/noetic-organism-omega"
-url: "https://0thernes.art"
+url: "https://0thernes.github.io/noetic-organism-omega/"
 authors:
   - family-names: "Donahue"
     given-names: "Alexander Stephen"
@@ -22,5 +22,6 @@ keywords:
   - xpbd
   - bitnet-b158
   - philox
+  - cross-os-determinism
   - falsification
-abstract: "Portable zero-dependency C11 whole-organism simulation engine (6,776 B/world) with an 11-slot int64 integer energy ledger, 18 structural circuit ablations, XPBD soft-body hydrostat, packed b1.58 ganglia, a Ring-0 WSE-12 self-editing guard, and an 825-check & 100-milestone Clean-Slate v3.0 test harness, plus 54 Lean 4.35.0 theorems, kernel-checked under the 6-kernel Palomar contract, about a 10-field integer Lean model of the ledger and helper encodings (18 are closed numeral identities). The C11 engine is tested, not formally proved. AI-assisted independent research under human direction; not peer-reviewed; cognitive indicators are strictly computational proxies."
+abstract: "Portable zero-dependency C11 whole-organism simulation engine (6,776 B/world) with 8 portable IEEE-754 deterministic math functions yielding 0-bit identical SHA-256 receipts across Win64 Clang and Linux GCC, an 11-slot int64 integer energy ledger, 18 structural circuit ablations, XPBD soft-body hydrostat, packed b1.58 ganglia, a software read-only WSE-12 self-editing guard, and an 825-check & 100-milestone Clean-Slate v3.0 test harness, paired with 68 Lean 4.35.0 theorems (6-kernel Palomar contract) covering unbounded-Int 10-field (Ledger10) and 11-slot (Ledger11) models, helper encodings, and 8 adversarial refutations (AdversarialTests.lean), plus 18 explicitly labeled closed numeral identities and 4 exported receipt constant checks. The C11 engine is tested, not formally proved. AI-assisted independent research under human direction; not peer-reviewed; cognitive indicators are strictly computational proxies."

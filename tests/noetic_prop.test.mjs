@@ -72,7 +72,7 @@ async function prop_check(trials = 32) {
   for (let i = 0; i < outA.length; i++) {
     const a = outA[i];
     const b = outB[i];
-    assert.equal(a.version, "2.1.0");
+    assert.equal(a.version, "2.2.0");
     // Property 1: Twin-run 0-bit SHA-256 determinism
     assert.equal(a.sha256, b.sha256, `Determinism mismatch at frame ${i}`);
     // Property 2: Exact integer First-Law conservation (0 uq residual)

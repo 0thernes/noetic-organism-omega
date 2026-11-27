@@ -1,7 +1,7 @@
 {
   "schema": "clean-slate-v3-gate01-seed-firewall/v2.0",
   "gate_id": "GATE-01",
-  "generated_utc": "2026-11-26T03:39:54.101Z",
+  "generated_utc": "2026-11-26T23:39:08.153Z",
   "status": "PASS",
   "bound_receipt_count": 9,
   "partitions": {
@@ -28,7 +28,7 @@
     "tamper_detection_rejected_mutation": true,
     "tamper_reason": "hash tamper detected at 1"
   },
-  "head_sha256": "4224f4288b93f915d43ea3032c81d3cd532f445eda91bf689f893561ed84d1a8",
+  "head_sha256": "21a056581ec484bc774910f974deaf3c65b31ca0b98f79e135a037e8cb2f580f",
   "entries": [
     {
       "index": 0,
@@ -55,24 +55,24 @@
       "prev_sha256": "75c3097feb71a386aff2ef8eb9d9245f01f86fe3b0d5f561903d94350aa3f04b",
       "event": "CONFIRMATORY_AND_HELDOUT_BINDING_V2",
       "m8_e1_sha256": "34a4b2fc7c769793eab9463f8ad838e7e3af02c19c7aa4d1a710c29faeb74b91",
-      "m8_e2_sha256": "cba334f552e9eb41fec9d637567d588372b215c8917598583dc36c94833411b2",
-      "m9_gates_sha256": "9988720222467e4c52aad881c8ec6eedd8a47cee2481605b2cd35b7289652118",
-      "m10_hw24_sha256": "8702d9106a208d7fe82536848eea174debb5577ead03e7af6beffb9f1078b7c5",
+      "m8_e2_sha256": "48fff43c064dc960083e3657a9cafe25f45ab489a74b24feaafa6ef74fe9f44c",
+      "m9_gates_sha256": "b5a412d906f1f94a243289c5518f28099ba2678e0b5848126b5eac9f9124e98a",
+      "m10_hw24_sha256": "24fdfcc7b5dcf44507461aa7a3dafb482bbb999d57ea6e0aae7598523b4e262b",
       "m10_soft40_sha256": "21e0b394c40e3527918e3d3e1e7df9e50c2794395686ee638968c93c615dc585",
       "m10_freak100_sha256": "586e346cb1376ba566364dc71bb3bf7c9da333c2942af25e2335c6922073171b",
       "m10_novel100_sha256": "4b9da2625e75083045b572daeeeeda18d97b6ad16c1cc1831ced22f2089fd95b",
       "m10_life500_sha256": "a32e33c2e76d7573926bcf2cfb804fe48bcee39c6ee22b594aa671d1654945a4",
-      "m10_milestones100_sha256": "5b2742af195961a12b8cc2644e86d446e47f56be7b60221c40cd78f6e3b7e6f3",
+      "m10_milestones100_sha256": "ed0827788eedf04326ca62086f0c7645e99ffde59817b0928e5fb5f10ba41927",
       "burn_on_fail_policy": "STRICT_NO_REUSE_AFTER_FAILURE",
-      "entry_sha256": "796fedf85a18471828f201a864fbaf8b210ab03969aa8da7b7884f417ef12f64"
+      "entry_sha256": "75666bd6d829aad712381f1c3eda139e404227a0bb528b176228819ca56337c0"
     },
     {
       "index": 2,
-      "prev_sha256": "796fedf85a18471828f201a864fbaf8b210ab03969aa8da7b7884f417ef12f64",
+      "prev_sha256": "75666bd6d829aad712381f1c3eda139e404227a0bb528b176228819ca56337c0",
       "event": "BURN_ON_FAIL_SELF_TEST",
       "probe_seed": 999901,
       "reentry_blocked": true,
-      "entry_sha256": "4224f4288b93f915d43ea3032c81d3cd532f445eda91bf689f893561ed84d1a8"
+      "entry_sha256": "21a056581ec484bc774910f974deaf3c65b31ca0b98f79e135a037e8cb2f580f"
     }
   ]
 }

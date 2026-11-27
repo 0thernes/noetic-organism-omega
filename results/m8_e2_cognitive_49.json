@@ -1,6 +1,6 @@
 {
   "suite": "M8_E2_COGNITIVE_49_ZERO_FANOUT",
-  "engine_version": "2.1.0",
+  "engine_version": "2.2.0",
   "n_seeds": 48,
   "seed_blocks": "5001-5024 + 5101-5124",
   "max_energy_residual_uq": 0,

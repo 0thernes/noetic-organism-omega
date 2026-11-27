@@ -3,10 +3,10 @@ module
 public import NoeticProofs.Spec
 
 /-!
-# NOETIC ORGANISM OMEGA v2.1.0 — Isolated Statement-Only Challenge Specification (`Challenge.lean`)
+# NOETIC ORGANISM OMEGA v2.2.0 — Isolated Statement-Only Challenge Specification (`Challenge.lean`)
 
 Imports ONLY `NoeticProofs.Spec` (pure definitions + `NoeticProofs.LiveC11Receipt` constants,
-ZERO proofs, ZERO `sorry`) and NONE of the proof module `NoeticProofs.lean`.
+ZERO proofs, ZERO `sorry`) and NONE of the proof modules (`NoeticProofs.lean`, `AdversarialTests.lean`).
 
 Every `sorry` in this file is intentional — matched strictly against sorry-free `Solution.lean`
 across all 6 independent Lean 4.35.0 kernels via:
@@ -203,5 +203,55 @@ public theorem N53_nonvacuous_seed_firewall_and_holm_witness :
 
 public theorem N54_refute_leaky_mutant_conserves_sum :
     ¬ (∀ L : Ledger10, poolSum { L with p3 := L.p3 + 1 } = poolSum L) := by sorry
+
+public theorem N55_ledger11_solar_inflow_preserves_residual (L : Ledger11) (amt : Int) :
+    residual11 (solarIn11 L amt) = residual11 L := by sorry
+
+public theorem N56_ledger11_open_tick_preserves_residual (L : Ledger11) (sol bite work repair heat : Int) :
+    residual11 (openTick11 L sol bite work repair heat) = residual11 L := by sorry
+
+public theorem N57_ledger11_open_tick_monotone_heat (L : Ledger11) (sol bite work repair heat : Int) :
+    L.p8 ≤ (openTick11 L sol bite work repair heat).p8 := by sorry
+
+public theorem N58_ledger11_open_tick_preserves_nonneg (L : Ledger11) (sol bite work repair heat : Int)
+    (h : nonNeg11 L) :
+    nonNeg11 (openTick11 L sol bite work repair heat) := by sorry
+
+public theorem N59_ledger11_live_receipt_zero_residual :
+    let L : Ledger11 :=
+      ⟨NoeticLiveReceipt.c11Pool0, NoeticLiveReceipt.c11Pool1, NoeticLiveReceipt.c11Pool2,
+       NoeticLiveReceipt.c11Pool3, NoeticLiveReceipt.c11Pool4, NoeticLiveReceipt.c11Pool5,
+       NoeticLiveReceipt.c11Pool6, NoeticLiveReceipt.c11Pool7, NoeticLiveReceipt.c11Pool8,
+       NoeticLiveReceipt.c11Pool9, NoeticLiveReceipt.c11SolarIn, NoeticLiveReceipt.c11InitialTotal⟩
+    residual11 L = 0 ∧ nonNeg11 L := by sorry
+
+public theorem N60_fasting_ratio_equivalence_and_strict (loss_intact loss_ablated : Nat) :
+    (8 * loss_intact ≤ 5 * loss_ablated ↔ 16 * loss_intact ≤ 10 * loss_ablated) ∧
+    (0 < loss_intact → 8 * loss_intact ≤ 5 * loss_ablated → loss_intact < loss_ablated) := by sorry
+
+public theorem A01_refute_unguarded_transfer_monotone_heat :
+    ¬ (∀ (L : Ledger11) (amt : Int), L.p8 ≤ (unguardedAtpToHeat L amt).p8) := by sorry
+
+public theorem A02_refute_unguarded_transfer_nonneg :
+    ¬ (∀ (L : Ledger11) (amt : Int), nonNeg11 L → nonNeg11 (unguardedAtpToHeat L amt)) := by sorry
+
+public theorem A03_refute_region4_immutable :
+    ¬ (∀ (st delta : Int), ring0ApplyEdit st 4 delta = st) := by sorry
+
+public theorem A04_refute_unrestricted_b158_roundtrip :
+    ¬ (∀ w : Int, unpackB158 (packB158 w) = w) := by sorry
+
+public theorem A05_refute_bad_ledger11_transfer_conserves :
+    ¬ (∀ L : Ledger11,
+        residual11 { L with p3 := L.p3 - 10, p8 := L.p8 + 11 } = residual11 L) := by sorry
+
+public theorem A06_refute_zero_seed_valid :
+    ¬ isValidSeed 0 := by sorry
+
+public theorem A07_refute_solar_without_p10_preserves_residual :
+    ¬ (∀ L : Ledger11, residual11 { L with p6 := L.p6 + 100 } = residual11 L) := by sorry
+
+public theorem A08_refute_negative_score_nonneg :
+    ¬ (∀ score_milli : Int, score_milli ≤ 950 → 0 ≤ score_milli) := by sorry
 
 end NoeticProofs

@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-#define NOETIC_VERSION_STR "2.1.0"
+#define NOETIC_VERSION_STR "2.2.0"
 #define NOETIC_POOL_COUNT 11
 #define NOETIC_ABLATION_COUNT 18
 #define NOETIC_CORTEX_UNITS 16
@@ -263,7 +263,12 @@ double   noetic_philox_uniform(uint64_t seed, uint64_t domain, uint64_t counter)
 double   noetic_philox_normal(uint64_t seed, uint64_t domain, uint64_t counter);
 double   noetic_exp_det(double x);
 double   noetic_log_det(double x);
+double   noetic_log2_det(double x);
 double   noetic_tanh_det(double x);
+double   noetic_sin_det(double x);
+double   noetic_cos_det(double x);
+double   noetic_atan2_det(double y, double x);
+double   noetic_hypot_det(double x, double y);
 void     noetic_sha256(const uint8_t *data, size_t len, uint8_t out[32]);
 void     noetic_sha256_hex(const uint8_t *data, size_t len, char out_hex[65]);
 
